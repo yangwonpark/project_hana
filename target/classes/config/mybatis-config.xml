@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC 
+		"-//mybatis.org//DTD Config 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="false" />
+		<setting name="useGeneratedKeys" value="false" />
+		<setting name="mapUnderscoreToCamelCase" value="false" />
+	</settings>
+
+	<typeAliases>
+		<typeAlias type="com.itbank.member.MemberDTO" alias="member" />
+		<typeAlias type="com.itbank.local.LocalDTO" alias="local" />
+		<typeAlias type="com.itbank.metro.MetroDTO" alias="metro" />
+		<typeAlias type="com.itbank.company.CompanyDTO" alias="company" />
+		<typeAlias type="com.itbank.reason.ReasonDTO" alias="reason" />
+		<typeAlias type="com.itbank.hotel.HotelDTO" alias="hotel" />
+		<typeAlias type="com.itbank.add_category.Add_CategoryDTO" alias="add_category" />
+		<typeAlias type="com.itbank.con_category.Con_CategoryDTO" alias="con_category" />
+		<typeAlias type="com.itbank.entrepreneur.EntrepreneurDTO" alias="entrepreneur" />
+		
+		<typeAlias type="com.itbank.tour_price.Tour_PriceDTO" alias="tour_price"/>
+		<typeAlias type="com.itbank.tour_item.Tour_ItemDTO" alias="tour_item"/>
+		<typeAlias type="com.itbank.entrepreneur.EntrepreneurDTO"  alias="entrepreneur"/>
+	</typeAliases>
+</configuration>

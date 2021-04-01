@@ -2,6 +2,7 @@ package com.itbank.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -97,7 +98,21 @@ public class HotelController {
 		mav.addObject("localList", localList);
 		return mav;
 	}
-
+	
+	@GetMapping("/hotel/hotelInsert")
+	public ModelAndView hotelInsert() {
+		ModelAndView mav = new ModelAndView("/hotel/hotelInsert");
+		List<MetroDTO> metroList = hs.getMetroList();
+		mav.addObject("metroList", metroList);
+		mav.addObject("metroListSize", metroList.size());
+		return mav;
+	}
+	
+	@PostMapping("/hotel/hotelInsert")
+	public void hotelInsert(HotelDTO dto) {
+		int num = hs.insertHotel(dto);
+		System.out.println(num);
+	}
 	
 	
 }

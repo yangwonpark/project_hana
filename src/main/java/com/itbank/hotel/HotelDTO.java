@@ -2,9 +2,22 @@ package com.itbank.hotel;
 
 public class HotelDTO {
 	
-	private int idx, hotel_kind_idx, metro_idx, entrepreneur_idx, dafault_cancel;
+	private int idx, hotel_kind_idx, metro_idx, entrepreneur_idx, default_cancel;
 	private String grade, check_in, check_out, floor, room_count, pnum, fax, main_img, 
 					notice, room, con_facility, dining, add_facility;
+	
+
+	
+//	객체속성값을 확인하기 위한 출력 메서드 (오버라이딩)
+//	public String toString() {
+//		return String.format("%s, %s, %s, %s, %s,"
+//				+ " %s, %s, %s, %s, %s,"
+//				+ " %s, %s, %s, %s, %s,"
+//				+ " %s, %s, %s", 
+//				idx, hotel_kind_idx, metro_idx, entrepreneur_idx, default_cancel,
+//				grade, check_in, check_out, floor, room_count, pnum, fax, main_img, 
+//				notice, room, con_facility, dining, add_facility);
+//	}
 	
 	public int getIdx() {
 		return idx;
@@ -29,12 +42,6 @@ public class HotelDTO {
 	}
 	public void setEntrepreneur_idx(int entrepreneur_idx) {
 		this.entrepreneur_idx = entrepreneur_idx;
-	}
-	public int getDafault_cancel() {
-		return dafault_cancel;
-	}
-	public void setDafault_cancel(int dafault_cancel) {
-		this.dafault_cancel = dafault_cancel;
 	}
 	public String getGrade() {
 		return grade;
@@ -113,5 +120,11 @@ public class HotelDTO {
 	}
 	public void setAdd_facility(String add_facility) {
 		this.add_facility = add_facility;
+	}
+	public int getDefault_cancel() {
+		return default_cancel;
+	}
+	public void setDefault_cancel(int default_cancel) {
+		this.default_cancel = default_cancel;
 	}
 }

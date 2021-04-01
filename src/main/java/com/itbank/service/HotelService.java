@@ -95,5 +95,10 @@ public class HotelService {
 		return hotelKind;
 	}
 
+	public int insertHotel(HotelDTO dto) {
+		int num = hotelDAO.insertHotel(dto);
+		return num;
+	}
+
 
 }

@@ -14,5 +14,11 @@
 	<select id="getHotelKind" parameterType="int" resultType="String">
 		select name from hotel_kind where idx=#{hotel_kind_idx}
 	</select>
-	
+	<insert id="insertHotel" parameterType="hotel">
+		insert into hotel_info values(hotel_info_seq.nextval, #{hotel_kind_idx},
+			#{grade}, #{metro_idx}, #{entrepreneur_idx}, #{check_in}, #{check_out},
+			#{floor}, #{room_count}, #{pnum}, #{fax}, #{main_img}, #{notice},
+			#{room}, #{con_facility}, #{dining}, #{add_facility}, #{default_cancel}
+		)
+	</insert>
 </mapper>

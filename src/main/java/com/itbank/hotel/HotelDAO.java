@@ -10,4 +10,6 @@ public interface HotelDAO {
 
 	String getHotelKind(int hotel_kind_idx);
 
+	int insertHotel(HotelDTO dto);
+
 }

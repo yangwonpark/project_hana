@@ -166,7 +166,12 @@
 		
 	</div>
 	<!-- hotel_visual_wrap end -->
-
+	
+	<div>
+		<form action="${cpath }/hotel/hotelInsert" >
+			<input type="submit" value="호텔 등록">
+		</form>
+	</div>
 	<!-- 숙소정보view -->
 	<div class="hotel_wrap_in">
 		<section>
@@ -241,7 +246,6 @@
 		<section><a href="#"><img src="${cpath }/resources/img/hotel5.jpg"></a></section>
 	</div>
 </div>
-
 
 <script>
 

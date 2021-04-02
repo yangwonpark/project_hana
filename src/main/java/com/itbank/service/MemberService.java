@@ -38,13 +38,18 @@ public class MemberService {
 	}
 
 	// 멤버 한명 정보 업데이트
-	public void updateMember(MemberDTO dto) {
-		md.updateMember(dto);
+	public int updateMember(MemberDTO dto) {
+		return md.updateMember(dto);
 	}
 
 	// 멤버 id로만 DTO 정보 가져오기.. (기 로그인 되어 있는 상태)
 	public MemberDTO updateUserMember(String userid) {
 		return md.updateUserMember(userid);
+	}
+
+	public MemberDTO selectOne(String userid) {
+		return md.selectOne(userid);
+		
 	}
 
 }

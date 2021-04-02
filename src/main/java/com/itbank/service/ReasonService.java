@@ -18,8 +18,8 @@ public class ReasonService {
 	
 	
 	// 탈퇴사유 추가)
-	public void insertReason(String reason) {
-		rd.insertReason(reason);
+	public int insertReason(String reason) {
+		return rd.insertReason(reason);
 	}
 
 	public List<ReasonDTO> getReasonList() {

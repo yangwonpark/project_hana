@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../myMenu/myinfo_main.jsp" %>
     <div class="content" style="float: left; width: 500px">
-      <h1>부서 목록 (관리자용)</h1>
+		<h1>부서 목록 (관리자용)</h1>
+		<hr width="500px">
         <form method="POST">
         	
         <table style="border-spacing: 10px;">
@@ -15,7 +16,7 @@
             
             <tr>
                 <td>*</td>
-                <td>사업자번호</td>
+                <td>부서번호</td>
                 <td><input type="text" name="serial_num" required /></td>
             </tr>
             <tr><td colspan="3"><hr /></td></tr>

@@ -23,5 +23,6 @@
 		<typeAlias type="com.itbank.tour_price.Tour_PriceDTO" alias="tour_price"/>
 		<typeAlias type="com.itbank.tour_item.Tour_ItemDTO" alias="tour_item"/>
 		<typeAlias type="com.itbank.entrepreneur.EntrepreneurDTO"  alias="entrepreneur"/>
+		<typeAlias type="com.itbank.member.LeaveMemberDTO"  alias="leavemember"/>
 	</typeAliases>
 </configuration>

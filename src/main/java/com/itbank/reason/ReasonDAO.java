@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface ReasonDAO {
 
-	void insertReason(String reason);
+	int insertReason(String reason);
 
 	List<ReasonDTO> selectReasonAll();
 	

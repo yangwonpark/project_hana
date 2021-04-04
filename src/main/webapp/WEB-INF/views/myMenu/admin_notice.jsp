@@ -65,18 +65,15 @@
 						<form method="POST">
 							<input type="text" name="">
 						</form>
-					</section>
-		 
+					</section>	 
 					<section id="content2" style="margin-bottom:20px;">
 						카테고리
 					</section>
-	
-
-	
 				</div>
 			</c:when>
 		</c:choose>
 	</div>
+	
 	<script>
 		document.getElementById('shtab1').onclick = function () {
 		  alert('I\'m clicked!');
@@ -84,10 +81,6 @@
 	
 	
 	</script>
-
  </div>
 </div>
-
-
-
 <%@ include file="../layout/footer.jsp" %>

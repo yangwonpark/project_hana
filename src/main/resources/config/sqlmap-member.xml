@@ -14,9 +14,14 @@
 	<select id="selectMember" parameterType="member" resultType="member">
 		select * from member where 
 			userid = #{userid} and
-			userpw = #{userpw}
+			userpw = #{userpw} and 
+			userkind not in (5)
 	</select>
 	
+	<select id="selectOne" parameterType="string" resultType="member">
+		select * from member where 
+			userid = #{userid}
+	</select>
 	
 	
 	<select id="selectId" parameterType="string" resultType="string">
@@ -44,6 +49,13 @@
 	<select id="updateUserMember" parameterType="string" resultType="member">
 		select * from member where userid = #{userid}
 	</select>	
+	
+	<update id="updateMemberTalte" parameterType="string">
+		update member set  
+			userkind = 5
+		where userid = #{userid}
+	</update>
+	
 	
 </mapper>
 

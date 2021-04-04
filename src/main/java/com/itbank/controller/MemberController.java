@@ -22,9 +22,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.itbank.member.LeaveMemberDTO;
 import com.itbank.member.MemberDTO;
 import com.itbank.oauth.OAuthToken;
 import com.itbank.reason.ReasonDTO;
+import com.itbank.service.LeaveMemberService;
 import com.itbank.service.MemberService;
 import com.itbank.service.ReasonService;
 
@@ -35,9 +37,12 @@ public class MemberController {
 	private MemberService ms;
 	
 	@Autowired
+	private LeaveMemberService lms;
+	
+	@Autowired
 	private ReasonService rs;
 	
-	private ObjectMapper jsonMapper = new ObjectMapper();
+//	private ObjectMapper jsonMapper = new ObjectMapper();
 
 // 관리자 회원가입 관련 컨트롤러 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	@GetMapping("/join/join_admin")
@@ -65,9 +70,17 @@ public class MemberController {
 		
 // 회원가입 관련 컨트롤러 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	@PostMapping("/join/join_form")
-	public String login(MemberDTO dto) {
-		ms.insertMember(dto);	
-		return "redirect:/login/login_form";
+	public ModelAndView login(MemberDTO dto) {
+		ModelAndView mav = new ModelAndView();
+		int s = ms.insertMember(dto);
+		if (s == 1) {
+			mav.addObject("msg", "축하합니다. 회원가입이 되었습니다.^^");
+		}else {
+			mav.addObject("msg", "회원가입에 실패하였습니다.");
+		}
+		mav.addObject("path", "/login/login_form");
+		mav.setViewName("/myMenu/msg");		
+		return mav;
 	}
 	
 	@PostMapping(value="checkId", produces="application/text;charset=utf8")
@@ -134,20 +147,20 @@ public class MemberController {
 
 // 회원 수정
 	@PostMapping("/myMenu/myinfo")
-	public String myinfo(MemberDTO user, HttpSession session) {
+	public ModelAndView myinfo(MemberDTO user, HttpSession session) {
 		
 		
-		System.out.println("아이디는 : " + user.getUserid());
-		System.out.println("이름은  : " + user.getName());
-		System.out.println("전화번호는 : " + user.getPnum());
-		System.out.println("생년월일은 : " + user.getBirth_date());
-		System.out.println("성별은 : " + user.getGender());
-		System.out.println("국가는 : " + user.getForeign());
-		System.out.println("유효기간은 : " + user.getExpiry_date());
-		System.out.println("sms수신은 : " + user.getAgree_sms());
-		System.out.println("전화수신은 : " + user.getAgree_pnum());
-		System.out.println("이메일수신은 : " + user.getAgree_email());
-		System.out.println("우편수신은 : " + user.getAgree_post());
+//		System.out.println("아이디는 : " + user.getUserid());
+//		System.out.println("이름은  : " + user.getName());
+//		System.out.println("전화번호는 : " + user.getPnum());
+//		System.out.println("생년월일은 : " + user.getBirth_date());
+//		System.out.println("성별은 : " + user.getGender());
+//		System.out.println("국가는 : " + user.getForeign());
+//		System.out.println("유효기간은 : " + user.getExpiry_date());
+//		System.out.println("sms수신은 : " + user.getAgree_sms());
+//		System.out.println("전화수신은 : " + user.getAgree_pnum());
+//		System.out.println("이메일수신은 : " + user.getAgree_email());
+//		System.out.println("우편수신은 : " + user.getAgree_post());
 //		
 //		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 //		System.out.println("아이디는 : " + dto.getUserid());
@@ -161,34 +174,70 @@ public class MemberController {
 //		System.out.println("전화수신은 : " + dto.getAgree_pnum());
 //		System.out.println("이메일수신은 : " + dto.getAgree_email());
 //		System.out.println("우편수신은 : " + dto.getAgree_post());
-		ms.updateMember(user);
-		session.setAttribute("login", ms.updateUserMember(user.getUserid()));
-		
-		
-		
-		return "redirect:/myMenu/myinfo";
+		ModelAndView mav = new ModelAndView();
+		int edit = ms.updateMember(user);
+		if (edit == 1) {
+			mav.addObject("msg", "회원수정이 되었습니다.");
+		}else {
+			mav.addObject("msg", "회원수정이 실패하였습니다.");
+		}
+		mav.addObject("path", "/myMenu/myinfo");
+		mav.setViewName("/myMenu/msg");		
+		session.setAttribute("login", ms.updateUserMember(user.getUserid()));	
+		return mav;
 	}	
 
-//		탈퇴 사유 등록
+//	탈퇴 사유 등록
 	@GetMapping("/myMenu/admin_outmemberreason")
 	public String outmemberreason() {
 		return "/myMenu/admin_outmemberreason";
 	}	
-	
+		
 	@GetMapping(value="myMenu/admin_outmemberreason/{reason}", produces="application/text;charset=utf8")
 	@ResponseBody 	
 	public String member(@PathVariable String reason) throws JsonProcessingException {
 		System.out.println("탈퇴 사유 : " + reason);
 	//	String jsonString = jsonMapper.writeValueAsString(reason);
 	//	System.out.println("jsonString : " + jsonString);
-		rs.insertReason(reason);
-		
-		List<ReasonDTO> list = rs.getReasonList(); // 
-		String reasonList = jsonMapper.writeValueAsString(list);  // 여러개의 dto를 json 문자열로 변경
+		int sucess = rs.insertReason(reason);
+		if (sucess == 1) {
+			return "성공";
+		}else {
+			return "실패";
+		}
+	//	List<ReasonDTO> list = rs.getReasonList(); // 
+	//	String reasonList = jsonMapper.writeValueAsString(list);  // 여러개의 dto를 json 문자열로 변경
 			
-		return reasonList;
+	//	return reasonList;
 	}
-
+	
+// 탈퇴 회원 등록 컨트롤러 (서비스 이용한 컨트롤러)
+	@PostMapping("/join/talte")
+	public ModelAndView talte(LeaveMemberDTO user, String userid, HttpSession session) {  // data에서 넘어온값이 map형태로 넘어오는데(data: {userid: '${login.userid}'}) 앞에 있는 userid 명으로 받아야 한다.
+	//	System.out.println("user.idx : " + user.getIdx());
+		ModelAndView mav = lms.insertMemberTalte(user, userid);
+	//	System.out.println(userid);
+	//	System.out.println("user.getLeave_reason_idx : " + user.getLeave_reason_idx());
+	//	System.out.println("user.memberidx : " + user.getMember_idx());
+	//	System.out.println("user.wish : " + user.getWish());
+	//	System.out.println("user.date : " + user.getLeave_date());
+	//	ms.selectOne(userid);	
+		session.removeAttribute("login");
+		return mav;
+	}
+	
+// 탈퇴 이유 불러오는 컨트롤러	
+	@GetMapping(value="/reason", produces="application/json;charset=utf8")
+	@ResponseBody
+	public List<ReasonDTO> reasonList() throws JsonProcessingException {
+		List<ReasonDTO> list = rs.getReasonList();
+//		String reason = jsonMapper.writeValueAsString(list);
+//		System.out.println("reason의 값은 : " + reason);
+//		return reason;
+		return list;
+	}
+		
+	
 // 카카오 로그인 컨트롤러
 	@GetMapping("/auth/kakao/callback")
 	@ResponseBody  // data를 리턴해주는 컨트롤러 함수

@@ -2,7 +2,7 @@ package com.itbank.member;
 
 public interface MemberDAO {
 
-	void insertMember(MemberDTO dto);
+	int insertMember(MemberDTO dto);
 
 	String selectId(String userId);
 	

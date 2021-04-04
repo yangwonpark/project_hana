@@ -14,7 +14,8 @@
 	<select id="selectMember" parameterType="member" resultType="member">
 		select * from member where 
 			userid = #{userid} and
-			userpw = #{userpw}
+			userpw = #{userpw} and 
+			userkind not in (5)
 	</select>
 	
 	<select id="selectOne" parameterType="string" resultType="member">

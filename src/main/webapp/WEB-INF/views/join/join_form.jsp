@@ -174,7 +174,7 @@
 		<div class="modal_content">
 			<div>
 			
-				<table width="100%" cellpadding="4" cellspacing="0" bgcolor="#EEEEEE">
+				<table width="100%" cellpadding="4" cellspacing="0" bgcolor="#4DABF7">
        				<tr> 
             			<td height="40"> &nbsp; <b>회원가입약관</b></td>
 					</tr>
@@ -350,7 +350,7 @@
     </table>
 
     <br>
-    <table width="100%" cellpadding="4" cellspacing="0" bgcolor=#EEEEEE>
+    <table width="100%" cellpadding="4" cellspacing="0" bgcolor="#4DABF7">
         <tr> 
             <td height="40"> &nbsp; <b>개인정보취급방침</b></td>
         </tr>

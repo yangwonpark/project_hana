@@ -14,9 +14,9 @@ public class MemberService {
 	
 	
 	// 일반 계정 등록
-	public void insertMember(MemberDTO dto) {
+	public int insertMember(MemberDTO dto) {
 		dto.setUserpw(Hash.getHash(dto.getUserpw()));
-		md.insertMember(dto); 	
+		return md.insertMember(dto); 	
 	}
 	
 	// 사용자 아이디 중복 체크

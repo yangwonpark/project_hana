@@ -7,31 +7,53 @@
 			      <h1>관리자 목록 (관리자용)</h1>
 			        <form method="POST">
 			        	
-			        <table style="width: 500px; border: 5px solid #4DABF7;  border-spacing: 10px;">
-			            
-			            <th>
-			                <th>관리자 ID</th>
-			                <th>이름</th>
-			                <th>소속팀</th>
-			                <th>소속팀</th>
-			                <th>소속팀</th>
-			            </th>
-			            <tr>
-			            	<td>관리자 ID</td>
-			                <td>이름</td>
-			                <td>소속팀</td>
-			                <td>소속팀</td>
-			                <td>소속팀</td>
-			            </tr>
-			            <tr>
-			            	<td>관리자 ID</td>
-			                <td>이름</td>
-			                <td>소속팀</td>
-			                <td>소속팀</td>
-			                <td>소속팀</td>
-			            </tr>
-       
-			       </table>
+				        <table style="width: 700px; border-bottom: 3px solid #4DABF7; border-top: 3px solid #4DABF7;  border-spacing: 10px;">
+				            
+				            <tr>
+				                <th>관리자 ID</th>
+				                <th>이름</th>
+				                <th>소속팀</th>
+				                <th>소속팀</th>
+				                <th>소속팀</th>
+				            </tr>
+				            
+				            <tr>
+				            	<td colspan="5"><br></td>           
+				            </tr>
+				            
+				            <tr>
+				            	<td>관리자 ID</td>
+				                <td>이름</td>
+				                <td>소속팀</td>
+				                <td>소속팀</td>
+				                <td>소속팀</td>
+				            </tr>
+				            
+				            <tr>
+				            	<td colspan="5"><br></td>           
+				            </tr>
+				            
+				            <tr>
+				            	<td>관리자 ID</td>
+				                <td>이름</td>
+				                <td>소속팀</td>
+				                <td>소속팀</td>
+				                <td></td>
+				            </tr>
+				            
+				            <tr>
+				            	<td colspan="5"><br></td>           
+				            </tr>	
+				            		            
+				            <tr>
+				            	<td>관리자 ID</td>
+				                <td>이름</td>
+				                <td>소속팀</td>
+				                <td>소속팀</td>
+				                <td></td>
+				            </tr>
+	     
+				       </table>
 			       
 			       </form>  
 			 </c:when>

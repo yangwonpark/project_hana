@@ -70,9 +70,17 @@ public class MemberController {
 		
 // 회원가입 관련 컨트롤러 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	@PostMapping("/join/join_form")
-	public String login(MemberDTO dto) {
-		ms.insertMember(dto);	
-		return "redirect:/login/login_form";
+	public ModelAndView login(MemberDTO dto) {
+		ModelAndView mav = new ModelAndView();
+		int s = ms.insertMember(dto);
+		if (s == 1) {
+			mav.addObject("msg", "축하합니다. 회원가입이 되었습니다.^^");
+		}else {
+			mav.addObject("msg", "회원가입에 실패하였습니다.");
+		}
+		mav.addObject("path", "/login/login_form");
+		mav.setViewName("/myMenu/msg");		
+		return mav;
 	}
 	
 	@PostMapping(value="checkId", produces="application/text;charset=utf8")
@@ -169,10 +177,11 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView();
 		int edit = ms.updateMember(user);
 		if (edit == 1) {
-			mav.addObject("msg", "수정");
+			mav.addObject("msg", "회원수정이 되었습니다.");
 		}else {
-			mav.addObject("msg", "실패");
+			mav.addObject("msg", "회원수정이 실패하였습니다.");
 		}
+		mav.addObject("path", "/myMenu/myinfo");
 		mav.setViewName("/myMenu/msg");		
 		session.setAttribute("login", ms.updateUserMember(user.getUserid()));	
 		return mav;

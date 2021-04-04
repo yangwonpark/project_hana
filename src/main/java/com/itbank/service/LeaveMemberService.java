@@ -19,16 +19,16 @@ public class LeaveMemberService {
 	public ModelAndView insertMemberTalte(LeaveMemberDTO user, String userid) {
 		int member = ldao.insertMemberTalte(user);
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/index");
+		mav.setViewName("/myMenu/msg");
 		if(member == 1) {
 			int userkind = dao.updateMemberTalte(userid);
 			if (userkind == 1) {
-				return  mav.addObject("msg", "성공");				
+				return  mav.addObject("msg", "회원탈퇴가 되었습니다.");				
 			}else {
-				return  mav.addObject("msg", "실패");
+				return  mav.addObject("msg", "회원탈퇴에 실패하였습니다.");
 			}
 		}else {
-			return  mav.addObject("msg", "불가");
+			return  mav.addObject("msg", "회원탈퇴에 실패하였습니다.");
 		}
 	}
 }

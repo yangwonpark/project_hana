@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+		"-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<!-- testDAO 객체가 참조하는 설정이다 -->	
+<!-- mapper가 interface인 경우, 패키지부터 인터페이스 이름까지 FullName으로 작성하자 (alias가 작동하지 않는다) -->	
+<mapper namespace="com.itbank.notice.NoticeDAO">
+	
+	
+	<insert id="insertNotice" parameterType="notice">
+		insert into notice
+			(idx, title, content, ndate, notice_category_idx)
+		values (
+			notice_seq.nextval, #{title}, #{content}, sysdate, #{notice_category_idx}	
+		) 
+	</insert>
+
+	<select id="getSelectEventN" resultType="hashmap">
+		select notice.idx, notice_category.kind, notice.title, notice.content 
+		from notice, notice_category 
+		where notice.notice_category_idx = notice_category.idx and notice_category.kind = '이벤트' 
+		order by notice.idx desc
+	
+	</select>
+
+	<select id="getSelectLotteN" resultType="hashmap">
+		select notice.idx, notice_category.kind, notice.title, notice.content 
+		from notice, notice_category 
+		where notice.notice_category_idx = notice_category.idx and notice_category.kind = '당청자발표' 
+		order by notice.idx desc
+	
+	</select>
+	
+	<select id="getSelectNormalN" resultType="hashmap">
+		select notice.idx, notice_category.kind, notice.title, notice.content 
+		from notice, notice_category 
+		where notice.notice_category_idx = notice_category.idx and notice_category.kind = '일반' 
+		order by notice.idx desc
+
+	
+	</select>
+
+	<select id="getSelectAllN" resultType="hashmap">
+		select notice.idx, notice_category.kind, notice.title, notice.content 
+		from notice, notice_category where notice.notice_category_idx = notice_category.idx 
+		order by notice.idx desc
+	
+	</select>
+
+
+
+	
+</mapper>
+
+
+
+
+

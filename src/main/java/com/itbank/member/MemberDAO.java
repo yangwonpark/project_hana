@@ -1,5 +1,9 @@
 package com.itbank.member;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public interface MemberDAO {
 
 	int insertMember(MemberDTO dto);
@@ -17,5 +21,9 @@ public interface MemberDAO {
 	MemberDTO selectOne(String userid);
 
 	int updateMemberTalte(String userid);
+
+	List<HashMap<String, String>> getOutMemberList();
+
+	int insertKakaoMember(MemberDTO dto);
 
 }

@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../myMenu/myinfo_main.jsp" %>    
+<%@ include file="../myMenu/myinfo_main.jsp" %>
+<script>
+const kakao = '${kakao}';
+console.log(kakao);
+if (kakao == 'kakao') {
+	alert('카카오 로그인 계정은 회원정보 수정이 불가능합니다.');
+	location.href = '${pageContext.request.contextPath}/reservation/reserve_main';
+}
+
+</script>
 <style>
         .modal {
             position: fixed;
@@ -235,10 +244,10 @@
             	<form action="${cpath}/join/talte" method="POST">
             		<label style="text-align: center;" for="selectreason">* 탈퇴 이유 :</label><p>
 	                
-	                <select style="width:350px; font-size: 15px;" name="leave_reason_idx" id="selectreason" required>
-						<option value="6">=== 탈퇴 사유 선택 === </option>
+	                <select style="width:350px; font-size: 15px;" name="leave_reason" id="selectreason" required>
+						<option>=== 탈퇴 사유 선택 ===</option>
 					</select><p>
-					
+				
 					<input type="hidden" name="member_idx" value="${login.idx }">
 					<input type="hidden" name="userid" value="${login.userid }">
 					
@@ -298,7 +307,7 @@
 			const op = document.createElement('option');
 			op.innerText = jsondata[i].reason_content;
 			console.log('jsondata[i].reason_content : ' + jsondata[i].reason_content);
-			op.value = jsondata[i].idx;
+			//op.value = jsondata[i].idx;
 			console.log('jsondata[i].idx : ' + jsondata[i].idx);
 			selectreason.appendChild(op);
 			}

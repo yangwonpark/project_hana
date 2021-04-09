@@ -10,21 +10,19 @@
             <tr>
                 <td>*</td>
                 <td>부서명</td>
-                <td><input type="text" name="name" required/></td>
+                <td><input type="text" name="team_name" required/></td>
             </tr>
             <tr><td colspan="3"><hr /></td></tr>
-            
-            <tr>
+    		<tr>
                 <td>*</td>
-                <td>부서번호</td>
-                <td><input type="text" name="serial_num" required /></td>
+                <td>부서코드</td>
+                <td><input type="text" name="team_pnum" required/></td>
             </tr>
             <tr><td colspan="3"><hr /></td></tr>
-    
              <tr >            
             <tr>
            		<td colspan="3">
-           			 <input style="border-radius: 20px; font-size: 20px;border:none; height: 30px;width: 400px; color: white; background-color: #4DABF7; outline: none;" type="submit" value="기업등록">
+           			 <input style="border-radius: 20px; font-size: 20px;border:none; height: 30px;width: 400px; color: white; background-color: #4DABF7; outline: none;" type="submit" value="부서등록">
           		</td>
             </tr>         
        </table>

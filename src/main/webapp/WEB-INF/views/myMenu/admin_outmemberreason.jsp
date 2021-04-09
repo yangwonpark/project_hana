@@ -59,12 +59,15 @@
 					
 					<section id="content1" style="margin-bottom:50px;">
 
-		        		<table style="text-align: left; margin-top: 100px; border-spacing: 10px;">
+		        		<table style="left; margin-top: 100px; border-spacing: 10px;">
 		            		<tr>
 		                		<td>*</td>
 		                		<td>탈퇴 사유 입력</td>
-		                		<td><input style="font-size: 20px;" id="reason" type="text" name="reason" required/></td>
-		            		</tr>         
+		                		<td><input style="border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 3px solid #4DABF7;font-size: 20px;" id="reason" type="text" name="reason" required/></td>
+		            		</tr>
+		            		<tr>
+		           				<td colspan="3">
+		           			</tr>	
 		            		<tr>
 		           				<td colspan="3">
 		           			 		<button id="reasonbtn" style="border-radius: 20px; font-size: 20px;border:none; height: 30px;width: 400px; color: white; background-color: #4DABF7; outline: none;">
@@ -76,7 +79,7 @@
 					</section>	 
 					
 					<section id="content2" style="margin-bottom:20px;">
-						<table id="reasontable" style="border: 5px solid #4DABF7; width: 500px;text-align: left; margin-top: 100px; border-spacing: 10px;">
+						<table id="reasontable" style="width: 700px; border-bottom: 3px solid #4DABF7; border-top: 3px solid #4DABF7; text-align: center; margin-top: 100px; border-spacing: 10px;">
 		  					
 		       			</table>	
 					</section>
@@ -125,9 +128,12 @@
 					console.log('data[i].reason_content : ' + data[i].reason_content);
 					td2.innerText = data[i].reason_content;
 					const tr = document.createElement('tr');
+					const tr1 = document.createElement('tr');
+					table.appendChild(tr1);
 					tr.appendChild(td1);
 					tr.appendChild(td2);
 					table.appendChild(tr);
+					
 				}
 				
 			},

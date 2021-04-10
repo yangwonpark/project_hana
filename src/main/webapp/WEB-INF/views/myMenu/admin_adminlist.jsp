@@ -7,30 +7,22 @@
 			      <h1>관리자 목록 (관리자용)</h1>
 			        <form method="POST">
 			        	
-			        <table style="width: 500px; border: 1px solid black;  border-spacing: 10px;">
-			            <tr>
-			                <th>관리자 ID</th>
-			                <th>이름</th>
-			                <th>소속팀</th>
-			                <th>소속팀</th>
-			                <th>소속팀</th>
-			            </tr>
-			            <tr>
-			            	<td>관리자 ID</td>
-			                <td>이름</td>
-			                <td>소속팀</td>
-			                <td>소속팀</td>
-			                <td>소속팀</td>
-			            </tr>
-			            <tr>
-			            	<td>관리자 ID</td>
-			                <td>이름</td>
-			                <td>소속팀</td>
-			                <td>소속팀</td>
-			                <td>소속팀</td>
-			            </tr>
-       
-			       </table>
+				        <table style="width: 700px; border-bottom: 3px solid #4DABF7; border-top: 3px solid #4DABF7;  border-spacing: 10px;">
+				            
+				            <tr>
+				                <th>관리자 ID</th>
+				                <th>이름</th>
+				                <th>부서</th>
+				            </tr>
+				            
+				            <c:forEach var="map" items="${list}" varStatus="i">
+							<tr><td colspan="3"></td></tr>
+							<td>${map['USERID'] } </td>
+							<td>${map['NAME'] } </td>
+							<td>${map['TEAM_NAME'] }</td>						
+							</c:forEach>				     
+	     
+				       </table>
 			       
 			       </form>  
 			 </c:when>

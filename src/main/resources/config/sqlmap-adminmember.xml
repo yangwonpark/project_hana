@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+		"-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="com.itbank.adminmember.AdminMemberDAO">
+
+	<select id="selectAll" resultType="hashmap">
+		select member.userid, member.name, team_info.team_name 
+		from member, admin, team_info 
+		where member.userkind=4 and 
+		team_info.idx = admin.team_info_idx and 
+		member.idx = admin.member_idx
+	</select>
+	
+	<insert id="insertAdminMember">
+		insert into admin
+			(idx, team_info_idx, member_idx)
+		values (
+			admin_seq.nextval, #{team_info_idx}, #{member_idx}
+		) 
+	</insert>
+</mapper>
+
+
+
+
+

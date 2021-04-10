@@ -5,7 +5,13 @@ import java.util.Date;
 public class EntrepreneurDTO {
 
 	private int idx, member_idx, tax_invoice;
-	private String brand_name, shop_eng, shop_name, brand_info, represent, classify, report_num, sales_loc, pnum, email; 
+	private String brand_name, shop_eng, shop_name, brand_eng, represent, classify, report_num, sales_loc, pnum, email; 
+	public String getBrand_eng() {
+		return brand_eng;
+	}
+	public void setBrand_eng(String brand_eng) {
+		this.brand_eng = brand_eng;
+	}
 	private Date confirm_time;
 
 	public int getIdx() {
@@ -43,12 +49,6 @@ public class EntrepreneurDTO {
 	}
 	public void setShop_eng(String shop_eng) {
 		this.shop_eng = shop_eng;
-	}
-	public String getBrand_info() {
-		return brand_info;
-	}
-	public void setBrand_info(String brand_info) {
-		this.brand_info = brand_info;
 	}
 	public String getRepresent() {
 		return represent;

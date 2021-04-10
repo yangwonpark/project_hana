@@ -21,4 +21,7 @@
 			#{room}, #{con_facility}, #{dining}, #{add_facility}, #{default_cancel}
 		)
 	</insert>
+	<select id="selectLastIdx" resultType="int">
+		select max(idx) from hotel_info
+	</select>
 </mapper>

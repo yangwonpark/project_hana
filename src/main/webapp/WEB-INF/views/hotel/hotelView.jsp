@@ -122,8 +122,8 @@
 			
 			<!-- 인원수 선택 -->
 			<div>
-				<input style="width: 100px" type="number" min="2" name="adult" placeholder="ADULT">
-				<input style="width: 100px" type="number" min="0" name="kids" placeholder="KIDS">
+				<input style="width: 100px" type="number" min="1" name="adult" placeholder="ADULT" autocomplete="off">
+				<input style="width: 100px" type="number" min="0" name="kids" placeholder="KIDS" autocomplete="off">
 			</div>
 			<!-- 인원수 선택 end -->
 
@@ -167,32 +167,28 @@
 	</div>
 	<!-- hotel_visual_wrap end -->
 	
-	<div>
-		<form action="${cpath }/hotel/hotelInsert" >
-			<input type="submit" value="호텔 등록">
-		</form>
-	</div>
 	<!-- 숙소정보view -->
 	<div class="hotel_wrap_in">
 		<section>
-			<h1 style="font-family: Lucida Bright;">믿고 예약하는 이달의 혜택 호텔</h1>
+			<h1 style="font-family: monospace;">믿고 예약하는 이달의 혜택 호텔</h1>
 			<div style="width: 1200px; height: 400px; display: flex;">
-				<c:forEach var="i" begin="1" end="4">
+				<c:forEach var="i" begin="9" end="12">
 					<div style="width: 300px; height: 400px; padding-left: 10px; padding-top: 20px;">
 						<c:forEach var="entrepreneur" items="${entrepreneurAll }">
 							<c:if test="${entrepreneur.idx eq hotelList[i].entrepreneur_idx }">
-								<form action="hotelSelectOne" method="POST">
+								<form action="hotelSelectOne" method="GET">
 									<input type="hidden" name="entrepreneur_idx" value="${entrepreneur.idx}">
 									<input type="hidden" name="hotel_idx" value="${hotelList[i].idx }">
 									<input type="submit" value="" 
 												style="width: 280px; height: 230px; 
+												border: none;		
 												background-size: 280px 230px;
-												background-image: url('${cpath}${hotelList[i].main_img }');">
-									<h4 style="font-family: Lucida Bright; color: #679FFA; font-size: 11pt;">
+												background-image: url('${cpath}/resources/hotelimg/${hotelList[i].main_img }/1.jpg');">
+									<h4 style="font-family: monospace; color: #679FFA; font-size: 11pt;">
 									 	${entrepreneur.sales_loc.split(" ")[0] }
 									 	${entrepreneur.sales_loc.split(" ")[1] }
 									</h4>
-									<h3 style="font-family: Lucida Bright;">
+									<h3 style="font-family: monospace;">
 										${entrepreneur.shop_name }
 									</h3>
 								</form>
@@ -204,42 +200,40 @@
 		</section>
 		
 		<section style="width: 1200px; height: 600px;">
-			<h1 style="font-family: Lucida Bright;">고객님을 위한 추천 숙소</h1>
+			<h1 style="font-family: monospace;">고객님을 위한 추천 숙소</h1>
 			<ul style="display: flex; list-style: none; width: 1200px; height: 50px; overflow: hidden; padding-left: 0;">
 				<li id="hotel_best_1" 
-						style=" height: 52px; line-height: 52px; width: 300px; font-family: Lucida Bright;
+						style=" height: 52px; line-height: 52px; width: 300px; font-family: monospace;
 						border-width: 1px 0 0 1px; border-color: #ddd; border-style: solid;background-color: #fff;
 						text-align:center;">
 					<a href="#">서울/강남</a>
 				</li>
 				<li id="hotel_best_2"
-						style="height: 52px; line-height: 52px; width: 300px; font-family: Lucida Bright;
+						style="height: 52px; line-height: 52px; width: 300px; font-family: monospace;
 						border-width: 1px 0 0 1px; border-color: #ddd; border-style: solid;background-color: #fff;
 						text-align:center;">
 					<a href="#">서울/종로</a>
 				</li>
 				<li id="hotel_best_3"
-						style="height: 52px; line-height: 52px; width: 300px; font-family: Lucida Bright;
+						style="height: 52px; line-height: 52px; width: 300px; font-family: monospace;
 						border-width: 1px 0 0 1px; border-color: #ddd; border-style: solid;background-color: #fff;
 						text-align:center;">
 					<a href="#">서울/동대문</a>
 				</li>
 				<li id="hotel_best_4"
-						style="height: 52px; line-height: 52px; width: 300px; font-family: Lucida Bright;
+						style="height: 52px; line-height: 52px; width: 300px; font-family: monospace;
 						border-width: 1px 1px 0 1px; border-color: #ddd; border-style: solid;background-color: #fff;
 						text-align:center;">
 					<a href="#">서울/마포구</a>
 				</li>
 			</ul>
 			<div id="hotelBest_1" style="width: 1200px; height: 400px; background-color: #f2f2f2; position: absolute;">
-				<c:forEach var="entrepreneur" items="${entrepreneurAll}">
-				</c:forEach>
 			</div>
-			<div id="hotelBest_2" style="width: 1200px; height: 400px; background-color: #f2f2f2; position: absolute;">
+			<div id="hotelBest_2" style="width: 1200px; height: 400px; background-color: #A9F5F2; position: absolute;">
 			</div>
-			<div id="hotelBest_3" style="width: 1200px; height: 400px; background-color: #f2f2f2; position: absolute;">
+			<div id="hotelBest_3" style="width: 1200px; height: 400px; background-color: #F2F5A9; position: absolute;">
 			</div>
-			<div id="hotelBest_4" style="width: 1200px; height: 400px; background-color: #f2f2f2; position: absolute;">
+			<div id="hotelBest_4" style="width: 1200px; height: 400px; background-color: ; position: absolute;">
 			</div>
 			
 		</section>
@@ -366,6 +360,7 @@
 			})
 		}
 	})
+	
 	
 </script>
 <%@ include file="../layout/footer.jsp" %>

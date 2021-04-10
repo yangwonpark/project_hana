@@ -12,7 +12,5 @@
 		  </c:choose>
 		예약 현황 화면입니다.
 	</div>
-
-</div>
-</div>
+	
 <%@ include file="../layout/footer.jsp" %>

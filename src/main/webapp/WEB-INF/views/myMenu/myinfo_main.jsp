@@ -43,10 +43,25 @@
 		        <li style="margin:4px 0; margin-bottom: 10px;"><a href="" style="display:block;text-decoration: none;padding: 4px 10px;">자주찾는 질문</a></li><br>
 		
 		        <li style="margin:4px 0; margin-bottom: 10px;"><a href="${cpath }/myMenu/myinfo" style="display:block;text-decoration: none;padding: 4px 10px;">개인정보</a></li>
+
+				<li class="hotel_insert" hidden="hidden" style="margin: 30px 0;">
+					<a href="${cpath }/hotel/hotelInsert" >
+						호텔 등록
+					</a>
+				</li>
+		        
        	  	</c:otherwise>
        	</c:choose>     
       </ul>
     </div>
+    
+    <script>
+    $(document).ready(function(){
+		if("${login.userkind}" == 2) {
+			$(".hotel_insert").show();
+		}
+    });
+    </script>
     <!-- //nav -->
     
     

@@ -24,5 +24,11 @@
 		<typeAlias type="com.itbank.tour_item.Tour_ItemDTO" alias="tour_item"/>
 		<typeAlias type="com.itbank.entrepreneur.EntrepreneurDTO"  alias="entrepreneur"/>
 		<typeAlias type="com.itbank.member.LeaveMemberDTO"  alias="leavemember"/>
+		<typeAlias type="com.itbank.team.TeamDTO"  alias="team"/>
+		<typeAlias type="com.itbank.adminmember.AdminMemberDTO"  alias="adminmember"/>
+		<typeAlias type="com.itbank.noticecategory.NoticeCategoryDTO"  alias="noticecategory"/>
+		<typeAlias type="com.itbank.notice.NoticeDTO"  alias="notice"/>
+		<typeAlias type="com.itbank.fqacategory.FqaCategoryDTO"  alias="fqacategory"/>
+		<typeAlias type="com.itbank.fqadetail.FqaDetailDTO"  alias="fqadetail"/>
 	</typeAliases>
 </configuration>

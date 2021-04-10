@@ -12,46 +12,15 @@
 				            <tr>
 				                <th>관리자 ID</th>
 				                <th>이름</th>
-				                <th>소속팀</th>
-				                <th>소속팀</th>
-				                <th>소속팀</th>
+				                <th>부서</th>
 				            </tr>
 				            
-				            <tr>
-				            	<td colspan="5"><br></td>           
-				            </tr>
-				            
-				            <tr>
-				            	<td>관리자 ID</td>
-				                <td>이름</td>
-				                <td>소속팀</td>
-				                <td>소속팀</td>
-				                <td>소속팀</td>
-				            </tr>
-				            
-				            <tr>
-				            	<td colspan="5"><br></td>           
-				            </tr>
-				            
-				            <tr>
-				            	<td>관리자 ID</td>
-				                <td>이름</td>
-				                <td>소속팀</td>
-				                <td>소속팀</td>
-				                <td></td>
-				            </tr>
-				            
-				            <tr>
-				            	<td colspan="5"><br></td>           
-				            </tr>	
-				            		            
-				            <tr>
-				            	<td>관리자 ID</td>
-				                <td>이름</td>
-				                <td>소속팀</td>
-				                <td>소속팀</td>
-				                <td></td>
-				            </tr>
+				            <c:forEach var="map" items="${list}" varStatus="i">
+							<tr><td colspan="3"></td></tr>
+							<td>${map['USERID'] } </td>
+							<td>${map['NAME'] } </td>
+							<td>${map['TEAM_NAME'] }</td>						
+							</c:forEach>				     
 	     
 				       </table>
 			       

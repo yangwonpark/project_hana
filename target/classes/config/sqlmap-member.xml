@@ -40,6 +40,14 @@
 		) 
 	</insert>
 	
+	<insert id="insertKakaoMember" parameterType="member">
+		insert into member
+			(idx, userid, userpw, userkind, name, mnum, birth_date, join_date, gender, foreign, expiry_date, agree_sms, agree_email, agree_post, agree_pnum)
+		values (
+			member_seq.nextval, #{userid}, #{userpw}, #{userkind}, #{name}, mileage_seq.nextval, #{birth_date}, sysdate, #{gender}, #{foreign}, #{expiry_date}, #{agree_sms}, #{agree_email}, #{agree_post}, #{agree_pnum}		
+		) 
+	</insert>
+	
 	<update id="updateMember" parameterType="member">
 		update member set  
 			pnum = #{pnum},  birth_date = #{birth_date}, gender = #{gender}, foreign = #{foreign}, expiry_date = #{expiry_date}, agree_sms = #{agree_sms}, agree_pnum = #{agree_pnum}, agree_email = #{agree_email}, agree_post = #{agree_post}
@@ -56,7 +64,12 @@
 		where userid = #{userid}
 	</update>
 	
-	
+	<select id="getOutMemberList" resultType="hashmap">
+		select  member.userid, member.name, leave_reason.reason_content
+		from member, leave_member, leave_reason
+		where member.idx = leave_member.member_idx and
+		leave_member.leave_reason_idx = leave_reason.idx
+	</select>	
 </mapper>
 
 

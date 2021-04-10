@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+		"-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itbank.team.TeamDAO">	
+	<insert id="insertTeamMember" parameterType="team">
+		insert into team_info
+			(idx, team_name, team_pnum)
+		values (
+			team_info_seq.nextval, #{team_name}, #{team_pnum}	
+		) 
+	</insert>
+	
+	<select id="selectTeam" parameterType="string" resultType="string">
+		select idx from team_info where team_name = #{teamname}
+	</select>
+	
+</mapper>
+
+
+
+
+

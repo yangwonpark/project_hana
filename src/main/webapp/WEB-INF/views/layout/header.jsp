@@ -36,7 +36,7 @@
 							<div class="nf">
 								<ul>
 									<c:choose>
-										<c:when test="${login == null}">
+										<c:when test="${login == null && kakao == null}">
 											<li><a class="nav_a" style="padding-right: 28px;" href="${cpath }/login/login_form">로그인</a></li>
 											<li><a class="nav_a" style="padding-right: 17px;" href="${cpath }/join/join_form">회원가입</a></li>
 										</c:when>

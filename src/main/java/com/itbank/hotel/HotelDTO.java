@@ -1,10 +1,18 @@
 package com.itbank.hotel;
 
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 public class HotelDTO {
 	
 	private int idx, hotel_kind_idx, metro_idx, entrepreneur_idx, default_cancel;
 	private String grade, check_in, check_out, floor, room_count, pnum, fax, main_img, 
 					notice, room, con_facility, dining, add_facility;
+	private List<MultipartFile> folder;
+
+	
+	
 	
 
 	
@@ -126,5 +134,11 @@ public class HotelDTO {
 	}
 	public void setDefault_cancel(int default_cancel) {
 		this.default_cancel = default_cancel;
+	}
+	public List<MultipartFile> getFolder() {
+		return folder;
+	}
+	public void setFolder(List<MultipartFile> folder) {
+		this.folder = folder;
 	}
 }

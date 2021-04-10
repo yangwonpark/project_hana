@@ -114,7 +114,7 @@
                 </td>
             </tr>
             <tr><td colspan="3"><hr /></td></tr>
-            <tr><td> <input type="hidden" name="userkind" value="1"/></td>
+            <tr><td> <input type="hidden" name="userkind" value="4"/></td>
             </tr>
             
             <tr>

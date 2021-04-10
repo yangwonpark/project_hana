@@ -485,7 +485,7 @@
 	
 	
 </script>
-	
+
 	
 <script>
 	$('#userid').blur(function(){
@@ -566,11 +566,26 @@
 				return;
 			}		
 		}
+		var passRule = /^[A-Za-z0-9]{6,12}$/;//숫자와 문자 포함 형태의 6~12자리 이내의 암호 정규식
+		 
+		if(!passRule.test($("input[id='userpw']").val())) {
+			alert('비밀번호 형식이 맞지 않습니다.예)숫자와 문자 포함 형태의 6~12자리 이내의 암호');
+			document.getElementById('userpw').focus();
+	    	return;
+		}
+		var regExp = /^\d{3}\d{3,4}\d{4}$/;
+			 
+		if(!regExp.test($("input[id='pnum']").val())) {            
+		    alert('전화번호 형식이 맞지 않습니다.예)010 0000 0000 숫자로만 구성');
+		    document.getElementById('pnum').focus();
+		    return;
+		}	
 		if($(use).prop("checked")) {
 		}else {
 			alert('약간 동의를 하지 않으셨습니다.');
 			return;
 		}
+		
 		joinForm.submit();
 	};
 	joinForm.onsubmit = submitHandler;

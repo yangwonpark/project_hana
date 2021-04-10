@@ -2,21 +2,52 @@ package com.itbank.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.itbank.adminmember.AdminMemberDAO;
+import com.itbank.adminmember.AdminMemberDTO;
 import com.itbank.member.Hash;
 import com.itbank.member.MemberDAO;
 import com.itbank.member.MemberDTO;
+import com.itbank.team.TeamDAO;
 
 @Service
 public class MemberService {
 
 	@Autowired
 	private MemberDAO md;
-	
+	@Autowired
+	private AdminMemberDAO amd;
+	@Autowired
+	private TeamDAO td;
 	
 	// 일반 계정 등록
 	public int insertMember(MemberDTO dto) {
 		dto.setUserpw(Hash.getHash(dto.getUserpw()));
 		return md.insertMember(dto); 	
+	}
+	// 관리자 계정 등록
+	public int insertAdminMember(MemberDTO dto) {
+		dto.setUserpw(Hash.getHash(dto.getUserpw()));
+		md.insertMember(dto);
+		dto = md.selectOne(dto.getUserid());
+		if(dto.getUserkind().equals("4")) {
+			AdminMemberDTO adminDTO = new AdminMemberDTO();
+			String teamname = "본부";
+			String checkTeam = td.selectTeam(teamname);
+			if(checkTeam.equals(null)) {
+				return 0;
+			}else {
+				adminDTO.setTeam_info_idx(Integer.valueOf(td.selectTeam(teamname)));
+				adminDTO.setMember_idx(dto.getIdx());
+				int admin = amd.insertAdminMember(adminDTO);
+				if(admin == 1) {
+					return 1;
+				}else {
+					return 0;
+				}
+			}
+		}
+		return 0;	
 	}
 	
 	// 사용자 아이디 중복 체크

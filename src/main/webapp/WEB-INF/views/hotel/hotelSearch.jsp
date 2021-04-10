@@ -119,7 +119,7 @@
 						<div style="width: 900px; height: 250px; border-bottom: 1px solid lightgray; 
 									display: flex; margin-bottom: 10px; padding: 20px;">
 							<img style="margin-right: 20px; width: 280px; height: 210px" 
-								src="${cpath }${hotel.main_img}">
+								src="${cpath }/resources/hotelimg/${entrepreneur.brand_eng}/1.jpg">
 							<div style="width: 400px; height: 210px; background-color: white;">
 								<div style="display: flex;">
 									<h3 style="font-family: Lucida Bright; margin-right: 10px;">${entrepreneur.shop_name }</h3>
@@ -141,7 +141,7 @@
 									</form>
 								</div>
 								<div style="height: 105px;">
-									<form action="hotelSelectOne" method="POST"
+									<form action="hotelSelectOne" method="GET"
 										style="text-align: center; vertical-align: middle;">
 										<input type="hidden" name="entrepreneur_idx" value="${entrepreneur.idx}">
 										<input type="hidden" name="hotel_idx" value="${hotel.idx }">
@@ -173,8 +173,10 @@
 	$(function() {
         //시작일.
         $('#from').datepicker({
-            dateFormat: "yy-mm-dd",             // 날짜의 형식
-            minDate: 0,                      	// 선택할수있는 최소날짜, ( 0 : 오늘 이전 날짜 선택 불가)
+            dateFormat: "yy-mm-dd",             
+            // 날짜의 형식
+            minDate: 0,                      	
+            // 선택할수있는 최소날짜, ( 0 : 오늘 이전 날짜 선택 불가)
             maxDate: 30,
             onClose: function( selectedDate ) {    
             	let date = new Date(selectedDate);

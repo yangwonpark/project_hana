@@ -17,7 +17,13 @@ import com.itbank.hotel.HotelDAO;
 import com.itbank.hotel.HotelDTO;
 import com.itbank.local.LocalDAO;
 import com.itbank.metro.MetroDTO;
+import com.itbank.room.RoomDAO;
+import com.itbank.room.RoomDTO;
+import com.itbank.room_kind.RoomKindDAO;
+import com.itbank.room_kind.RoomKindDTO;
 import com.itbank.searchInformation.SearchInformationDTO;
+import com.itbank.view_kind.ViewKindDAO;
+import com.itbank.view_kind.ViewKindDTO;
 import com.itbank.metro.MetroDAO;
 
 @Service
@@ -35,6 +41,13 @@ public class HotelService {
 	private HotelDAO hotelDAO;
 	@Autowired
 	private EntrepreneurDAO entreprenuerDAO;
+	@Autowired
+	private RoomKindDAO roomKindDAO;
+	@Autowired
+	private ViewKindDAO viewKindDAO;
+	@Autowired
+	private RoomDAO roomDAO;
+	
 	
 
 	public List<MetroDTO> getMetroList() {
@@ -81,8 +94,8 @@ public class HotelService {
 	}
 
 	public HotelDTO getHotel(int hotel_idx) {
-		HotelDTO hdto = hotelDAO.getHotel(hotel_idx);
-		return hdto;
+		HotelDTO hotel = hotelDAO.getHotel(hotel_idx);
+		return hotel;
 	}
 
 	public List<EntrepreneurDTO> getEntrepreneurAll() {
@@ -97,8 +110,35 @@ public class HotelService {
 
 	public int insertHotel(HotelDTO dto) {
 		int num = hotelDAO.insertHotel(dto);
+		if(num == 1) {
+			return hotelDAO.selectLastIdx();
+		}
+		return 0;
+	}
+
+	public List<RoomKindDTO> getRoomKindList() {
+		List<RoomKindDTO> roomKindList = roomKindDAO.getRoomKindList();
+		return roomKindList;
+	}
+
+	public List<ViewKindDTO> getViewKindList() {
+		List<ViewKindDTO> viewKindList = viewKindDAO.getViewKindList();
+		return viewKindList;
+	}
+
+	public int insertRoom(RoomDTO dto) {
+		int num = roomDAO.insertRoom(dto);
 		return num;
 	}
 
+	public List<RoomDTO> getRoomList(int hotel_idx) {
+		List<RoomDTO> roomList = roomDAO.getRoomList(hotel_idx);
+		return roomList;
+	}
+
+	public RoomDTO getRoom(int roomIdx) {
+		RoomDTO room = roomDAO.getRoom(roomIdx);
+		return room;
+	}
 
 }

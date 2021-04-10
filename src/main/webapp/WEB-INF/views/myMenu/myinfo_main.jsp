@@ -26,8 +26,9 @@
 		        
 		        <li style="margin:4px 0; margin-bottom: 10px;"><a href="${cpath }/myMenu/admin_fqa" style="display:block;text-decoration: none;padding: 4px 10px;">자주 찾는 질문(관리자용)</a></li><br>
 		        
-		        
 		        <li style="margin:4px 0; margin-bottom: 10px;"><a href="${cpath }/myMenu/myinfo" style="display:block;text-decoration: none;padding: 4px 10px;">관리자 개인정보</a></li>
+		        
+		        <li style="margin:4px 0; margin-bottom: 10px;"><a href="${cpath }/chat/admin" style="display:block;text-decoration: none;padding: 4px 10px;">실시간 상담 관리</a></li>
 		        
        		</c:when>
 			

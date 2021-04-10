@@ -67,7 +67,7 @@
             <tr>
                 <td>*</td>
                 <td>이 름</td>
-                <td><input id="name" type="text" name="name" required /></td>
+                <td><input id="name1" type="text" name="name" required /></td>
             </tr>
             <tr><td colspan="3"><hr /></td></tr>
     

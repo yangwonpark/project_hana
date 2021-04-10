@@ -283,7 +283,7 @@
 				<div>
 					<span><i class="fas fa-angle-left"></i></span>
 				</div>
-				<div>
+				<div style="display: z-index: 10;">
 					<span><i class="fas fa-angle-right"></i></span>
 				</div>
 			</div>

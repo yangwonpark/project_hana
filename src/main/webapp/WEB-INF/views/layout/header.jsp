@@ -9,7 +9,8 @@
 <meta charset="UTF-8">
 <title>우리 조 프로젝트</title>
 <link rel="stylesheet" href="${cpath }/css/style.css">
-<link rel="stylesheet" href="${cpath }/css/tour.css">
+<%-- <link rel="stylesheet" href="${cpath }/css/tour.css"> --%>
+<link rel="stylesheet" href="${cpath }/css/chat.css">
 <script src="https://kit.fontawesome.com/e4a70f325d.js" crossorigin="anonymous"></script>
 <script src="${cpath }/resources/js/js.js"></script>
 <%-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script> --%>
@@ -18,7 +19,7 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
         crossorigin="anonymous">
 </script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.js"></script>
 <!-- 날짜 선택 -->
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -44,7 +45,6 @@
 											<li><a class="nav_a" style="padding-right: 28px;" href="${cpath }/logout/logout_form">로그아웃</a></li>
 										</c:otherwise>
 									</c:choose>
-									
 									<li><a class="nav_a" href="${cpath }/manage/sc_main">고객센터</a></li>
 								</ul>
 							</div>
@@ -68,35 +68,35 @@
 								</div>
 								<div class="rolling" onmouseover="showList();">
 									<dl id="rank_list">
-						                <dt>실시간 급상승 검색어</dt>
+						                <dt>실시간 급상승 인기</dt>
 						                <dd>
 						                    <ol>
-						                        <li class="ll">1 순위</li>
-						                        <li class="ll">2 순위</li>
-						                        <li class="ll">3 순위</li>
-						                        <li class="ll">4 순위</li>
-						                        <li class="ll">5 순위</li>
-						                        <li class="ll">6 순위</li>
-						                        <li class="ll">7 순위</li>
-						                        <li class="ll">8 순위</li>
-						                        <li class="ll">9 순위</li>
-						                        <li class="ll">10 순위</li>
+						                        <li class="ll">부산 놀거리</li>
+						                        <li class="ll">해운대 그랜드 조선</li>
+						                        <li class="ll">가평</li>
+						                        <li class="ll">서울 논현동</li>
+						                        <li class="ll">대구</li>
+						                        <li class="ll">파크 하야트</li>
+						                        <li class="ll">강원도</li>
+						                        <li class="ll">경기도</li>
+						                        <li class="ll">호텔</li>
+						                        <li class="ll">테마파크</li>
 						                    </ol>
 						                </dd>
 						            </dl>
 								</div>
 								<div class="rolling_content" onmouseout="hideList();" style="display: none;">
 					            	<p class="title">실시간 검색어</p>
-					            	<a href="#">1 순위</a>
-					            	<a href="#">2 순위</a>
-					            	<a href="#">3 순위</a>
-					            	<a href="#">4 순위</a>
-					            	<a href="#">5 순위</a>
-					            	<a href="#">6 순위</a>
-					            	<a href="#">7 순위</a>
-					            	<a href="#">8 순위</a>
-					            	<a href="#">9 순위</a>
-					            	<a href="#">10 순위</a>
+					            	<a href="#">부산 놀거리</a>
+					            	<a href="#">해운대 그랜드 조선</a>
+					            	<a href="#">가평</a>
+					            	<a href="#">서울 논현동</a>
+					            	<a href="#">대구</a>
+					            	<a href="#">파크 하야트</a>
+					            	<a href="#">강원도</a>
+					            	<a href="#">경기도</a>
+					            	<a href="#">호텔</a>
+					            	<a href="#">테마파크</a>
 								</div>
 								<div></div>
 							</div>
@@ -177,6 +177,23 @@
 						</div>
 					</div>
 					<div class="right_fixed"></div>
+					<c:if test="${login != null && login.userkind == 0 }">
+						<div class="container">
+							<div id="user-container" class="chat-container2" style="display: none">
+								<!-- 서버와 메세지를 주고 받을 텍스트 영역 -->
+								<div class="chat-area"></div>
+								<div class="input--text">
+									<input class="text-msg" type="text" onkeydown="return enter()">
+									<input type="button" class="send-btn" value="전송">
+								</div>
+							</div>
+							<br/>		
+							<div id="enter-container">
+								<input disabled="disabled" type="hidden" id="name" style="border: none; background: none;" value="${login.name }">
+								<button id="enter-btn" class="btn-qa">1:1 문의</button>
+							</div>
+						</div>
+					</c:if>
 				</div>
 				<div></div>
 			</div>
@@ -199,7 +216,96 @@
 
 	    step(1);
 	});
-	</script>
+	
+	const chatArea = document.querySelector(".chat-area");
+// 	const chatArea = document.getElementById("chat-area");
+	const enterBtn = document.getElementById("enter-btn");
+	const sendBtn = document.querySelector(".send-btn");
+// 	const sendBtn = document.getElementById("send-btn");
+	const chatContainer = document.querySelector(".chat-container2")
+// 	const chatContainer = document.getElementById("chat-container")
+	const textMsg = document.querySelector('.text-msg');
+// 	const textMsg = document.getElementById('text-msg');
+	const btnQa = document.querySelector('.btn-qa');
+	
+	let toggleCheck = false;
+	
+	// enterBtn click이벤트 최초 실행 후 이벤트 기능 상실
+	// onclick보다 addEventListener가 더 최신 문법이다...
+	enterBtn.addEventListener('click', function(e) {
+		console.log(e.target.previousElementSibling.value);
+		connect(e.target.previousElementSibling.value);
+	}, {once : true});
+	
+	
+	btnQa.onclick = (e) => {
+		if(toggleCheck) {
+			toggleCheck = false;
+			chatContainer.style.display = 'none';
+		} else {
+			toggleCheck = true;
+			chatContainer.style.display = 'block';
+		}
+	}
+	
+	sendBtn.onclick = (e) => {
+		sendMessage();
+	}
+	
+	let sock_user;
+	
+	function connect(name) {
+		sock_user = new SockJS('http://172.30.1.58:8080/day08/clientEcho');
+		// 웹 소켓 자체에 내장 메소드 4개 
+		sock_user.onopen = onOpen;
+		sock_user.onmessage = onMessage;
+		sock_user.onclose = onClose;
+		sock_user.onerror = onError;
+	}
+	
+	function onOpen() {
+		const name = document.getElementById('name').value;
+		console.log(name);
+// 		chatContainer.style.display = 'block';
+		// 웹소켓 내장 메소드
+// 		sock_user.send(name + "님 입장");
+		chatArea.innerHTML = "";
+	}
+	
+	function onError() {
+		chatArea.innerHTML += "연결에 실패했습니다. <br> 재접속 하세요";
+	}
+	
+	function onMessage(m) {
+		console.log(m);
+		console.log(m.data);
+		chatArea.innerHTML += "<span class='chat--left'>관리자 <br>" + m.data + "</span><br>"
+	}
+	
+	function onClose() {};
+	
+	function sendMessage() {
+		const liveName = document.getElementById('name').value;
+		
+		chatArea.innerHTML += "<span class='chat--right'>" +liveName + "<br>" + textMsg.value + "</span><br>";
+		
+		console.log(textMsg.value);
+		sock_user.send(liveName + ":" + textMsg.value);
+		
+		textMsg.value = "";
+	}
+	
+	function enter() {
+		if(event.keyCode == 13) {
+			sendMessage();
+			return false;
+		}
+		return true;
+	}
+	
+	
+	
+</script>
 	
 	
 	

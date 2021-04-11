@@ -180,6 +180,7 @@
 					<c:if test="${login != null && login.userkind == 0 }">
 						<div class="container">
 							<div id="user-container" class="chat-container2" style="display: none">
+							<div style="height: 12px;"></div>
 								<!-- 서버와 메세지를 주고 받을 텍스트 영역 -->
 								<div class="chat-area"></div>
 								<div class="input--text">
@@ -279,15 +280,20 @@
 	function onMessage(m) {
 		console.log(m);
 		console.log(m.data);
-		chatArea.innerHTML += "<span class='chat--left'>관리자 <br>" + m.data + "</span><br>"
+		chatArea.innerHTML += "<span class='chat--left'>" +
+		"<span class='chat-user'>관리자<br>" +
+		"<span class='chat-content'>" + message.data + "</span>"
 	}
 	
 	function onClose() {};
 	
-	function sendMessage() {
+	// admin쪽 onMessage랑 연결
+	function sendMessage(message) {
 		const liveName = document.getElementById('name').value;
 		
-		chatArea.innerHTML += "<span class='chat--right'>" +liveName + "<br>" + textMsg.value + "</span><br>";
+		chatArea.innerHTML += "<span class='chat--right'>" + 
+		"<span class='chat-user'>" + liveName + "<br>" +
+		"<span class='chat-content'>" + textMsg.value + "</span>"
 		
 		console.log(textMsg.value);
 		sock_user.send(liveName + ":" + textMsg.value);

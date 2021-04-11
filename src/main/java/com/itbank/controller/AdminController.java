@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,6 +25,12 @@ import com.itbank.service.AdminService;
 public class AdminController {
 
 	@Autowired private AdminService as;
+
+	@RequestMapping(value="chat/admin", method=RequestMethod.GET)
+	public String echo() {
+	
+		return "chat/admin";
+	}
 	
 // 관리자 목록	
 	@GetMapping("/myMenu/admin_adminlist")
@@ -122,4 +130,5 @@ public class AdminController {
 		mav.setViewName("/myMenu/msg");	
 		return mav;
 	}
+	
 }

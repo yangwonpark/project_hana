@@ -14,9 +14,10 @@
 	<!-- MongoDB 관련 -->
 	<mongo:db-factory
 		id="mongoDbFactory"
-		mongo-ref="mongo"
-		dbname="admin"/>	
+		mongo-ref="mongo"	
+		dbname="admin"/>		
 		
+	<!-- db-factory에서 mongo-refe에 id가 쓰임 -->	
 	<mongo:mongo-client 
 		id="mongo"
 		host="localhost"

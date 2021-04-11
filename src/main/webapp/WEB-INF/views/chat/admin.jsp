@@ -10,6 +10,7 @@
 	</div>
 	<div class="container">
 		<div class="chat-container" style="display: none">
+		<div style="height: 12px;"></div>
 			<!-- 서버와 메세지를 주고 받을 텍스트 영역 -->
 			<div class="chat-area"></div>
 			<div class="input--text">
@@ -32,8 +33,7 @@
 	function onMessage(message) {
 		// 메세지 구조는 JSON이다
 		let node = JSON.parse(message.data);
-		let chatHeader = document.querySelector('.chat-header');
-		
+		console.log(node);
 		let messageParts = new String(JSON.stringify(node.message)).split(':');
 		let userName = new String(messageParts[0]).replace(/\"/g,'');
 		let content = new String(messageParts[1]).replace(/\"/g,'');
@@ -41,38 +41,48 @@
 		$('.chat-area').scrollTop($('.chat-area')[0].scrollHeight);
 		
 		if(node.status === "visit") {
-// 			const chatContainer = document.getElementsByClassName('chat-container').innerHTML;
-			
 			let chatContainer = $(".chat-container").html();
 			chatContainer = $("<div class='chat-container2'></div>").attr("data-key", node.key).append(chatContainer);
 			$(".container").append(chatContainer);
 		} else if(node.status === "message") {
+			let time = message.timeStamp
+			let realDate = new Date(time).toLocaleString();
+			
 			let $div = $("[data-key='" + node.key + "']");
 			let log = $div.find(".chat-area").text();
 			if(content === "" || content === "undefined" || content === null) {
 				$div.find(".chat-area").append($("<span class='chat--left'>" + userName + "</span>"));
-// 				$div.find(".chat--left").text(userName + "<br>");
-// 				$div.find(".chat-area").text(userName + "<br>");
 			} else {
-				$div.find(".chat-area").append($("<span class='chat--left'>" + userName + "<br>" + content + "</span>"));
-// 				$div.find(".chat--left").text(log += userName + " :\n\t" + content + "\n");
-// 				$div.find(".chat-area").text(log += userName + " :\n\t" + content + "\n");
+				$div.find(".chat-area").append($("<span class='chat--left'>" + 
+						"<span class='chat-user'>" + userName + "</span><br>" +
+						"<span class='chat-content'>" + content + "</span><br>" +
+						"<span class='chat-time'>" + realDate + "</span>"));
 			}
-			
 		} else if(node.status === "bye") {
+			let $div = $("[data-key='" + node.key + "']");
+			let log = $div.find(".chat-area").text();
+			
+			let totLog = JSON.stringify(log);
+			
+			chatInsert(totLog);
 			$("[data-key='" + node.key + "']").remove();
 		}
 	}
 	
-	$(document).on("click", ".send-btn", function() {
+	$(document).on("click", ".send-btn", function(message) {
 		let $div = $(this).closest(".chat-container2");
 		// 메세지 텍스트 박스를 찾아서 값 얻어옴()
 		let msg = $div.find(".text-msg").val();
 		let key = $div.data("key");
 		let log = $div.find(".chat-area").text();
-		console.log(log);
-		$div.find(".chat-area").append($("<span class='chat--right'> 관리자 <br> " + msg + "</span>"));
-// 		$div.find(".chat-area").text(log + "관리자" + " : " + msg + "\n");
+		
+		let time = message.timeStamp	
+		let realDate = new Date(time).toLocaleString();
+		
+		$div.find(".chat-area").append($("<span class='chat--right'>" +
+				"<span class='chat-user'>관리자<br>" + 
+				"<span class='chat-content'>" + msg + "</span><br>" +
+				"<span class='chat-time' style='margin-top: 0px'>" + realDate + "</span>"));
 		$div.find(".text-msg").val("");
 		
 		sock.send(key + ":" + msg);
@@ -100,6 +110,37 @@
 // 			}, 100);
 // 		}
 // 	});
+
+	// 채팅 내역 MongoDB에 ajax로 저장하는 함수
+	const chatInsert = function(msg) {
+		const ob = {
+			'msg': msg
+		}
+		
+		const json = JSON.stringify(ob);
+		
+		const url = '${pageContext.request.contextPath}/mongo';
+		
+		const opt = {
+				method: 'POST',
+				body: json,
+				headers: {
+					'Content-type': 'application/json'
+				}
+		}
+		
+		fetch(url, opt)
+		.then(resp => resp.text())
+		.then(row => {
+			if(row == 1) {
+				console.log("대화가 저장되었습니다");
+			}
+			else {
+				console.log("저장에 실패했습니다")
+			}
+		});
+		
+	}
 	
 </script>
 	

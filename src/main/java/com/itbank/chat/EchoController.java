@@ -1,15 +1,29 @@
 package com.itbank.chat;
 
-import org.springframework.stereotype.Controller;
+import java.util.HashMap;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import com.itbank.service.ChatService;
+
+@RestController
 public class EchoController {
 	
-	@RequestMapping(value="chat/admin", method=RequestMethod.GET)
-	public String echo() {
+	@Autowired
+	ChatService cs;
 	
-		return "chat/admin";
+//	private ObjectMapper jm = new ObjectMapper();
+	
+	@PostMapping(value="mongo", consumes = "application/json; charset=utf8")
+	public void insertChat(@RequestBody HashMap<String, String> map) {
+		
+		cs.insertChat(map);
 	}
+	
+	
 }

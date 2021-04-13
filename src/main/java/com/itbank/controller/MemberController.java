@@ -3,6 +3,7 @@ package com.itbank.controller;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
+import javax.el.PropertyNotFoundException;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.itbank.cart.CartDTO;
 import com.itbank.kakaomember.KakaoMemberDTO;
 import com.itbank.member.LeaveMemberDTO;
 import com.itbank.member.MemberDTO;
+import com.itbank.noticecategory.NoticeCategoryDTO;
 import com.itbank.oauth.OAuthToken;
 import com.itbank.reason.ReasonDTO;
 import com.itbank.service.AdminService;
@@ -111,6 +114,7 @@ public class MemberController {
 		MemberDTO dto = ms.getMember(user);
 		if (dto != null) {
 			session.setAttribute("login", dto);
+			
 			uri = (uri == null) ? "/" : uri;
 			mav.setViewName("redirect:"+ uri);
 			return mav;
@@ -207,6 +211,34 @@ public class MemberController {
 		mav.setViewName("/myMenu/msg");	
 		return mav;
 	}
+	
+	@ExceptionHandler(PropertyNotFoundException.class)
+	public ModelAndView reservationFail(PropertyNotFoundException e) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msg", "예약현황이 없습니다.");
+		mav.addObject("path", "/myMenu/myinfo");
+		mav.setViewName("/myMenu/msg");	
+		return mav;
+	}
+
+// 장바구니 불러오기
+	@GetMapping("/cart/cart_form2")
+	public ModelAndView cart(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		MemberDTO dto = (MemberDTO)(session.getAttribute("login"));
+		System.out.println("dto.idx : " + dto.getIdx());
+		int cartidx = dto.getIdx();
+		List<CartDTO> cart = ms.getCartList(cartidx);
+		if(cart.isEmpty()) {
+			mav.addObject("cartlist", "예약이 없습니다.");
+			return mav;
+		}else {	
+			System.out.println(cart);	
+			mav.addObject("cartlist", cart);
+			return mav;
+		}
+	}	
+	
 	
 // 탈퇴 이유 불러오는 컨트롤러 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	@GetMapping(value="/reason", produces="application/json;charset=utf8")

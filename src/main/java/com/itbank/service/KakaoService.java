@@ -38,4 +38,9 @@ public class KakaoService {
 		}
 
 	}
+
+	public MemberDTO selectOne(String substring) {
+		
+		return md.selectOne(substring);
+	}
 }

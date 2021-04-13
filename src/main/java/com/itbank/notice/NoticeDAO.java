@@ -10,5 +10,6 @@ public interface NoticeDAO {
 	List<HashMap<String, String>> getSelectLotteN();
 	List<HashMap<String, String>> getSelectNormalN();
 	List<HashMap<String, String>> getSelectAllN();
+	NoticeDTO getSelectNoticeIndex(int idx);
 
 }

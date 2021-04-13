@@ -10,8 +10,10 @@ public class FqaDTO {
 	private int idx;
 	private String title;
 	private String content;
-	private int fga_categroy_idx;
-	private int fga_detail_idx;
+	private int fqa_category_idx;
+	private int fqa_detail_idx;
+	
+
 	public int getIdx() {
 		return idx;
 	}
@@ -30,16 +32,16 @@ public class FqaDTO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public int getFga_categroy_idx() {
-		return fga_categroy_idx;
+	public int getFqa_category_idx() {
+		return fqa_category_idx;
 	}
-	public void setFga_categroy_idx(int fga_categroy_idx) {
-		this.fga_categroy_idx = fga_categroy_idx;
+	public void setFqa_category_idx(int fqa_category_idx) {
+		this.fqa_category_idx = fqa_category_idx;
 	}
-	public int getFga_detail_idx() {
-		return fga_detail_idx;
+	public int getFqa_detail_idx() {
+		return fqa_detail_idx;
 	}
-	public void setFga_detail_idx(int fga_detail_idx) {
-		this.fga_detail_idx = fga_detail_idx;
+	public void setFqa_detail_idx(int fqa_detail_idx) {
+		this.fqa_detail_idx = fqa_detail_idx;
 	}
 }

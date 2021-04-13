@@ -22,8 +22,8 @@
       		</c:when>
       		
       		<c:when test="${login.userkind == '1' }">
-				<h1>기업회원 전용</h1>
-				기업 회원 전용 페이지입니다.
+				<h1>카카오회원 전용</h1>
+				카카오 회원 전용 페이지입니다.
       		</c:when>
       		
       		<c:when test="${login.userkind == '0' }">

@@ -45,7 +45,7 @@
 											<li><a class="nav_a" style="padding-right: 28px;" href="${cpath }/logout/logout_form">로그아웃</a></li>
 										</c:otherwise>
 									</c:choose>
-									<li><a class="nav_a" href="${cpath }/manage/sc_main">고객센터</a></li>
+									<li><a class="nav_a" href="${cpath }/manage/sc_fqa">고객센터</a></li>
 								</ul>
 							</div>
 						</div>

@@ -2,7 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp" %>
 
-<script type="text/javascript"> location.href="${cpath}" </script><br />
+<script type="text/javascript"> location.href="${cpath}/login/login_form" 
+
+	
+</script><br />
 
 
 <%@ include file="../layout/footer.jsp" %>

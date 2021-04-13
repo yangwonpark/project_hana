@@ -1,10 +1,14 @@
 package com.itbank.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itbank.adminmember.AdminMemberDAO;
 import com.itbank.adminmember.AdminMemberDTO;
+import com.itbank.cart.CartDAO;
+import com.itbank.cart.CartDTO;
 import com.itbank.member.Hash;
 import com.itbank.member.MemberDAO;
 import com.itbank.member.MemberDTO;
@@ -13,12 +17,11 @@ import com.itbank.team.TeamDAO;
 @Service
 public class MemberService {
 
-	@Autowired
-	private MemberDAO md;
-	@Autowired
-	private AdminMemberDAO amd;
-	@Autowired
-	private TeamDAO td;
+	@Autowired private MemberDAO md;
+	@Autowired private AdminMemberDAO amd;
+	@Autowired private TeamDAO td;
+	@Autowired private CartDAO cd;
+	
 	
 	// 일반 계정 등록
 	public int insertMember(MemberDTO dto) {
@@ -81,6 +84,10 @@ public class MemberService {
 	public MemberDTO selectOne(String userid) {
 		return md.selectOne(userid);
 		
+	}
+	public List<CartDTO> getCartList(int cartidx) {
+		
+		return cd.selectCartList(cartidx);
 	}
 
 }

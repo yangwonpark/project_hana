@@ -68,21 +68,7 @@
 							<p><input style="font-size:20px;border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 3px solid #4DABF7; width:600px;" placeholder="중분류를 등록하세요" type="text" id='kind' name="kind" ></p>
 							<p><input style="border-radius: 20px; font-size: 20px;border:none; height: 30px;width: 300px; color: white; background-color: #4DABF7; outline: none;" id="add" type="submit" value="중분류 등록하기"></p>
 						</form>									
-					</section>	 
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-					
+					</section>	 				
 					<section id="content2" style="margin-bottom:20px;">
 						<form method="POST" action="${cpath}/myMenu/admin_fqa/category2">				
 							<p><select style="font-size:20px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 3px solid #4DABF7; width:600px;" name="kindcheck" id="part" required>
@@ -90,28 +76,12 @@
 										<c:forEach var="fc" items="${fqacategorylist}" varStatus="i">
 											<option>${fc.kind } </option>
 										</c:forEach>	
-							</select></p>
-							
-							
+							</select></p>														
 							<p><input style="font-size:20px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 3px solid #4DABF7; width:600px;" required placeholder="소분류를 입력하세요" type="text" name="kind"></p>
 							<p>
 							<p><input style="border-radius: 20px; font-size: 20px;border:none; height: 30px;width: 300px; color: white; background-color: #4DABF7; outline: none;" id = "add2" type="submit" value="소분류 등록하기"></p>						
 						</form>							
-					</section>
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
+					</section>								
 					<section id="content3" style="margin-bottom:20px;">					
 						<form method="POST">
 							<p><select style="font-size:20px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 3px solid #4DABF7; width:600px;" name="noti" id="p1" required>
@@ -122,18 +92,18 @@
 							</select></p>
 							<p><select style="font-size:20px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 3px solid #4DABF7; width:600px;" name="noti" id="p2" required>
 									<option>===소분류===</option>
-										<c:forEach var="fd" items="${fqadetaillist}" varStatus="i">
+										<!--<c:forEach var="fd" items="${fqadetaillist}" varStatus="i">
 											<option>${fd.kind }</option>
-										</c:forEach>	
+										</c:forEach>	-->
 							</select></p>
-							
-							<p><input style="font-size:20px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 3px solid #4DABF7; width:600px;" placeholder="제목을 입력하세요" type="text" name="title"></p>
+							<input type="hidden" id="fqa_category_idx" name="fqa_category_idx">
+							<input type="hidden" id="fqa_detail_idx" name="fqa_detail_idx">
+							<p><input style="font-size:20px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 3px solid #4DABF7; width:600px;" placeholder="제목을 입력하세요" required type="text" name="title"></p>
 							<p>
-							<textarea placeholder="내용을 입력하세요" name="content" style="font-size:20px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 3px solid #4DABF7; resize: none; width:600px; height:300px;"></textarea></p>
+							<textarea placeholder="내용을 입력하세요" name="content" style="font-size:20px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 3px solid #4DABF7; resize: none; width:600px; height:300px;" required></textarea></p>
 							<p><input style="border-radius: 20px; font-size: 20px;border:none; height: 30px;width: 600px; color: white; background-color: #4DABF7; outline: none;" type="submit" value="자주찾는 질문 등록하기"></p>
 						</form>						
-					</section>
-					
+					</section>				
 				</div>
 			</c:when>
 		</c:choose>
@@ -142,6 +112,7 @@
 	<script>
 		const kind = document.getElementById('kind');
 		const add = document.getElementById('add');
+		
 		add.onclick = function () {
 			if(kind.value == ''){
 				alert('중분류를 입력하세요');
@@ -157,7 +128,67 @@
 				event.preventDefault();
 			}		
 		};
+		
 	
+		const p1 = document.getElementById('p1');
+		const p2 = document.getElementById('p2');
+		
+		function deleteso() {
+			const t = document.getElementById("p2"); 
+			while ( t.hasChildNodes() ) { 
+				t.removeChild(t.firstChild); 
+			}
+			const option = document.createElement('option');
+			option.innerText = '===소분류===';
+			t.appendChild(option);
+		}
+		
+		let obj;
+		
+		let fqa_category_idx = document.getElementById('fqa_category_idx');
+		let fqa_detail_idx = document.getElementById('fqa_detail_idx');
+		p1.onclick = function () {
+			deleteso();
+			const p3 = p1.options[p1.selectedIndex].value;
+			$.ajax({
+				url: '${pageContext.request.contextPath}/so/' + p3,
+				method: 'GET',
+				dataType: 'json',
+				success: function(data) {
+					console.log(data);
+					obj = data;
+					for (let i=0; i < data.length; i++) {
+						const option = document.createElement('option');
+						//fqa_categroy_idx.value = data[i].fqa_category_idx;
+						//fqa_detail_idx.value = data[i].idx;
+						option.innerText = data[i].kind;
+						p2.appendChild(option);
+						
+					}				
+				},
+				error: function(){
+					console.log('불러오기 실패');
+				}	
+			}); 
+			
+	
+		}
+		const regForm = document.forms[3];
+		console.log(regForm);
+		const submitHandler = function(event) {
+			console.log('regForm : ' + regForm);
+			event.preventDefault();
+			for (let i=0; i < obj.length; i++) {
+				if(p2.value == obj[i].kind) {
+					console.log("ob.idx : " + obj[i].idx);
+					console.log("ob.fqa_category_idx : " + obj[i].fqa_category_idx );
+					fqa_category_idx.value = obj[i].fqa_category_idx;
+					fqa_detail_idx.value = obj[i].idx;
+				}
+				regForm.submit();
+			}
+		}
+		regForm.onsubmit = submitHandler;
 	</script>
 	
 	

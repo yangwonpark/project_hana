@@ -30,5 +30,8 @@
 		<typeAlias type="com.itbank.notice.NoticeDTO"  alias="notice"/>
 		<typeAlias type="com.itbank.fqacategory.FqaCategoryDTO"  alias="fqacategory"/>
 		<typeAlias type="com.itbank.fqadetail.FqaDetailDTO"  alias="fqadetail"/>
+		<typeAlias type="com.itbank.fqa.FqaDTO"  alias="fqa"/>
+		<typeAlias type="com.itbank.qakind.QaKindDTO"  alias="qakind"/>
+		<typeAlias type="com.itbank.cart.CartDTO"  alias="cart"/>	
 	</typeAliases>
 </configuration>

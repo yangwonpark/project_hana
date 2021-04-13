@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../myMenu/myinfo_main.jsp" %>
+
 <script>
 const kakao = '${kakao}';
 console.log(kakao);
@@ -49,32 +50,32 @@ if (kakao == 'kakao') {
       <h1>개인정보</h1>
         <form method="POST">
         	
-        <table style="border-spacing: 10px;">
+        <table style="font-size: 20px; border-spacing: 10px;">
             <tr>
                 <td>*</td>
                 <td>회원 ID</td>
-                <td><input id="userid" type="text" name="userid" value="${login.userid }" readonly required/></td>
+                <td><input style="text-align:center; border:none;   border-bottom: 3px solid #4DABF7; font-size: 20px;" id="userid" type="text" name="userid" value="${login.userid }" readonly required/></td>
             </tr>
             <tr><td colspan="3"><hr /></td></tr>
             
             <tr>
                 <td>*</td>
                 <td>이 름</td>
-                <td><input id="name" type="text" name="name" value="${login.name }" readonly required /></td>
+                <td><input style="text-align:center; border:none;   border-bottom: 3px solid #4DABF7; font-size: 20px;" id="name" type="text" name="name" value="${login.name }" readonly required /></td>
             </tr>
             <tr><td colspan="3"><hr /></td></tr>
     
              <tr >
                 <td>*</td>
                 <td>전화번호</td>
-                <td><input id="pnum" type="text" name="pnum" value="${login.pnum }"></td>
+                <td><input style="text-align:center; border:none;   border-bottom: 3px solid #4DABF7; font-size: 20px;" id="pnum" type="text" name="pnum" value="${login.pnum }"></td>
             </tr>
             <tr><td colspan="3"><hr /></td></tr>
             
             <tr >
                 <td>*</td>
                 <td>생년월일  </td>
-                <td><input type="date" name="birth_date" value="${login.birth_date }" required /></td>
+                <td><input style="text-align:center; border:none;   border-bottom: 3px solid #4DABF7; font-size: 20px;" type="date" name="birth_date" value="${login.birth_date }" required /></td>
             </tr>
             <tr><td colspan="3"><hr /></td></tr>
             

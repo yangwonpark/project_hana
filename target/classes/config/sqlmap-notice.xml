@@ -48,9 +48,11 @@
 	
 	</select>
 
-
-
+	<select id="getSelectNoticeIndex" parameterType="int" resultType="notice">
+		select * from notice where idx = #{idx}
 	
+	
+	</select>
 </mapper>
 
 

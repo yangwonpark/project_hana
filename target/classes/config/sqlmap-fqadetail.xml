@@ -18,7 +18,10 @@
 		select * from fqa_detail
 	</select>
 	
-	
+	<select id="getFqaDetailList" parameterType="string" resultType="fqadetail">
+		select * from fqa_detail where fqa_category_idx = (select idx from fqa_category where fqa_category.kind = #{p3})
+	</select>
+
 </mapper>
 
 

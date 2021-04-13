@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.itbank.member.MemberDTO;
 import com.itbank.oauth.OAuthToken;
 import com.itbank.service.KakaoService;
 
@@ -92,6 +93,12 @@ public class KakaoController {
 			}
 			mav.addObject("path", "/myMenu/myMenu_main");
 			session.setAttribute("kakao", "kakao");
+			MemberDTO kakaoLogin = ks.selectOne(response2.getBody().substring(6, 16));
+			session.setAttribute("login", kakaoLogin  );
+			System.out.println("카카오로 : " + kakaoLogin.getUserid() );
+			System.out.println("카카오로 : " + kakaoLogin.getUserkind() );
+			System.out.println("카카오로 : " + kakaoLogin.getGender());
+			System.out.println("카카오로 : " + kakaoLogin.getAgree_post());
 			
 			return mav;
 		}

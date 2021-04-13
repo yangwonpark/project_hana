@@ -69,7 +69,7 @@
 					<label style="font-size:20px;" for="shtab4">당첨자</label>
 	
 					<section id="content1" style="margin-bottom:20px;">
-						<table>
+						<table style="border-collapse: collapse">
 							<tr style="height: 50px">
 								<th style="font-size:20px;border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;text-align:center;">번호</th>
 								<th style="font-size:20px;border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;text-align:center;">구분</th>
@@ -79,14 +79,14 @@
 						<c:forEach var="an" items="${allN}" varStatus="i">
 							
 							<tr>
-								<td style="width:50px; height: 50px; text-align:center; font-size:15px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
-								${an['IDX']}
-								<td style="width:100px; height: 50px; text-align:center; font-size:15px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
-								${an['KIND']}
-								<td style="width:400px; height: 50px; text-align:center; font-size:15px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
-								${an['TITLE']}
-								<td style="width:400px; height: 50px; text-align:center; font-size:15px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
-								${an['CONTENT']}
+								<td style="width:50px; height: 50px; text-align:center; font-size:20px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
+								${an['IDX']}</td>
+								<td style="width:100px; height: 50px; text-align:center; font-size:20px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
+								${an['KIND']} </td>
+								<td style="width:400px; height: 50px; text-align:center; font-size:20px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
+						<a href="${cpath }/manage/sc_notice/${an['IDX']}">	${an['TITLE']} </a> </td>
+								<td style="width:400px; height: 50px; text-align:center; font-size:20px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
+								${an['CONTENT']} </td>
 							<tr>
 						</c:forEach>
 						</table>
@@ -96,22 +96,22 @@
 					<section id="content2" style="margin-bottom:20px;">
 						<table>
 							<tr style="height: 50px">
-								<th style="border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;text-align:center;">번호</th>
-								<th style="border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;text-align:center;">구분</th>
-								<th style="border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;text-align:center;">제목</th>
-								<th style="border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;text-align:center;">내용</th>						
+								<th style="font-size:20px;border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;text-align:center;">번호</th>
+								<th style="font-size:20px;border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;text-align:center;">구분</th>
+								<th style="font-size:20px;border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;text-align:center;">제목</th>
+								<th style="font-size:20px;border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;text-align:center;">내용</th>						
 							<tr>
 						<c:forEach var="nn" items="${normalN}" varStatus="i">
 							
 							<tr>
-								<td style="width:50px; height: 50px; text-align:center; font-size:15px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
-								${nn['IDX']}
-								<td style="width:100px; height: 50px; text-align:center; font-size:15px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
-								${nn['KIND']}
-								<td style="width:400px; height: 50px; text-align:center; font-size:15px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
-								${nn['TITLE']}
-								<td style="width:400px; height: 50px; text-align:center; font-size:15px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
-								${nn['CONTENT']}
+								<td style="width:50px; height: 50px; text-align:center; font-size:20px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
+								${nn['IDX']}</td>
+								<td style="width:100px; height: 50px; text-align:center; font-size:20px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
+								${nn['KIND']}</td>
+								<td style="width:400px; height: 50px; text-align:center; font-size:20px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
+						<a href="${cpath }/manage/sc_notice/${nn['IDX']}">		${nn['TITLE']} </a></td>
+								<td style="width:400px; height: 50px; text-align:center; font-size:20px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
+								${nn['CONTENT']}</td>
 							<tr>
 						</c:forEach>
 						</table>
@@ -121,22 +121,22 @@
 					<section id="content3" style="margin-bottom:20px;">
 						<table>
 							<tr style="height: 50px">
-								<th style="border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;text-align:center;">번호</th>
-								<th style="border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;text-align:center;">구분</th>
-								<th style="border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;text-align:center;">제목</th>
-								<th style="border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;text-align:center;">내용</th>						
+								<th style="font-size:20px;border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;text-align:center;">번호</th>
+								<th style="font-size:20px;border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;text-align:center;">구분</th>
+								<th style="font-size:20px;border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;text-align:center;">제목</th>
+								<th style="font-size:20px;border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;text-align:center;">내용</th>						
 							<tr>
 						<c:forEach var="en" items="${eventN}" varStatus="i">
 							
 							<tr>
-								<td style="width:50px; height: 50px; text-align:center; font-size:15px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
-								${en['IDX']}
-								<td style="width:100px; height: 50px; text-align:center; font-size:15px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
-								${en['KIND']}
-								<td style="width:400px; height: 50px; text-align:center; font-size:15px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
-								${en['TITLE']}
-								<td style="width:400px; height: 50px; text-align:center; font-size:15px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
-								${en['CONTENT']}
+								<td style="width:50px; height: 50px; text-align:center; font-size:20px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
+								${en['IDX']}</td>
+								<td style="width:100px; height: 50px; text-align:center; font-size:20px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
+								${en['KIND']}</td>
+								<td style="width:400px; height: 50px; text-align:center; font-size:20px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
+						<a href="${cpath }/manage/sc_notice/${en['IDX']}">		${en['TITLE']} </a></td>
+								<td style="width:400px; height: 50px; text-align:center; font-size:20px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
+								${en['CONTENT']}</td>
 							<tr>
 						</c:forEach>
 						</table>
@@ -146,22 +146,22 @@
 					<section id="content4" style="margin-bottom:20px;">
 						<table>
 							<tr style="height: 50px">
-								<th style="border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;text-align:center;">번호</th>
-								<th style="border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;text-align:center;">구분</th>
-								<th style="border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;text-align:center;">제목</th>
-								<th style="border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;text-align:center;">내용</th>						
+								<th style="font-size:20px;border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;text-align:center;">번호</th>
+								<th style="font-size:20px;border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;text-align:center;">구분</th>
+								<th style="font-size:20px;border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;text-align:center;">제목</th>
+								<th style="font-size:20px;border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;text-align:center;">내용</th>						
 							<tr>
 						<c:forEach var="ln" items="${lotteN}" varStatus="i">
 							
 							<tr>
-								<td style="width:50px; height: 50px; text-align:center; font-size:15px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
-								${ln['IDX']}
-								<td style="width:100px; height: 50px; text-align:center; font-size:15px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
-								${ln['KIND']}
-								<td style="width:400px; height: 50px; text-align:center; font-size:15px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
-								${ln['TITLE']}
-								<td style="width:400px; height: 50px; text-align:center; font-size:15px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
-								${ln['CONTENT']}
+								<td style="width:50px; height: 50px; text-align:center; font-size:20px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
+								${ln['IDX']}</td>
+								<td style="width:100px; height: 50px; text-align:center; font-size:20px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
+								${ln['KIND']}</td>
+								<td style="width:400px; height: 50px; text-align:center; font-size:20px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
+							<a href="${cpath }/manage/sc_notice/${ln['IDX']}">	${ln['TITLE']} </a></td>
+								<td style="width:400px; height: 50px; text-align:center; font-size:20px; border:none;border-right:0px; border-top:0px; boder-left:0px; border-bottom: 1px solid #4DABF7;">
+								${ln['CONTENT']} </td>
 							<tr>
 						</c:forEach>
 						</table>

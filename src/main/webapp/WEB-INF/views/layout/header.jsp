@@ -177,7 +177,7 @@
 						</div>
 					</div>
 					<div class="right_fixed"></div>
-					<c:if test="${login != null && login.userkind == 0 }">
+					<c:if test="${login != null && (login.userkind == 0 || login.userkind == 1)}">
 						<div class="container">
 							<div id="user-container" class="chat-container2" style="display: none">
 							<div style="height: 12px;"></div>
@@ -219,14 +219,10 @@
 	});
 	
 	const chatArea = document.querySelector(".chat-area");
-// 	const chatArea = document.getElementById("chat-area");
 	const enterBtn = document.getElementById("enter-btn");
 	const sendBtn = document.querySelector(".send-btn");
-// 	const sendBtn = document.getElementById("send-btn");
 	const chatContainer = document.querySelector(".chat-container2")
-// 	const chatContainer = document.getElementById("chat-container")
 	const textMsg = document.querySelector('.text-msg');
-// 	const textMsg = document.getElementById('text-msg');
 	const btnQa = document.querySelector('.btn-qa');
 	
 	let toggleCheck = false;
@@ -256,7 +252,9 @@
 	let sock_user;
 	
 	function connect(name) {
-		sock_user = new SockJS('http://192.168.0.83:8080/day08/clientEcho');
+// 		sock_user = new SockJS('http://192.168.0.83:8080/day08/clientEcho');
+		sock_user = new SockJS('http://192.168.0.83:8080/hana/clientEcho');
+// 		sock_user = new SockJS('http://localhost:8080/day08/clientEcho');
 		// 웹 소켓 자체에 내장 메소드 4개 
 		sock_user.onopen = onOpen;
 		sock_user.onmessage = onMessage;

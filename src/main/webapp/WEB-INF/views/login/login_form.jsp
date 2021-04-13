@@ -25,7 +25,7 @@
                 </div>
         </form>
         <p>	
-        	<a href="https://kauth.kakao.com/oauth/authorize?client_id=4e98c061f75136520e7139aead6e1df2&redirect_uri=http://localhost:8080/day08/auth/kakao/callback&response_type=code">
+        	<a href="https://kauth.kakao.com/oauth/authorize?client_id=4e98c061f75136520e7139aead6e1df2&redirect_uri=http://192.168.0.83:8080/hana/auth/kakao/callback&response_type=code">
         		<img src="${cpath }/resources/img/kakao.png">
         	</a>
         </p>         

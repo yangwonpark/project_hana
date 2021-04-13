@@ -22,7 +22,7 @@
 	</div>
 </body>
 <script>
-	let sock = new SockJS('http://172.30.1.58:8080/day08/adminEcho');
+	let sock = new SockJS('http://192.168.0.83:8080/day08/adminEcho');
 	
 	sock.onopen = function(msg) {};
 	sock.onclose = function(msg) {};
@@ -131,14 +131,14 @@
 		
 		fetch(url, opt)
 		.then(resp => resp.text())
-		.then(row => {
-			if(row == 1) {
-				console.log("대화가 저장되었습니다");
-			}
-			else {
-				console.log("저장에 실패했습니다")
-			}
-		});
+// 		.then(row => {
+// 			if(row == 1) {
+// 				console.log("대화가 저장되었습니다");
+// 			}
+// 			else {
+// 				console.log("저장에 실패했습니다")
+// 			}
+// 		});
 		
 	}
 	

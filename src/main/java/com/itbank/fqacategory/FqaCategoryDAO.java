@@ -11,6 +11,9 @@ public interface FqaCategoryDAO {
 
 	int selectKindIndex(String kindcheck);
 
+	int getFqaDetail(String category1);
+
+
 	
 
 }

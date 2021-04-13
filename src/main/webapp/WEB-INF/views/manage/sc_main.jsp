@@ -5,11 +5,11 @@
 		 <h1>자주찾는질문</h1><hr>
 		        <form method="POST">
 		        	
-		        <table style="border-spacing: 10px;">
+		        <table style="font-size: 20px; border-spacing: 10px;">
 		            <tr>
 		                <td>*</td>
-		                <td>기업명</td>
-		                <td><input type="text" name="name" required/></td>
+		                <td style="font-size: 20px;">기업명</td>
+		                <td ><input type="text" name="name" required/></td>
 		            </tr>
 		            <tr><td colspan="3"><hr /></td></tr>
 		            

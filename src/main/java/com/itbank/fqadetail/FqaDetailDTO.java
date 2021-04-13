@@ -16,10 +16,10 @@ public class FqaDetailDTO {
 	public void setKind(String kind) {
 		this.kind = kind;
 	}
-	public int getFga_category_idx() {
+	public int getFqa_category_idx() {
 		return fqa_category_idx;
 	}
-	public void setFga_category_idx(int fqa_category_idx) {
+	public void setFqa_category_idx(int fqa_category_idx) {
 		this.fqa_category_idx = fqa_category_idx;
 	}
 }

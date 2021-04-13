@@ -17,10 +17,10 @@
 		mongo-ref="mongo"	
 		dbname="admin"/>		
 		
-	<!-- db-factory에서 mongo-refe에 id가 쓰임 -->	
+	<!-- db-factory에서 mongo-ref에 id가 쓰임 -->	
 	<mongo:mongo-client 
 		id="mongo"
-		host="localhost"
+		host="192.168.0.83"
 		port="27017"
 		credentials="park:dnjs1572@admin"/>
 	
@@ -35,7 +35,7 @@
 			<bean class="com.zaxxer.hikari.HikariConfig">
 				<constructor-arg>
 					<props>
-						<prop key="jdbcUrl">jdbc:oracle:thin:@localhost:1521:xe</prop>
+						<prop key="jdbcUrl">jdbc:oracle:thin:@192.168.0.99:1521:xe</prop>
 						<prop key="username">c##hana</prop>
 						<prop key="password">itbank</prop>
 					</props>

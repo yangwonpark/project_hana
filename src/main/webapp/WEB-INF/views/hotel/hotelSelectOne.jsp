@@ -3,121 +3,14 @@
 <%@ include file="../layout/header.jsp" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<!-- 이미지 모달 -->
-<div class="hotel_one_modal" style="width: 100%; height: 100%; 
-			display: none; position: fixed; top: 0; z-index: 15;">
-	<!-- 모달 배경 -->
-	<div class="modal_overlay" 
-				style="background-color: rgba(0,0,0,0.7);
-				width: 100%;
-				height: 100%;
-				z-index: 5;
-				position: absolute;
-				top: 0;
-				left: 0;"></div>
-	
-	<!-- 모달 메인 -->
-	<div style="color: black; z-index: 10; width: 1000px; height: 700px; background-color: white;
-				position: relative; margin: 120px auto; display: flex;">
-		<div>
-			<!-- 왼쪽 버튼 -->
-			<div class="left_button"
-					style="position: absolute; width: 150px; height: 550px; background-color: #f2f2f2;"></div>
-			<!-- 이미지 -->
-			<div class="hotel_modal_img">
-				<c:forEach var="img" items="${imgList }">
-					<img style="position: absolute; left: 150px; width: 700px; height: 550px; "src="${cpath }/resources/hotelimg/${hotel.main_img}/${img}">
-				</c:forEach>
-			</div>		
-			<!-- 오른쪽 버튼 -->
-			<div class= "right_button" 
-					style="position: absolute; width: 150px; height: 550px; background-color: #f2f2f2; right: 0;"></div>
-		</div>
-	</div>
-</div>
-
-<!-- 지도 모달 -->
-<div class="hotel_map_modal" style="width: 100%; height: 100%;
-									display: none; position: fixed; top: 0; z-index: 15;">
-	<!-- 모달 배경 -->
-	<div class="map_modal_overlay" 
-				style="background-color: rgba(0,0,0,0.7);
-				width: 100%;
-				height: 100%;
-				z-index: 5;
-				position: absolute;
-				top: 0;
-				left: 0;"></div>
-	
-	<!-- 모달 메인 -->
-	<div style="color: black; z-index: 10; width: 700px; height: 800px; background-color: white;
-				position: relative; margin: 100px auto; padding: 30px 30px;">
-		<h2 style="font-family: Sans-Serif; font-size: 25pt; text-align: left; margin: 0;">지도보기</h2>
-		<hr>
-		<!-- 지도 -->
-		<div class="map_modal_img" style="width: 100%; height: 350px; margin-top: 30px;"></div>
-		<div style="padding-top: 20px">
-			<ul style="list-style: none; padding: 0;">
-				<li style="font-family: Sans-Serif; font-size: 16pt; font-weight: bold;">숙소</li>
-				<li style="font-family: Sans-Serif; font-size: 12pt;">${entrepreneur.shop_name }</li>
-				<li style="font-family: Sans-Serif; font-size: 12pt;">${entrepreneur.sales_loc }</li>
-			</ul>
-			
-		</div>
-	</div>
-</div>
 <div align="center">
-		<!-- 여행지 / 날짜 / 인원  => 숙소검색 -->
-		<form method="POST" class="hotel_search" style="top: 200px;">
-			<!-- 지역선택 -->
-			<div class="hotel_address">
-				<input autocomplete="off" type="text" name="h_address" id="h_address" 
-						placeholder="어디로 떠나세요?" required>
-				<!-- input영역 클릭시 띄우는 div -->
-				<div class="hotel_location">
-					<!-- 시 선택  -->
-					<ul class="hotel_metro">
-						<c:forEach var="metro" items="${metroList}">
-							<li style="text-align: center;">
-								<input type="button" id="hotel_metro_${metro.idx }" value="${metro.name }">
-							</li>
-						</c:forEach>
-					</ul>
-					<!-- 구 선택  -->
-					<div class="hotel_local">
-						<c:forEach var="idx" begin="1" end="${metroListSize }">
-							<div class="hotel_local_${idx }" style="display: none;">
-								<c:forEach var="local" items="${localList }">
-									<c:if test="${local.metro_idx == idx}">
-											<input type="button" value="${local.name }">
-									</c:if>
-								</c:forEach>
-							</div>
-						</c:forEach>
-					</div>
-				</div>
-			</div>
-			<!-- 지역선택 end -->
-			
-			<!-- 기간 선택 -->
-			<div style="z-index: 99;">
-				<input autocomplete="off" type="text" name="from" id="from" style="margin-left: 10px"> ~ 
-				<input autocomplete="off" type="text" name="to" id="to" style="margin-left: 10px">
-			</div>
-			<!-- 기간선택 end -->
-			
-			<!-- 인원수 선택 -->
-			<div>
-				<input style="width: 100px" type="number" min="1" name="adult" placeholder="ADULT" autocomplete="off">
-				<input style="width: 100px" type="number" min="0" name="kids" placeholder="KIDS" autocomplete="off">
-			</div>
-			<!-- 인원수 선택 end -->
-
-			<div><input type="submit" value="숙소 검색"></div>
-		</form>
-	
+	<c:if test="${searchInfo.from != null }">
+		<div style="width: 1200px; height: 80px; text-align: left; padding-top: 50px;">
+			<h2 style="padding: 0;">${searchInfo.from } ~ ${searchInfo.to }</h2>
+		</div>
+	</c:if>
 	<div style="width: 1200px; height: 550px; border-bottom: 2px solid black; border-top: 2px solid black; 
-				display: flex; padding-top: 25px; margin-top: 100px">
+				display: flex; padding-top: 25px; margin-top: 30px">
 		<div class="hotel_img" style="width: 750px; height: 500px; ">
 			<c:set var="length" value="${fn:length(imgList) }" />	
 			<c:forEach var="img" items="${imgList }" varStatus="st">
@@ -129,7 +22,7 @@
 								display: inline-block;
 								background-color: black;">
 						<c:if test="${st.index == 3 }">
-							<div class="openModal"
+							<div class="openModal slider"
 										style="background-color: black;
 									 	width: 370px;
 									 	height: 245px;
@@ -188,7 +81,7 @@
 				<ul style="list-style: none; padding-left: 10px">
 					<li style="margin-bottom: 5px;">
 						<strong style="font-family: Sans-Serif; font-size: 30px;">
-							원~
+							<fmt:formatNumber value="${hotelPriceMin }" pattern="#,###" />원~
 						</strong>
 					</li>
 				</ul>
@@ -206,7 +99,7 @@
 				숙소정보
 			</h3>
 			<button style="width: 100px; height: 50px; margin: 10px;"
-					class="hotel_map">
+					class="openModal map">
 				지도보기
 			</button>
 		</div>
@@ -267,19 +160,36 @@
 									    border: solid 1px #c2c2c2">
 								객실정보
 							</a>
-							
 						</div>
 					</div>
-					<div style="width: 300px; height: 160px; padding-top: 20px;"></div>
+					<div style="width: 300px; height: 160px; padding-top: 20px;">
+						<c:forEach var="hotelPrice" items="${hotelPriceList }">
+							<c:if test="${hotelPrice.room_info_idx eq room.idx}">
+							
+								<c:if test="${room.headcount == 1 }">
+									<c:set var="price">${hotelPrice.price }</c:set>
+								</c:if>
+								<c:if test="${room.headcount != 1}">
+									<c:set var="price">${hotelPrice.price * 2}</c:set>
+								</c:if>
+								<fmt:formatNumber value="${price }" pattern="#,###" />원
+							</c:if>
+						</c:forEach>
+					</div>
 					<div style="width: 200px; height: 160px; padding-top: 20px; text-align: center;">
-						<form method="POST">
+						<form class="reservation-form" method="POST" action="${cpath }/hotel/hotelSelectOne">
 							<input type="hidden" name="entrepreneurIdx" value=${entrepreneur.idx }>
 							<input type="hidden" name="hotelIdx" value="${hotel.idx }">
+							<input type="hidden" name="price" value="${price }">
 							<input type="hidden" name="roomIdx" value="${room.idx }">
-							<input type="submit" value="예약하기"
+							<input type="hidden" name="h_address" value="${searchInfo.getH_address() }">
+							<input type="hidden" name="from" value="${searchInfo.getFrom() }">
+							<input type="hidden" name="to" value="${searchInfo.getTo() }">
+							<input type="hidden" name="people" value="${searchInfo.getPeople() }">
+							<input type="submit" id="reservation" value="예약하기"
 								style="color: #fff !important;
 								border: none;
-							    background-color: #e5236d;
+							    background-color: #5caceb;
 							    width: 120px;
 							    font-size: 15px;
 							    border-radius: 10px;
@@ -346,7 +256,7 @@
 		<div style="display: flex; width: 1200px;
 					border-bottom: 1px solid lightgray;">
 			<h3 style="font-family: Sans-Serif; width: 200px; text-align: left; line-height: 101px;">
-				숙소 부대시설
+				숙소 부대시설 
 			</h3>
 			<ul style="list-style: none; width: 100%; text-align: left;">
 				<c:forEach var="add_facility" items="${add_facilityArr }">
@@ -361,135 +271,123 @@
 	</div>
 </div>
 
-<!-- 이미지 모달 script -->
-<script>
-	const modal_overlay = document.querySelector('.modal_overlay');
-	const hotel_one_modal = document.querySelector('.hotel_one_modal');
-	modal_overlay.onclick = function(event) {
-		hotel_one_modal.style.display = 'none';
-		console.log('close')
-	}
-	const openModal = document.querySelector('.openModal');
-	openModal.onclick = function(event) {
-		hotel_one_modal.style.display = 'block';
-		console.log('open')
-	}
 
-</script>
 
-<!-- 숙소 검색 script -->
-<script>
+<!-- 달력 모달 -->
+<div class="hotel_calendar_modal" style="width: 100%; height: 100%; 
+			display: none; position: fixed; top: 0;">
+	<!-- 모달 배경 -->
+	<div class="modal_overlay" 
+				style="background-color: rgba(0,0,0,0.7);
+				width: 100%;
+				height: 100%;
+				z-index: 5;
+				position: absolute;
+				top: 0;
+				left: 0;"></div>
+	
+	<!-- 모달 메인 -->
+	<div style="color: black; z-index: 10; width: 800px; height: 150px; background-color: white;
+				position: relative; margin: 120px auto; display: flex; padding: 20px 20px;">
+			
+		<div style="z-index: 5;">
+			<form method="POST" action="${cpath }/hotel/hotelSelectOne">
+				
+				<input type="hidden" name="entrepreneurIdx" value=${entrepreneur.idx }>
+				<input type="hidden" name="hotelIdx" value="${hotel.idx }">
+				<input type="hidden" name="h_address" value="${searchInfo.getH_address() }">
+				<input autocomplete="off" type="text" name="from" id="from" placeholder="CHECKIN"
+						style="margin-left: 10px; width: 200px; height: 50px;"> ~ 
+				<input autocomplete="off" type="text" name="to" id="to" placeholder="CHECKOUT" 
+						style="margin-left: 10px; width: 200px; height: 50px;">
+				<input type="number" name="people" placeholder="인원수" min="1"
+						style="margin-left: 20px; width: 70px; height: 50px;" required>
+				<input type="submit" value="예약하기"
+					style="color: #fff !important;
+					border: none;
+				    background-color: #5caceb;
+				    width: 120px;
+				    font-size: 15px;
+				    border-radius: 10px;
+				    padding: 10px 30px;
+				    margin: 35px 50px;">
+		    </form>
+	    </div>
+	</div>
+</div>
 
-	/* 체크인 체크아웃 날짜 */
-	document.getElementById('from').value = '${searchInfo.getFrom()}';
-	document.getElementById('to').value = '${searchInfo.getTo()}';
+<!-- 이미지 모달 -->
+<div class="hotel_slider_modal" style="width: 100%; height: 100%; 
+			display: none; position: fixed; top: 0;">
+	<!-- 모달 배경 -->
+	<div class="modal_overlay" 
+				style="background-color: rgba(0,0,0,0.7);
+				width: 100%;
+				height: 100%;
+				z-index: 5;
+				position: absolute;
+				top: 0;
+				left: 0;"></div>
 	
-	$(function() {
-        //시작일.
-        $('#from').datepicker({
-            dateFormat: "yy-mm-dd",             // 날짜의 형식
-            minDate: 0,                      	// 선택할수있는 최소날짜, ( 0 : 오늘 이전 날짜 선택 불가)
-            maxDate: 30,
-            onClose: function( selectedDate ) {    
-            	let date = new Date(selectedDate);
-            	date.setDate(date.getDate() + 1);
-            	// 시작일(from) datepicker가 닫힐때
-                // 종료일(to)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일 다음날로 지정
-                $("#to").datepicker( "option","minDate", date.toISOString().substring(0, 10));
-            }                
-        });
-     	//종료일
-        $('#to').datepicker({
-            dateFormat: "yy-mm-dd",
-            minDate: document.getElementById('from').value + 1,
-            maxDate: 30,
-            onClose: function( selectedDate ) {
-                // 종료일(to) datepicker가 닫힐때
-                // 시작일(from)의 선택할수있는 최대 날짜(maxDate)를 선택한 종료일로 지정 
-                $("#from").datepicker( "option", "maxDate", selectedDate);
-            }                
-        });
-     
-    });
-	
-	/* 여행지 선택 */
-	$(".hotel_location").hide();
-	
-	$(document).ready(function(){
-	    $("#h_address").click(function(){
-	        $(".hotel_location").show();
-	        $(document).mouseup(function(e){
-	            if($(".hotel_location").has(e.target).length === 0){
-	            	$(".hotel_location").hide();
-	            }
-	        });
-	    });
-	}); 
-	
-	$('.hotel_location .hotel_metro').click(function (event) {
-		event.preventDefault();
-	
-		hotelLocalDiv = document.querySelectorAll('.hotel_local > div');
-		const idx = (event.target.id).split('_').reverse()[0];
-		
-		const resultDiv = document.querySelector('.hotel_local_' + idx);
-	
-		for(let i = 0; i < hotelLocalDiv.length; i++){
-			hotelLocalDiv[i].style.display='none';	
-		}
-	
-		if(resultDiv != null){
-			target = event.target.value;
-			resultDiv.style.display='inline';
-			$('.hotel_local > div').click(function (event) {
-				event.preventDefault();
-				$('#h_address').val(target + ' ' + event.target.value);
-				$(".hotel_location").hide();
-			})
-		}
-	})
-	
-	/* 필터 보이기 */
-    $("#hotel_filter > div").click(function(){
-    	event.preventDefault();
-    	const idx = (event.target.id).split('_').reverse()[0];
-    	resultDiv = document.getElementById('hotel_filter_' + idx + '_in');
-    	
-    	if(resultDiv.style.display=="block"){
-    		resultDiv.style.display = "none"; 
-    	}
-        else{ 
-        	resultDiv.style.display = "block"; 
-        }
-    });
-	
-</script>
+	<!-- 모달 메인 -->
+	<div style="color: black; z-index: 10; width: 1000px; height: 700px; background-color: white;
+				position: relative; margin: 120px auto; display: flex;">
+		<div>
+			<!-- 왼쪽 버튼 -->
+			<div class="left_button"
+					style="position: absolute; width: 150px; height: 550px; background-color: #f2f2f2;"></div>
+			<!-- 이미지 -->
+			<div class="hotel_modal_img">
+				<c:forEach var="img" items="${imgList }">
+					<img style="position: absolute; left: 150px; width: 700px; height: 550px; "src="${cpath }/resources/hotelimg/${hotel.main_img}/${img}">
+				</c:forEach>
+			</div>		
+			<!-- 오른쪽 버튼 -->
+			<div class= "right_button" 
+					style="position: absolute; width: 150px; height: 550px; background-color: #f2f2f2; right: 0;"></div>
+		</div>
+	</div>
+</div>
 
-<!-- map api script -->
+<!-- 지도 스크립트 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=408b01640ff9f7e97cf1c396a706c05a&libraries=services"></script>
-<script>
-	const map_modal_overlay = document.querySelector('.map_modal_overlay');
-	const hotel_map_modal = document.querySelector('.hotel_map_modal');
+
+<!-- 지도 모달 -->
+<div class="hotel_map_modal" style="width: 100%; height: 100%;
+									display: none; position: fixed; top: 0;">
+	<!-- 모달 배경 -->
+	<div class="modal_overlay" 
+				style="background-color: rgba(0,0,0,0.7);
+				width: 100%;
+				height: 100%;
+				z-index: 5;
+				position: absolute;
+				top: 0;
+				left: 0;"></div>
 	
-	map_modal_overlay.onclick = function(event) {
-		hotel_map_modal.style.display = 'none';
-	}
-	
-	const hotel_map = document.querySelector('.hotel_map');
-	
-	hotel_map.onclick = function(event) {
-		
+	<!-- 모달 메인 -->
+	<div style="color: black; z-index: 10; width: 700px; height: 800px; background-color: white;
+				position: relative; margin: 100px auto; padding: 30px 30px;">
+		<h2 style="font-family: Sans-Serif; font-size: 25pt; text-align: left; margin: 0;">지도보기</h2>
+		<hr>
+		<!-- 지도 -->
+		<div class="map_modal_img" style="width: 100%; height: 350px; margin-top: 30px;"></div>
+		<div style="padding-top: 20px">
+			<ul style="list-style: none; padding: 0;">
+				<li style="font-family: Sans-Serif; font-size: 16pt; font-weight: bold;">숙소</li>
+				<li style="font-family: Sans-Serif; font-size: 12pt;">${entrepreneur.shop_name }</li>
+				<li style="font-family: Sans-Serif; font-size: 12pt;">${entrepreneur.sales_loc }</li>
+			</ul>
+			
+		</div>
+	</div>
+</div>
+
+<!-- 지도 불러오는 만든 함수 -->
+<script type="text/javascript">
+	const loadMap = function() {
 		hotel_map_modal.style.display = 'block';
 		
-		/* var staticMapContainer = document.querySelector('.map_modal_img'), // 이미지 지도를 표시할 div  
-	    staticMapOption = { 
-	        center: new kakao.maps.LatLng(33.450701, 126.570667), // 이미지 지도의 중심좌표
-	        level: 3 // 이미지 지도의 확대 레벨
-	    };
-		
-		var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
-		 */
-		 
 		var mapContainer = document.querySelector('.map_modal_img'), // 지도를 표시할 div 
 	    mapOption = {
 	       center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -526,10 +424,147 @@
 		    } 
 		});    
 	}
+</script>
+
+
+<!-- 모달 script -->
+<script>
+
+	const modal_overlay = document.querySelectorAll('.modal_overlay');
+ 	const hotel_map_modal = document.querySelector('.hotel_map_modal');
+	
+	modal_overlay.forEach(overlay => {		// 모든 오버레이에 대해서 클릭하면 해당하는 모달을 숨기는 기능 부여
+		overlay.onclick = function(event) {
+			event.target.style.zIndex = -1;
+
+			event.target.parentNode.style.display = 'none';
+			event.target.parentNode.style.zIndex = -1;
+			console.log('close');
+		}
+	})
+	
+	const openModalList = document.querySelectorAll('.openModal');	// 모달을 여는 버튼들을 불러와서
+	openModalList.forEach(openModal => {							// 각자의 모달을 클릭했을 때
+		openModal.onclick = function(event) {
+			
+			let target = (event.target.nodeName == 'H3') ? event.target.parentNode.parentNode : event.target;
+			
+			const modal = document.querySelector('.hotel_' + target.classList[1] + '_modal');		// 버튼 클래스에서 모달을 찾아서
+			
+			// 만약 map 모달이면 추가로 맵을 불러오는 코드 작동
+			if(modal.className == 'hotel_map_modal') {		
+				loadMap();
+			}
+			
+			modal.style.display = 'block';	// 해당하는 모달을 보여주기
+			modal.style.zIndex = 15;
+			console.log('open');
+		}
+	});
+	
+	const rvFormList = document.querySelectorAll('.reservation-form');
+	const rvHandler = (event) => {
+		event.preventDefault();
+		const from = '${searchInfo.from}';
+		const to = '${searchInfo.to}';
+		const roomIdx = event.target.querySelector('input[name="roomIdx"]').value;
+		const price = event.target.querySelector('input[name="price"]').value;
+		console.log(roomIdx, price);
+		
+		if("${login}" == '') {
+			alert('로그인을 해주세요.');
+			location.href='${cpath}/login/login_form';
+		}
+		else if("${login.userkind}" == 4 || "${login.userkind}" == 5){
+			alert('본 계정은 예약이 불가합니다.');
+		}	
+		else {
+			if(from === '' || to === '') {
+				alert('기간과 인원을 선택해주세요');
+				const calendar_modal = document.querySelector('.hotel_calendar_modal');
+				calendar_modal.style.display = 'block';
+				calendar_modal.style.zIndex = 15;
+				
+				const roomInput = document.createElement('input');
+				roomInput.type = 'hidden';
+				roomInput.name = 'roomIdx';
+				roomInput.value = roomIdx;
+				
+				const priceInput = document.createElement('input');
+				priceInput.type = 'hidden';
+				priceInput.name = 'price';
+				priceInput.value = price;
+				
+				calendar_modal.children[1].querySelector('form').appendChild(roomInput);
+				calendar_modal.children[1].querySelector('form').appendChild(priceInput);
+				
+				return;
+			}
+			event.target.submit();
+		}
+	}
+	rvFormList.forEach(element => element.onsubmit = rvHandler);
+
+</script>
+
+<!-- filter script -->
+<script>
+	
+	/* 필터 보이기 */
+    $("#hotel_filter > div").click(function(){
+    	event.preventDefault();
+    	const idx = (event.target.id).split('_').reverse()[0];
+    	resultDiv = document.getElementById('hotel_filter_' + idx + '_in');
+    	
+    	if(resultDiv.style.display=="block"){
+    		resultDiv.style.display = "none"; 
+    	}
+        else{ 
+        	resultDiv.style.display = "block"; 
+        }
+    });
 	
 </script>
 
 
+<!-- 기간선택 -->
+<script>
+/* 체크인 체크아웃 날짜 */
+/* 체크인 체크아웃 날짜 */
+	var now = new Date();
+	document.getElementById('from').value = now.toISOString().substring(0, 10);
+	
+	var tomorrow = new Date(now.setDate(now.getDate() + 1));	// 내일
+	document.getElementById('to').value = tomorrow.toISOString().substring(0, 10);
+	
+	$(function() {
+        //시작일.
+        $('#from').datepicker({
+            dateFormat: "yy-mm-dd",             // 날짜의 형식
+            minDate: 0,                      	// 선택할수있는 최소날짜, ( 0 : 오늘 이전 날짜 선택 불가)
+            maxDate: 30,
+            onClose: function( selectedDate ) {    
+            	let date = new Date(selectedDate);
+            	date.setDate(date.getDate() + 1);
+            	// 시작일(from) datepicker가 닫힐때
+                // 종료일(to)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일 다음날로 지정
+                $("#to").datepicker( "option","minDate", date.toISOString().substring(0, 10));
+            }                
+        });
 
+        //종료일
+        $('#to').datepicker({
+            dateFormat: "yy-mm-dd",
+            minDate: 0,
+            maxDate: 30,
+            onClose: function( selectedDate ) {
+                // 종료일(to) datepicker가 닫힐때
+                // 시작일(from)의 선택할수있는 최대 날짜(maxDate)를 선택한 종료일로 지정 
+                $("#from").datepicker( "option", "maxDate", selectedDate);
+            }                
+        });
+        document.querySelector('#ui-datepicker-div').style.zIndex = '20';
+    });
+</script>
 
 <%@ include file="../layout/footer.jsp" %>

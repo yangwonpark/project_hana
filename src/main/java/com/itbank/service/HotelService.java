@@ -1,7 +1,10 @@
 package com.itbank.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,10 +18,16 @@ import com.itbank.entrepreneur.EntrepreneurDAO;
 import com.itbank.entrepreneur.EntrepreneurDTO;
 import com.itbank.hotel.HotelDAO;
 import com.itbank.hotel.HotelDTO;
+import com.itbank.hotel_price.HotelPriceDAO;
+import com.itbank.hotel_price.HotelPriceDTO;
 import com.itbank.local.LocalDAO;
 import com.itbank.metro.MetroDTO;
-import com.itbank.room.RoomDAO;
+import com.itbank.payment.PaymentDAO;
+import com.itbank.payment.PaymentDTO;
+import com.itbank.reservation.ReservationDAO;
+import com.itbank.reservation.ReservationDTO;
 import com.itbank.room.RoomDTO;
+import com.itbank.room.RoomDAO;
 import com.itbank.room_kind.RoomKindDAO;
 import com.itbank.room_kind.RoomKindDTO;
 import com.itbank.searchInformation.SearchInformationDTO;
@@ -47,6 +56,12 @@ public class HotelService {
 	private ViewKindDAO viewKindDAO;
 	@Autowired
 	private RoomDAO roomDAO;
+	@Autowired
+	private HotelPriceDAO hotelPriceDAO;
+	@Autowired
+	private ReservationDAO reservationDAO;
+	@Autowired
+	private PaymentDAO paymentDAO;
 	
 	
 
@@ -139,6 +154,60 @@ public class HotelService {
 	public RoomDTO getRoom(int roomIdx) {
 		RoomDTO room = roomDAO.getRoom(roomIdx);
 		return room;
+	}
+
+	public List<HotelPriceDTO> getHotelPriceList() {
+		List<HotelPriceDTO> hotelPriceList = hotelPriceDAO.getHotelPriceList();
+		return hotelPriceList;
+	}
+
+	public List<HotelPriceDTO> getHotelPriceList(int hotel_idx) {
+		List<HotelPriceDTO> hotelPriceList = hotelPriceDAO.getPriceList(hotel_idx);
+		return hotelPriceList;
+	}
+
+	public int getHotelPriceMin(int hotel_idx) {
+		int hotelPriceDTO = hotelPriceDAO.getHotelPriceMin(hotel_idx);
+		return hotelPriceDTO;
+	}
+
+	public int insertReservation(ReservationDTO dto) {
+		dto.setReserv_serial(new SimpleDateFormat("yyyyMMdd-").format(new Date()) + UUID.randomUUID().toString().replace("-", ""));
+		int result = reservationDAO.insertReservation(dto);
+		return result;
+	}
+
+	public ReservationDTO getReservationSelectOne(int idx) {
+		ReservationDTO dto = reservationDAO.getReservationSelectOne(idx);
+		return dto;
+	}
+
+	public int getReservationSelectOne() {
+		int idx = reservationDAO.getReservationIdx();
+		return idx;
+	}
+
+	public int insertPayment(PaymentDTO dto) {
+		Date date = new Date();
+		dto.setPdate(date);
+		int result = paymentDAO.insertPayment(dto);
+		return result;
+	}
+
+	public int deleteHotel(int hotelIdx) {
+		int result = hotelDAO.deleteHotel(hotelIdx);
+		return result;
+	}
+
+
+	public int getSelectOnePayment() {
+		int result = paymentDAO.getSelectOnePayment();
+		return result;
+	}
+
+	public PaymentDTO getPayment(int idx) {
+		PaymentDTO dto = paymentDAO.getPayment(idx); 
+		return dto;
 	}
 
 }

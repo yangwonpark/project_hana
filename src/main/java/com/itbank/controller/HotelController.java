@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,8 +22,11 @@ import com.itbank.add_category.Add_CategoryDTO;
 import com.itbank.con_category.Con_CategoryDTO;
 import com.itbank.entrepreneur.EntrepreneurDTO;
 import com.itbank.hotel.HotelDTO;
+import com.itbank.hotel_price.HotelPriceDTO;
 import com.itbank.local.LocalDTO;
 import com.itbank.metro.MetroDTO;
+import com.itbank.payment.PaymentDTO;
+import com.itbank.reservation.ReservationDTO;
 import com.itbank.room.RoomDTO;
 import com.itbank.room_kind.RoomKindDTO;
 import com.itbank.searchInformation.SearchInformationDTO;
@@ -44,7 +48,9 @@ public class HotelController {
 		List<LocalDTO> localList = hs.getLocalList();
 		List<HotelDTO> hotelList = hs.getHotelList();
 		List<EntrepreneurDTO> entrepreneurAll = hs.getEntrepreneurAll();
-
+		List<HotelPriceDTO> hotelPriceList = hs.getHotelPriceList();
+		
+		mav.addObject("hotelPriceList", hotelPriceList);
 		mav.addObject("hotelList", hotelList);
 		mav.addObject("metroList", metroList);
 		mav.addObject("localList", localList);
@@ -65,7 +71,9 @@ public class HotelController {
 		List<Add_CategoryDTO> add_categoryList = hs.getAdd_CategoryList();
 		List<Con_CategoryDTO> con_categoryList = hs.getCon_CategoryList();
 		List<EntrepreneurDTO> entrepreneurList = hs.getEntrepreneurList(dto);
-
+		List<HotelPriceDTO> hotelPriceList = hs.getHotelPriceList();
+		
+		mav.addObject("hotelPriceList", hotelPriceList);
 		mav.addObject("searchInfo", dto);
 		mav.addObject("metroList", metroList);
 		mav.addObject("localList", localList);
@@ -85,11 +93,12 @@ public class HotelController {
 		String[] list = null;
 
 		ModelAndView mav = new ModelAndView("/hotel/hotelSelectOne");
-		List<MetroDTO> metroList = hs.getMetroList();
-		List<LocalDTO> localList = hs.getLocalList();
 		List<RoomDTO> roomList = hs.getRoomList(hotel_idx);
 		List<ViewKindDTO> viewKindList = hs.getViewKindList();
 		HotelDTO hotel = hs.getHotel(hotel_idx);
+		
+		List<HotelPriceDTO> hotelPriceList = hs.getHotelPriceList(hotel_idx);
+		int hotelPriceMin = hs.getHotelPriceMin(hotel_idx);
 
 		File loadFolder = new File(dirPath + "/" + hotel.getMain_img());
 		if (loadFolder.exists() && loadFolder.isDirectory()) {
@@ -100,7 +109,7 @@ public class HotelController {
 		String hotelKind = hs.getHotelKind(hotel.getHotel_kind_idx());
 
 		String[] add_facilityArr = hotel.getAdd_facility().split(",");
-
+		
 		mav.addObject("viewKindList", viewKindList);
 		mav.addObject("roomList", roomList);
 		mav.addObject("imgList", list);
@@ -109,11 +118,90 @@ public class HotelController {
 		mav.addObject("entrepreneur", entrepreneur);
 		mav.addObject("hotel", hotel);
 		mav.addObject("searchInfo", dto);
-		mav.addObject("metroList", metroList);
-		mav.addObject("localList", localList);
+		mav.addObject("hotelPriceList", hotelPriceList);
+		mav.addObject("hotelPriceMin", hotelPriceMin);
 		return mav;
 	}
 
+	@PostMapping("/hotel/hotelSelectOne") 
+	public ModelAndView reservation(int entrepreneurIdx, int hotelIdx, int roomIdx, int price, SearchInformationDTO dto ) {
+		ModelAndView mav = new ModelAndView("/payment/reservation"); 
+		
+		EntrepreneurDTO entrepreneur = hs.getEntrepreneur(entrepreneurIdx);
+		HotelDTO hotel = hs.getHotel(hotelIdx);
+		RoomDTO room = hs.getRoom(roomIdx);
+		
+		mav.addObject("entrepreneur", entrepreneur);
+		mav.addObject("hotel", hotel);
+		mav.addObject("room", room);
+		mav.addObject("searchInfo", dto);
+		mav.addObject("price", price);
+		
+		return mav; 
+	}
+	
+	
+	@PostMapping("/payment/reservation")
+	public ModelAndView payment(ReservationDTO dto) {
+		String viewName = null;
+		int result = hs.insertReservation(dto);
+		
+		int idx = hs.getReservationSelectOne();
+		
+		if(result == 1) {
+			viewName="redirect:/payment/payment/" + idx;
+		}
+		else {
+			viewName="redirect:/payment/reservation";
+		}
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("reservation", dto);
+		return mav;
+	}
+	
+	@GetMapping("/payment/payment/{idx}")
+	@ResponseBody
+	public ModelAndView payment(@PathVariable int idx) {
+		ReservationDTO reservation = hs.getReservationSelectOne(idx); 
+		
+		ModelAndView mav = new ModelAndView("/payment/payment");
+		mav.addObject("reservation", reservation);
+		return mav;
+	}
+	
+	@PostMapping("/payment/payment/{idx}")
+	public ModelAndView result(PaymentDTO dto) {
+		System.out.println(dto.getKind());
+		int result = hs.insertPayment(dto);
+		String viewName = null;
+		String msg = null;
+		
+		int idx = hs.getSelectOnePayment();
+		System.out.println(idx);
+		if(result == 1) {
+			msg = "예약완료";
+			viewName="redirect:/payment/result/" + idx;
+		}
+		else {
+			msg = "예약실패";
+			viewName="redirect:/payment/reservation";
+		}
+		
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("msg", msg);	
+		return mav;
+	}
+	
+	@GetMapping("/payment/result/{idx}")
+	@ResponseBody
+	public ModelAndView result(@PathVariable int idx) {
+		ModelAndView mav = new ModelAndView("/payment/result");
+		PaymentDTO dto = hs.getPayment(idx);
+		mav.addObject("payment", dto);
+		return mav;
+	}
+	
+	
 	@GetMapping("/hotel/hotelInsert")
 	public ModelAndView hotelInsert() {
 		ModelAndView mav = new ModelAndView("/hotel/hotelInsert");
@@ -130,11 +218,10 @@ public class HotelController {
 			throws IllegalStateException, IOException {
 
 		String dirPath = request.getSession().getServletContext().getResource("/resources/hotelimg").getPath();
-		String viewName, resultMsg;
+		String viewName;
 		int idx = hs.insertHotel(dto);
 
 		if (idx != 0) {
-			resultMsg = "호텔 등록 완료";
 			viewName = "redirect:/hotel/roomInsert/" + idx;
 
 			System.out.println(dirPath);
@@ -146,24 +233,22 @@ public class HotelController {
 				dir.mkdir();
 			}
 
-			System.out.println("==========================================");
 			for (MultipartFile f : dto.getFolder()) {
 				File dest = new File(dir, f.getOriginalFilename());
 				f.transferTo(dest);
 			}
 
 		} else {
-			resultMsg = "호텔등록실패";
 			viewName = "redirect:/hotel/hotelInsert";
 		}
 
 		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("resultMsg", resultMsg);
 
 		return mav;
 	}
 
 	@GetMapping("/hotel/roomInsert/{idx}")
+	@ResponseBody
 	public ModelAndView roomInsert(@PathVariable int idx) {
 		HotelDTO hotel = hs.getHotel(idx);
 		List<RoomKindDTO> roomKindList = hs.getRoomKindList();
@@ -180,37 +265,27 @@ public class HotelController {
 	}
 
 	@PostMapping("/hotel/roomInsert/")
-	public ModelAndView roomInsert(RoomDTO dto) {
+	public ModelAndView roomInsert(RoomDTO dto, int hotelIdx) {
 		int num = hs.insertRoom(dto);
-		String viewName, resultMsg;
+		int result;
+		String viewName=null;
+		String resultMsg=null;
+	
 		if (num == 1) {
-			resultMsg = "객실등록완료";
+			resultMsg = "호텔등록완료";
 			viewName = "redirect:/myMenu/myMenu_main";
+			
 		} else {
-			resultMsg = "객실등록실패";
-			viewName = "redirect:/hotel/roomInsert";
+			result = hs.deleteHotel(hotelIdx);
+			if(result == 1) {
+				resultMsg = "호텔등록실패";
+				viewName = "redirect:/hotel/hotelInsert";
+			}
 		}
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("resultMsg", resultMsg);
 
 		return mav;
 	}
-
-
-	@PostMapping("/hotel/hotelSelectOne") 
-	public ModelAndView payment(int entrepreneurIdx, int hotelIdx, int roomIdx) {
-		ModelAndView mav = new ModelAndView("/payment/payment"); 
-		
-		EntrepreneurDTO entrepreneur = hs.getEntrepreneur(entrepreneurIdx);
-		HotelDTO hotel = hs.getHotel(hotelIdx);
-		RoomDTO room = hs.getRoom(roomIdx);
-		
-		mav.addObject("entrepreneur", entrepreneur);
-		mav.addObject("hotel", hotel);
-		mav.addObject("room", room);
-		
-		return mav; 
-	}
-	 
 
 }

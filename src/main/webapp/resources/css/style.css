@@ -5,7 +5,9 @@
     box-sizing: border-box;
     font-family: 'Hanna', sans-serif;
 }
-
+#ui-datepicker-div{
+	z-index: 20 !important;
+}
 body, html {
 	padding: 0;
 	margin: 0;

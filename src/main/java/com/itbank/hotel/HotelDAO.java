@@ -12,4 +12,9 @@ public interface HotelDAO {
 
 	int insertHotel(HotelDTO dto);
 
+	int selectLastIdx();
+
+	int deleteHotel(int hotelIdx);
+
+
 }

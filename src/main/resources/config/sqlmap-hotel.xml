@@ -21,4 +21,10 @@
 			#{room}, #{con_facility}, #{dining}, #{add_facility}, #{default_cancel}
 		)
 	</insert>
+	<select id="selectLastIdx" resultType="int">
+		select max(idx) from hotel_info
+	</select>
+	<delete id="deleteHotel" parameterType="int">
+		delete hotel_info where idx=#{hotelIdx}
+	</delete>	
 </mapper>

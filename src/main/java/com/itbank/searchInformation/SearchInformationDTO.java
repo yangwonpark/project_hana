@@ -2,8 +2,9 @@ package com.itbank.searchInformation;
 
 public class SearchInformationDTO {
 	
-	private String h_address, from, to, adult, kids;
-
+	private String h_address, from, to;
+	private int people;
+	
 	public String getH_address() {
 		return h_address;
 	}
@@ -28,21 +29,14 @@ public class SearchInformationDTO {
 		this.to = to;
 	}
 
-	public String getAdult() {
-		return adult;
+	public int getPeople() {
+		return people;
 	}
 
-	public void setAdult(String adult) {
-		this.adult = adult;
+	public void setPeople(int people) {
+		this.people = people;
 	}
 
-	public String getKids() {
-		return kids;
-	}
-
-	public void setKids(String kids) {
-		this.kids = kids;
-	}
 	
 	
 	

@@ -19,10 +19,20 @@
 		<typeAlias type="com.itbank.add_category.Add_CategoryDTO" alias="add_category" />
 		<typeAlias type="com.itbank.con_category.Con_CategoryDTO" alias="con_category" />
 		<typeAlias type="com.itbank.entrepreneur.EntrepreneurDTO" alias="entrepreneur" />
+		<typeAlias type="com.itbank.room_kind.RoomKindDTO" alias="roomkind" />
+		
+		<typeAlias type="com.itbank.view_kind.ViewKindDTO" alias="viewkind" />
+		<typeAlias type="com.itbank.hotel_price.HotelPriceDTO" alias="hotelPrice"/>
+		<typeAlias type="com.itbank.payment.PaymentDTO" alias="payment"/>
+		
 		
 		<typeAlias type="com.itbank.tour_price.Tour_PriceDTO" alias="tour_price"/>
 		<typeAlias type="com.itbank.tour_item.Tour_ItemDTO" alias="tour_item"/>
+		<typeAlias type="com.itbank.tour_option.Tour_OptionDTO" alias="tour_option"/>
+		<typeAlias type="com.itbank.major_category.Major_CategoryDTO" alias="major_category" />
+		<typeAlias type="com.itbank.room.RoomDTO" alias="room"/>
 		<typeAlias type="com.itbank.entrepreneur.EntrepreneurDTO"  alias="entrepreneur"/>
+		<typeAlias type="com.itbank.reservation.ReservationDTO" alias="reservation" />
 		<typeAlias type="com.itbank.member.LeaveMemberDTO"  alias="leavemember"/>
 		<typeAlias type="com.itbank.team.TeamDTO"  alias="team"/>
 		<typeAlias type="com.itbank.adminmember.AdminMemberDTO"  alias="adminmember"/>
@@ -32,6 +42,9 @@
 		<typeAlias type="com.itbank.fqadetail.FqaDetailDTO"  alias="fqadetail"/>
 		<typeAlias type="com.itbank.fqa.FqaDTO"  alias="fqa"/>
 		<typeAlias type="com.itbank.qakind.QaKindDTO"  alias="qakind"/>
-		<typeAlias type="com.itbank.cart.CartDTO"  alias="cart"/>	
+		<typeAlias type="com.itbank.cart.CartDTO"  alias="cart"/>
+		<typeAlias type="com.itbank.package_category.Package_CategoryDTO"  alias="package_category"/>
+		<typeAlias type="com.itbank.package_middle.Package_MiddleDTO"  alias="package_middle"/>
+		<typeAlias type="com.itbank.package_detail.Package_DetailDTO"  alias="package_detail"/>
 	</typeAliases>
 </configuration>

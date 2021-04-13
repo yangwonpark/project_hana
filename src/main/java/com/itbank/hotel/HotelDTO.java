@@ -1,23 +1,28 @@
 package com.itbank.hotel;
 
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 public class HotelDTO {
 	
 	private int idx, hotel_kind_idx, metro_idx, entrepreneur_idx, default_cancel;
 	private String grade, check_in, check_out, floor, room_count, pnum, fax, main_img, 
-					notice, room, con_facility, dining, add_facility;
-	
+					notice, room, con_facility, dining;
+	private String[] add_facility;
+	private List<MultipartFile> folder;
 
 	
 //	객체속성값을 확인하기 위한 출력 메서드 (오버라이딩)
-//	public String toString() {
-//		return String.format("%s, %s, %s, %s, %s,"
-//				+ " %s, %s, %s, %s, %s,"
-//				+ " %s, %s, %s, %s, %s,"
-//				+ " %s, %s, %s", 
-//				idx, hotel_kind_idx, metro_idx, entrepreneur_idx, default_cancel,
-//				grade, check_in, check_out, floor, room_count, pnum, fax, main_img, 
-//				notice, room, con_facility, dining, add_facility);
-//	}
+	public String toString() {
+		return String.format("%s, %s, %s, %s, %s,"
+				+ " %s, %s, %s, %s, %s,"
+				+ " %s, %s, %s, %s, %s,"
+				+ " %s, %s, %s", 
+				idx, hotel_kind_idx, metro_idx, entrepreneur_idx, default_cancel,
+				grade, check_in, check_out, floor, room_count, pnum, fax, main_img, 
+				notice, room, con_facility, dining, getAdd_facility());
+	}
 	
 	public int getIdx() {
 		return idx;
@@ -116,15 +121,28 @@ public class HotelDTO {
 		this.dining = dining;
 	}
 	public String getAdd_facility() {
-		return add_facility;
+		String ret = "";
+		for(int i = 0; add_facility != null && i < add_facility.length; i++) {
+			String s = add_facility[i];
+			ret += s;
+			if(i != add_facility.length - 1)
+				ret += ",";
+		}
+		return ret;
 	}
 	public void setAdd_facility(String add_facility) {
-		this.add_facility = add_facility;
+		this.add_facility = add_facility.split(",");
 	}
 	public int getDefault_cancel() {
 		return default_cancel;
 	}
 	public void setDefault_cancel(int default_cancel) {
 		this.default_cancel = default_cancel;
+	}
+	public List<MultipartFile> getFolder() {
+		return folder;
+	}
+	public void setFolder(List<MultipartFile> folder) {
+		this.folder = folder;
 	}
 }

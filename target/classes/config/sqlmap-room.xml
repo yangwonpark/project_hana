@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+		"-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="com.itbank.room.RoomDAO">
+	<insert id="insertRoom" parameterType="room">
+		insert into room_info values (
+			room_info_seq.nextval,
+			#{hotel_info_idx},
+			#{room_kind_idx},
+			#{name},
+			#{bed},
+			#{space},
+			#{view_kind_idx},
+			#{detail},
+			#{con_facility},
+			#{notice},
+			#{headcount},
+			#{coupon_yn},
+			#{coupon_idx},
+			#{cancel},
+			#{retractable},
+			#{meal_idx}
+		)
+	</insert>
+	<select id="getRoomList" parameterType="int" resultType="room">
+		select * from room_info where hotel_info_idx=#{hotel_idx}
+	</select>
+	<select id="getRoom" parameterType="int" resultType="room">
+		select * from room_info where idx=#{roomIdx}
+	</select>
+</mapper>

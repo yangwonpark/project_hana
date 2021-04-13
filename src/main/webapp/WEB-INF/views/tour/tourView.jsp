@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp" %>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <style>
 .tour_wrap {
    width: 100%;
@@ -16,7 +16,7 @@
 
 .tour_wrap_in > section {
    height: 500px;
-   background-color: yellow;
+   background-color: white;
    border-bottom: 1px solid black;
 }
 
@@ -209,7 +209,6 @@
 		crossorigin="anonymous">
 
 <div class="tour_wrap">
-	<br><br><br>
 	<div class="tour_visual_wrap">
 	
 	<!-- 이미지 슬라이드 -->
@@ -242,87 +241,84 @@
 	</div>
    		<!-- 이미지 슬라이드 end -->
 	
-	<div class="tour_wrap_in">
-		<section style="height: 700px;"><h1>국내여행도 역시 하나투어와 함께!<br><br>
-		<div style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms; width: 1200px;">
-		
-		<div class="tour_slider">
-			<div class="slides">
-				<div class="active"
-					style="background-image: url(${cpath}/resources/img/강원.jpg);">
-					강원
-					<br>
-					치유와 휴식이 있는 Healing Hub
+		<div class="tour_wrap_in"> 	
+		<section style="height: 700px;">
+			<h1>이번 주에 가장<br> 사랑받은 여행이에요</h1>
+			<div style="width: 1200px; height: 400px; display: flex;">
+				<c:forEach var="i" begin="20" end="27" step="2">	
+					<div style="width: 300px; height: 400px; padding-left: 10px; padding-top: 20px;">
+						<c:forEach var="tour_item" items="${tour_itemList }">
+							<c:if test="${tour_item.idx eq tour_itemList[i].entrepreneur_idx }" >
+								<form action="tourGoods/${tour_item.idx}" method="POST">
+									<input type="hidden" name="entrepreneur_idx" value="${entrepreneur.idx}">
+									<input type="hidden" name="tour_item_idx" value="${tour_itemList[i].idx }">
+									<input type="submit" value=""
+												style="width: 280px; height: 230px; 
+												border: none;		
+												background-size: 280px 230px;
+												background-image: url('${cpath}/resources/head_tourImg/${tour_item.head_img }');">
+									<h3>${tour_item.name }</h3>
+									<h4>${tour_item.hashtag }</h4>
+									<h4>${tour_item.usable }일 후 사용가능</h4>
+									<hr>
+									<h4>판매수: ${tour_item.sold_cnt } 조회수: ${tour_item.view_cnt }</h4>
+								</form>
+							</c:if>
+						</c:forEach>
 					</div>
-				<div
-					style="background-image: url(${cpath}/resources/img/제주.jpg);">
-					제주
-					<br>
-					혼저옵서예! 올해도 제주여행 렛츠고
+				</c:forEach>
+			</div>
+		</section>
+		
+		<section>
+			<h1>#MD추천 #짧게 떠나는 여행 떠나고 싶어요</h1>
+			<div style="width: 1200px; height: 400px; display: flex;">
+				<c:forEach var="i" begin="52" end="65" step="4">
+					<div style="width: 300px; height: 400px; padding-left: 20px; padding-top: 20px;">
+						<c:forEach var="tour_item" items="${tour_itemList }">
+							<c:if test="${tour_item.idx eq tour_itemList[i].entrepreneur_idx}">
+								<form action="tourGoods/${tour_item.idx}" method="POST">
+									<input type="hidden" name="entrepreneur_idx" value="${entrepreneur.idx}">
+									<input type="hidden" name="tour_item_idx" value="${tour_itemList[i].idx }">
+									<input type="submit" value=""
+												style="width: 280px; height: 230px; 
+												border: none;		
+												background-size: 280px 230px;
+												background-image: url('${cpath}/resources/head_tourImg/${tour_item.head_img }');">
+									<h3>${tour_item.name }</h3>
+									<h4>${tour_item.hashtag }</h4>
+								</form>
+							</c:if>
+						</c:forEach>
 					</div>
-				<div
-					style="background-image: url(${cpath}/resources/img/서울.jpg);">
-					서울
-					<br>
-					구석구석 色다르게 둘러보는 서울여행!
+				</c:forEach>
+			</div>
+		</section>
+		
+		<section>
+			<h1>🚗제주 렌터카 고급자차 포함 특가🚕</h1>
+			<div style="width: 1200px; height: 400px; display: flex;">
+				<c:forEach var="i" begin="460" end="463">
+					<div style="width: 300px; height: 400px; padding-left: 20px; padding-top: 20px;">
+						<c:forEach var="tour_item" items="${tour_itemList }">
+ 							<c:if test="${tour_item.idx == '460'}"> 
+								<form action="tourGoods/${tour_item.idx}" method="POST">
+									<input type="hidden" name="entrepreneur_idx" value="${entrepreneur.idx}">
+									<input type="hidden" name="tour_item_idx" value="${tour_itemList[i].idx }">
+									<input type="submit" value=""
+												style="width: 280px; height: 230px; 
+												border: none;		
+												background-size: 280px 230px;
+												background-image: url('${cpath}/resources/head_tourImg/${tour_item.head_img }');">
+									<h3>${tour_item.name }</h3>
+									<h4>${tour_item.hashtag }</h4>
+								</form>
+							</c:if>
+ 						</c:forEach> 
 					</div>
-				<div
-					style="background-image: url(${cpath}/resources/img/부산.jpg);">
-					부산
-					<br>
-					여행의 찐~한맛, 부산!
-					</div>
+				</c:forEach>
 			</div>
-			<div class="page-btns">
-				<div class="active"></div>
-				<div></div>
-				<div></div>
-				<div></div>
-			</div>
-			<div class="side-btns">
-				<div>
-					<span><i class="fas fa-angle-left"></i></span>
-				</div>
-				<div>
-					<span><i class="fas fa-angle-right"></i></span>
-				</div>
-			</div>
-		</div>
-	</div>
-		
-	<!-- <div class="silder-wrap">
-			<div class="swiper-slide">
-				<a href="${cpath }/tour/tour_gangwon" >
-					<span class="thumbnail">
-						<img src="${cpath }/resources/img/강원.jpg">
-					</span>
-					<div class="information">
-						<p>강원</p>
-						<p>치유와 휴식이 있는 Healing Hub</p>
-					</div>
-				</a>
-			</div>
-		</div>
-		<div class="side-btns">
-			<div>
-				<span><i class="fas fa-angle-left"></i></span>
-			</div>
-			<div>
-				<span><i class="fas fa-angle-right"></i></span>
-			</div>
-		</div>
-	</div> -->
-		
-		</h1></section>
-		
-		<section><h1>최근에 본 상품을 찾으세요?</h1></section>
-		
-		<section><h1>이번 주에 가장<br> 사랑받은 여행이에요
-		<a href="${cpath }/admin/upload">사진 업로드</a>
-		</h1></section>
-		
-		<section><h1>#MD추천 #짧게 떠나는 여행 떠나고 싶어요</h1></section>
-		<section><h1>🚗제주 렌터카 고급자차 포함 특가🚕</h1></section>
+		</section>
 		<section><h1>투어/입장권 예약상담<br><br>
 			<div class="guide_board">
 			<img src="${cpath }/resources/img/ico-board.png">

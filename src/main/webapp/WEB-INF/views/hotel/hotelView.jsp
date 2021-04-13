@@ -122,8 +122,7 @@
 			
 			<!-- 인원수 선택 -->
 			<div>
-				<input style="width: 100px" type="number" min="1" name="adult" placeholder="ADULT" autocomplete="off">
-				<input style="width: 100px" type="number" min="0" name="kids" placeholder="KIDS" autocomplete="off">
+				<input style="width: 100px" name="people" type="number" placeholder="인원수" autocomplete="off" min="1" required>
 			</div>
 			<!-- 인원수 선택 end -->
 
@@ -206,25 +205,25 @@
 						style=" height: 52px; line-height: 52px; width: 300px; font-family: monospace;
 						border-width: 1px 0 0 1px; border-color: #ddd; border-style: solid;background-color: #fff;
 						text-align:center;">
-					<a href="#">서울/강남</a>
+					<p style="margin: auto">추천지역1</p>
 				</li>
 				<li id="hotel_best_2"
 						style="height: 52px; line-height: 52px; width: 300px; font-family: monospace;
 						border-width: 1px 0 0 1px; border-color: #ddd; border-style: solid;background-color: #fff;
 						text-align:center;">
-					<a href="#">서울/종로</a>
+					<p style="margin: auto">추천지역2</p>
 				</li>
 				<li id="hotel_best_3"
 						style="height: 52px; line-height: 52px; width: 300px; font-family: monospace;
 						border-width: 1px 0 0 1px; border-color: #ddd; border-style: solid;background-color: #fff;
 						text-align:center;">
-					<a href="#">서울/동대문</a>
+					<p style="margin: auto">추천지역3</p>
 				</li>
 				<li id="hotel_best_4"
 						style="height: 52px; line-height: 52px; width: 300px; font-family: monospace;
 						border-width: 1px 1px 0 1px; border-color: #ddd; border-style: solid;background-color: #fff;
 						text-align:center;">
-					<a href="#">서울/마포구</a>
+					<p style="margin: auto">추천지역4</p>
 				</li>
 			</ul>
 			<div id="hotelBest_1" style="width: 1200px; height: 400px; background-color: #f2f2f2; position: absolute;">

@@ -104,7 +104,7 @@
 			</div>
 		</div>
 		
-		
+		<input type="hidden" value="${hotel.idx }">
 		<input type="submit" value="등록하기">
 	</form>
 </div>

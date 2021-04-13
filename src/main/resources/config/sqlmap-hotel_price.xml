@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC 
+		"-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="com.itbank.hotel_price.HotelPriceDAO">
+	<select id="getHotelPriceList" resultType="hotelPrice">
+		select * from hotel_price
+	</select>
+	<select id="getPriceList" parameterType="int" resultType="hotelPrice">
+		select * from hotel_price where hotel_info_idx=#{hotel_idx}
+	</select>
+	<select id="getHotelPriceMin" parameterType="int" resultType="int">
+		select min(price) from hotel_price where hotel_info_idx=#{hotel_idx}
+	</select>
+</mapper>

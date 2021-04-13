@@ -22,6 +22,9 @@
 		<typeAlias type="com.itbank.room.RoomDTO" alias="room"/>
 		<typeAlias type="com.itbank.room_kind.RoomKindDTO" alias="roomkind" />
 		<typeAlias type="com.itbank.view_kind.ViewKindDTO" alias="viewkind" />
+		<typeAlias type="com.itbank.hotel_price.HotelPriceDTO" alias="hotelPrice"/>
+		<typeAlias type="com.itbank.reservation.ReservationDTO" alias="reservation"/>
+		<typeAlias type="com.itbank.payment.PaymentDTO" alias="payment"/>
 		
 		<typeAlias type="com.itbank.tour_price.Tour_PriceDTO" alias="tour_price"/>
 		<typeAlias type="com.itbank.tour_item.Tour_ItemDTO" alias="tour_item"/>

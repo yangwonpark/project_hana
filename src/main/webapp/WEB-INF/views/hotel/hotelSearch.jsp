@@ -45,8 +45,7 @@
 			
 			<!-- 인원수 선택 -->
 			<div>
-				<input style="width: 100px" type="number" min="1" value="${searchInfo.getAdult() }">
-				<input style="width: 100px" type="number" min="0" value="${searchInfo.getKids() }">
+				<input style="width: 100px" name="people" type="number" min="1" value="${searchInfo.getPeople() }" required>
 			</div>
 			<!-- 인원수 선택 end -->
 	
@@ -54,7 +53,7 @@
 		</form>
 	</div>
 	<div style="height: 1200px; display: flex;">
-		<div style="width: 300px; height: 1100px;">
+		<div style="width: 300px; ">
 			<div style="width: 250px; height: 100px; margin-left: 20px">
 				<h3 style="font-family: Lucida Bright;">결과 내 검색</h3>
 				<div style="display: flex;">
@@ -64,11 +63,15 @@
 							type="submit">검색</button>
 				</div>
 			</div>
-			<div style="width:300px; height: 1000px;" id="hotel_filter" >
+			<div style="width:300px;" id="hotel_filter" >
 				<div style="width: 250px; margin-left: 20px;">
 					<h3><a style="font-family: Lucida Bright;" href="#" id="hotel_filter_1">가격</a></h3>
 					<div style="width: 250px; height: 120px; display: none;"
 							id="hotel_filter_1_in">
+							
+							<input type="range" min="0" max="600000">
+							<div id=""></div>
+							
 					</div>
 				</div>
 				<div style="width: 250px; margin-left: 20px">
@@ -84,24 +87,31 @@
 					</div>
 				</div>
 				<div style="width: 250px; margin-left: 20px">
-					<h3><a style="font-family: Lucida Bright;" href="#" id="hotel_filter_4" >숙소 부대시설</a></h3>
+					<h3><!-- href="#" --> 
+						<a style="font-family: Lucida Bright; cursor: pointer;" id="hotel_filter_4" >
+						숙소 부대시설
+						</a>
+					</h3>
 					<div style="width: 250px; display: none;"
 							id="hotel_filter_4_in">
 						<c:forEach var="add_category" items="${add_categoryList}">
-							<button style="margin-top: 5px; background-color: white; border: none; font-family: 나눔 고딕;">
-								${add_category.name }
-							</button>
+							<label style="display: inline-block; width: 100px; user-select: none; padding: 5px 0; cursor: pointer;">
+								<input style="display: none;" type="checkbox" name="${add_category.idx }">${add_category.name }
+							</label>
 						</c:forEach>
 					</div>
 				</div>
 				<div style="width: 250px; margin-left: 20px">
-					<h3><a style="font-family: Lucida Bright;" href="#" id="hotel_filter_5" >객실 편의시설</a></h3>
+					<h3><a style="font-family: Lucida Bright; cursor: pointer;" id="hotel_filter_5" >객실 편의시설</a></h3>
 					<div style="width: 250px; display: none;"
 							id="hotel_filter_5_in">
 						<c:forEach var="con_category" items="${con_categoryList}">
-							<button style="margin-top: 5px; background-color: white; border: none; font-family: 나눔 고딕;">
-								${con_category.name }
-							</button>
+<!-- 							<button style="margin-top: 5px; background-color: white; border: none; font-family: 나눔 고딕;"> -->
+<%-- 								${con_category.name } --%>
+<!-- 							</button> -->
+							<label style="display: inline-block; width: 100px; user-select: none; padding: 5px 0;">
+								<input style="display: none;" type="checkbox" name="${con_category.idx }">${con_category.name }
+							</label>
 						</c:forEach>
 					</div>
 				</div>
@@ -109,15 +119,19 @@
 		</div>
 		<c:set var="metro_name">${searchInfo.getH_address().split(" ")[0] }</c:set>
 		<c:set var="local_name">${searchInfo.getH_address().split(" ")[1] }</c:set>
-		<div style="width: 900px; height: 1100px; overflow: hidden; overflow-y: auto;">
+		<div style="width: 900px; overflow: hidden; overflow-y: auto;">
 			<c:if test="${empty entrepreneurList}">
 				<h3 style="font-family: Lucida Bright; color: gray;">현재 예약가능한 숙소를 찾을 수 없습니다.</h3>
 			</c:if>
 			<c:forEach var="entrepreneur" items="${entrepreneurList }">
 				<c:forEach var="hotel" items="${hotelList }">
 					<c:if test="${hotel.entrepreneur_idx eq entrepreneur.idx }">
-						<div style="width: 900px; height: 250px; border-bottom: 1px solid lightgray; 
+						
+						<div class="hotel" style="width: 900px; height: 250px; border-bottom: 1px solid lightgray; 
 									display: flex; margin-bottom: 10px; padding: 20px;">
+							<div style="display: none"><!-- 편의시설 -->
+								<h4>${hotel.add_facility }</h4>	
+							</div>
 							<img style="margin-right: 20px; width: 280px; height: 210px" 
 								src="${cpath }/resources/hotelimg/${entrepreneur.brand_eng}/1.jpg">
 							<div style="width: 400px; height: 210px; background-color: white;">
@@ -148,8 +162,7 @@
 										<input type="hidden" name="h_address" value="${searchInfo.getH_address() }">
 										<input type="hidden" name="from" value="${searchInfo.getFrom() }">
 										<input type="hidden" name="to" value="${searchInfo.getTo() }">
-										<input type="hidden" name="adult" value="${searchInfo.getAdult() }">
-										<input type="hidden" name="kids" value="${searchInfo.getKids() }">
+										<input type="hidden" name="people" value="${searchInfo.getPeople() }">
 										<input type="submit"  value="상세보기"
 											style="width: 100px; height:50px; font-family: Lucida Bright; color:#f22c78; 
 											background-color:white; border: 1px solid #f22c78; border-radius: 5px;">
@@ -238,18 +251,47 @@
 	})
 	
 	/* 필터 보이기 */
-    $("#hotel_filter > div").click(function(){
-    	event.preventDefault();
+    $("#hotel_filter > div").click(function(event){
+//     	event.preventDefault();
+//     	event.stopPropagation();
     	const idx = (event.target.id).split('_').reverse()[0];
     	resultDiv = document.getElementById('hotel_filter_' + idx + '_in');
-    	
-    	if(resultDiv.style.display=="block"){
-    		resultDiv.style.display = "none"; 
+    	if(resultDiv != null) {
+    		resultDiv.style.display = resultDiv.style.display == 'block' ? "none" : 'block'; 
     	}
-        else{ 
-        	resultDiv.style.display = "block"; 
-        }
     });
 </script>
+
+<script>
+	// 숙소 부대시설 필터 
+	const add_facility_filterBoxs = Array.from(document.querySelectorAll('#hotel_filter_4_in input[type="checkbox"]'));
+	const hotelList = document.querySelectorAll('.hotel');
+	
+	add_facility_filterBoxs.forEach(box => {	// 필터를 선택하면
+		
+		box.onclick = (event) => {	// box.onclick
+			
+			const filterdList = add_facility_filterBoxs.filter(v => v.checked == true);
+			
+			hotelList.forEach(h => h.style.display = 'flex');				// 모두 보이게 처리
+			box.parentNode.style.color = box.checked ? '#5caceb' : 'black';	// 체크된건 파란색, 아니면 검정색
+			if(filterdList.length == 20 || filterdList.length == 0) {		// 체크박스에 체크 목록 없으면 여기서 중단
+				return;
+			}
+			
+			filterdList.forEach((v) => {						// 체크된 목록으로 호텔에서 옵션 확인하여 옵션이 없으면 안보이게
+				const filterOption = v.parentNode.innerText;
+				hotelList.forEach(h => {
+					const hotelOption = h.firstElementChild.firstElementChild.innerText.split(',');
+					if(hotelOption.indexOf(filterOption) == -1) {
+						h.style.display = 'none';
+					}
+				});
+			});
+		}	// end of box.onclick
+	});	
+</script>
+
+
 
 <%@ include file="../layout/footer.jsp" %>

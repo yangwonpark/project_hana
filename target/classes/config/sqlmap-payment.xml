@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC 
+		"-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="com.itbank.payment.PaymentDAO">
+	<insert id="insertPayment" parameterType="payment">
+		insert into payment (
+			idx,
+			reservation_idx,
+			status,
+			kind,
+			account,
+			approv_serial,
+			tax_able,
+			coupon_yn,
+			tax_serial,
+			pdate						
+			) 
+			values (
+					payment_seq.nextval,
+					#{reservation_idx},
+					#{status},
+					#{kind},
+					#{account},
+					#{approv_serial},
+					#{tax_able},
+					#{coupon_yn},
+					#{tax_serial},
+					#{pdate}
+					)
+	</insert>
+	<select id="getSelectOnePayment" resultType="int">
+		select max(idx) from payment 
+	</select>
+	<select id="getPayment" resultType="payment">
+		select * from payment where idx=#{idx}
+	</select>
+</mapper>

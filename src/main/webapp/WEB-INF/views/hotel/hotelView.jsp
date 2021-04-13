@@ -122,8 +122,7 @@
 			
 			<!-- 인원수 선택 -->
 			<div>
-				<input style="width: 100px" type="number" min="1" name="adult" placeholder="ADULT" autocomplete="off">
-				<input style="width: 100px" type="number" min="0" name="kids" placeholder="KIDS" autocomplete="off">
+				<input style="width: 100px" name="people" type="number" placeholder="인원수" autocomplete="off" min="1" required>
 			</div>
 			<!-- 인원수 선택 end -->
 

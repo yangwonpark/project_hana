@@ -24,6 +24,9 @@
 		        
 		        <li style="margin:4px 0; margin-bottom: 10px;"><a href="${cpath }/myMenu/admin_outmemberreason" style="display:block;text-decoration: none;padding: 4px 10px;">탈퇴 사유 목록(관리자용)</a></li><br>
 		        
+		        <li style="margin:4px 0; margin-bottom: 10px;"><a href="${cpath }/myMenu/admin_fqa" style="display:block;text-decoration: none;padding: 4px 10px;">자주 찾는 질문(관리자용)</a></li><br>
+		        
+		        
 		        <li style="margin:4px 0; margin-bottom: 10px;"><a href="${cpath }/myMenu/myinfo" style="display:block;text-decoration: none;padding: 4px 10px;">관리자 개인정보</a></li>
 		        
        		</c:when>
@@ -34,10 +37,6 @@
 				<li style="margin:4px 0; margin-bottom: 10px;"><a href="${cpath }/reservation/reserve_main" style="display:block;text-decoration: none;padding: 4px 10px;">예약내역</a></li><br>
 		
 		        <li style="margin:4px 0; margin-bottom: 10px;"><a href="${cpath }/cart/cart_form" style="display:block;text-decoration: none;padding: 4px 10px;">장바구니</a></li><br>
-		
-		        <li style="margin:4px 0; margin-bottom: 10px;"><a href="" style="display:block;text-decoration: none;padding: 4px 10px;">마일리지</a></li><br>
-		
-		        <li style="margin:4px 0; margin-bottom: 10px;"><a href="" style="display:block;text-decoration: none;padding: 4px 10px;">쿠폰함</a></li><br>
 		
 		        <li style="margin:4px 0; margin-bottom: 10px;"><a href="" style="display:block;text-decoration: none;padding: 4px 10px;">1:1문의내역</a></li><br>
 		

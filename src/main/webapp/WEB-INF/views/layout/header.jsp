@@ -256,7 +256,7 @@
 	let sock_user;
 	
 	function connect(name) {
-		sock_user = new SockJS('http://172.30.1.58:8080/day08/clientEcho');
+		sock_user = new SockJS('http://192.168.0.83:8080/day08/clientEcho');
 		// 웹 소켓 자체에 내장 메소드 4개 
 		sock_user.onopen = onOpen;
 		sock_user.onmessage = onMessage;
@@ -282,7 +282,7 @@
 		console.log(m.data);
 		chatArea.innerHTML += "<span class='chat--left'>" +
 		"<span class='chat-user'>관리자<br>" +
-		"<span class='chat-content'>" + message.data + "</span>"
+		"<span class='chat-content'>" + m.data + "</span>"
 	}
 	
 	function onClose() {};

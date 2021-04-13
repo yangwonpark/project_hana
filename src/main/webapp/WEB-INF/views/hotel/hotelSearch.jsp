@@ -106,9 +106,6 @@
 					<div style="width: 250px; display: none;"
 							id="hotel_filter_5_in">
 						<c:forEach var="con_category" items="${con_categoryList}">
-<!-- 							<button style="margin-top: 5px; background-color: white; border: none; font-family: 나눔 고딕;"> -->
-<%-- 								${con_category.name } --%>
-<!-- 							</button> -->
 							<label style="display: inline-block; width: 100px; user-select: none; padding: 5px 0;">
 								<input style="display: none;" type="checkbox" name="${con_category.idx }">${con_category.name }
 							</label>

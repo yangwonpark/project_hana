@@ -18,7 +18,7 @@
 						약관동의
 					</p>
 					<label style="width: 450px; height: 50px; line-height: 50px; text-align: right;">
-						<input type="checkbox" name="consent" id="consent">전체동의
+						<input type="checkbox" name="consentAll" id="consentAll">전체동의
 					</label>
 				</div>
 				
@@ -276,6 +276,7 @@
 	});
 	
 	$(document).click(function(event){
+		
 		if(event.target.id == 'passbook'){
 			let val = 1;
 			$('#kind').attr('value', val);

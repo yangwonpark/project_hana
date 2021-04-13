@@ -25,6 +25,7 @@
 		<typeAlias type="com.itbank.hotel_price.HotelPriceDTO" alias="hotelPrice"/>
 		<typeAlias type="com.itbank.reservation.ReservationDTO" alias="reservation"/>
 		<typeAlias type="com.itbank.payment.PaymentDTO" alias="payment"/>
+		<typeAlias type="com.itbank.cart.CartDTO" alias="cart"/>
 		
 		<typeAlias type="com.itbank.tour_price.Tour_PriceDTO" alias="tour_price"/>
 		<typeAlias type="com.itbank.tour_item.Tour_ItemDTO" alias="tour_item"/>

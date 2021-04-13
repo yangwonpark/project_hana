@@ -10,7 +10,7 @@
 	</div>
 	<div class="container">
 		<div class="chat-container" style="display: none">
-		<div style="height: 12px;"></div>
+			<div style="height: 12px;"></div>
 			<!-- 서버와 메세지를 주고 받을 텍스트 영역 -->
 			<div class="chat-area"></div>
 			<div class="input--text">
@@ -23,8 +23,8 @@
 </body>
 <script>
 // 	let sock = new SockJS('http://192.168.0.83:8080/day08/adminEcho');
-	let sock = new SockJS('http://192.168.0.83:8080/hana/adminEcho');
-// 	let sock = new SockJS('http://localhost:8080/day08/adminEcho');
+// 	let sock = new SockJS('http://192.168.0.83:8080/hana/adminEcho');
+	let sock = new SockJS('http://localhost:8080/hana/adminEcho');
 	
 	sock.onopen = function(msg) {};
 	sock.onclose = function(msg) {};
@@ -40,7 +40,6 @@
 		let userName = new String(messageParts[0]).replace(/\"/g,'');
 		let content = new String(messageParts[1]).replace(/\"/g,'');
 		
-		$('.chat-area').scrollTop($('.chat-area')[0].scrollHeight);
 		
 		if(node.status === "visit") {
 			let chatContainer = $(".chat-container").html();
@@ -54,12 +53,19 @@
 			let log = $div.find(".chat-area").text();
 			if(content === "" || content === "undefined" || content === null) {
 				$div.find(".chat-area").append($("<span class='chat--left'>" + userName + "</span>"));
+
 			} else {
 				$div.find(".chat-area").append($("<span class='chat--left'>" + 
 						"<span class='chat-user'>" + userName + "</span><br>" +
 						"<span class='chat-content'>" + content + "</span><br>" +
 						"<span class='chat-time'>" + realDate + "</span>"));
+				
+// 				$('.chat-area')
+// 				.stop()
+// 				.animate({ scrollTop: ($('.chat-area').offset().top) }, 1000);
+
 			}
+			
 		} else if(node.status === "bye") {
 			let $div = $("[data-key='" + node.key + "']");
 			let log = $div.find(".chat-area").text();
@@ -87,6 +93,10 @@
 				"<span class='chat-time' style='margin-top: 0px'>" + realDate + "</span>"));
 		$div.find(".text-msg").val("");
 		
+// 		$('.chat-area')
+// 		.stop()
+// 		.animate({ scrollTop: ($('.chat-area').offset().top) }, 1000);
+		
 		sock.send(key + ":" + msg);
 	});
 	
@@ -100,18 +110,27 @@
 		return true;
 	});
 		
-// 	$(function() {
-// 		let isScrollUp = false;
-// 		let lastScrollTop;
+// 	 $(document).ready(function() {
+// 	      $('.chat-container').on( 'keyup', '.chat-area', function (e){
+// 	        $(this).css('height', 'auto' );
+// 	        $(this).height( this.scrollHeight );
+// 	      });
+// 	      $('.chat-container').find( '.chat-area' ).keyup();
+// 	    });
 	
-// 		let chatArea = document.getElementsByClassName('chat-area');
-		
-// 		if(!isScrollUp) {
-// 			$('.chat-area').animate({
-// 				scrollTop: chatArea.scrollHeight - chatArea.clientHeight
-// 			}, 100);
-// 		}
-// 	});
+// 	 $(document).ready(function() {
+// 		 $('.chat-area')
+// 			.stop()
+// 			.animate({ scrollTop: $('.chat-area')[0].scrollHeight }, 1000);
+// 	    });
+	
+	
+	
+	
+	
+	
+	
+
 
 	// 채팅 내역 MongoDB에 ajax로 저장하는 함수
 	const chatInsert = function(msg) {

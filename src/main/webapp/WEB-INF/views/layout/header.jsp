@@ -24,6 +24,8 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 
 </head>
 <body>
@@ -253,8 +255,8 @@
 	
 	function connect(name) {
 // 		sock_user = new SockJS('http://192.168.0.83:8080/day08/clientEcho');
-		sock_user = new SockJS('http://192.168.0.83:8080/hana/clientEcho');
-// 		sock_user = new SockJS('http://localhost:8080/day08/clientEcho');
+// 		sock_user = new SockJS('http://192.168.0.83:8080/hana/clientEcho');
+		sock_user = new SockJS('http://localhost:8080/hana/clientEcho');
 		// 웹 소켓 자체에 내장 메소드 4개 
 		sock_user.onopen = onOpen;
 		sock_user.onmessage = onMessage;
@@ -290,7 +292,7 @@
 		const liveName = document.getElementById('name').value;
 		
 		chatArea.innerHTML += "<span class='chat--right'>" + 
-		"<span class='chat-user'>" + liveName + "<br>" +
+		"<span class='chat-user'>" + liveName + "<br></span>" +
 		"<span class='chat-content'>" + textMsg.value + "</span>"
 		
 		console.log(textMsg.value);

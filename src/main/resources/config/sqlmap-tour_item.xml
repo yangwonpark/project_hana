@@ -8,15 +8,8 @@
  	<select id="selectCount" resultType="int" parameterType="hashmap">
 		select count(*) from 
 			(select tour_item.*, member.userid
-				from tour_item, member <!-- , package_detail, hotel_info, room_info, tour_option, local, entrepreneur, coupon -->
+				from tour_item, member 
 				where tour_item.member_idx = member.idx
-				<!-- and tour_item.package_detail_idx = package_detail.idx
-					and tour_item.hotel_info_idx = hotel_info.idx
-					and tour_item.room_info_idx = room_info.idx
-					and tour_item.tour_option_idx = tour_option.idx
-					and tour_item.local_idx = local.idx
-					and tour_item.entrepreneur_idx = entrepreneur.idx 
-					and tour_item.coupon_idx = coupon.idx -->	
 					
 					<if test="type != null">
 						<if test="type == 'idx'">
@@ -34,16 +27,8 @@
 	
 		select * from
 		    (select rownum as st, A.* from
-				(select tour_item.*, member.userid from tour_item, member <!-- , package_detail, 
-									hotel_info, room_info, tour_option, local, entrepreneur, coupon -->
+				(select tour_item.*, member.userid from tour_item, member 
 					where tour_item.member_idx = member.idx
-					<!--  and tour_item.package_detail_idx = package_detail.idx
-						and tour_item.hotel_info_idx = hotel_info.idx
-						and tour_item.room_info_idx = room_info.idx
-						and tour_item.tour_option_idx = tour_option.idx
-						and tour_item.local_idx = local.idx
-						and tour_item.entrepreneur_idx = entrepreneur.idx
-						and tour_item.coupon_idx = coupon.idx -->	
 						
 						<if test="type != null">
 							<if test="type == 'idx'">
@@ -53,10 +38,6 @@
 								and ${type} like '%${word}%'
 							</if> 
 						</if>
-			<!-- 
-				값으로 취급하려면 #{ }
-				글자자체로 처리하려면 ${ }
-			-->		
 						
 		<![CDATA[
 					order by tour_item.idx desc)
@@ -69,15 +50,8 @@
 		
 	<select id="selectOne" resultType="tour_item" parameterType="int">
 		select tour_item.*, member.userid
-		from tour_item, member <!-- , package_detail, hotel_info, room_info, tour_option, local, entrepreneur, coupon  -->
+		from tour_item, member 
 		where tour_item.member_idx = member.idx
-		<!-- and tour_item.package_detail_idx = package_detail.idx
-			and tour_item.hotel_info_idx = hotel_info.idx
-			and tour_item.room_info_idx = room_info.idx
-			and tour_item.tour_option_idx = tour_option.idx
-			and tour_item.local_idx = local.idx
-			and tour_item.entrepreneur_idx = entrepreneur.idx
-			and tour_item.coupon_idx = coupon.idx -->	
 			and tour_item.idx = #{idx}
 	</select>
 	
@@ -91,5 +65,9 @@
 	<select id="selectMaxIdx" resultType="int">
 		select max(idx) from tour_item
 	</select> 
+	
+	<select id="getTour_ItemList" resultType="tour_item">
+		select * from tour_item
+	</select>
 	
 </mapper>

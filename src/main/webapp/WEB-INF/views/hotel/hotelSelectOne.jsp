@@ -429,14 +429,20 @@
 
 <!-- 모달 script -->
 <script>
+<<<<<<< HEAD
 
+=======
+>>>>>>> shine
 	const modal_overlay = document.querySelectorAll('.modal_overlay');
  	const hotel_map_modal = document.querySelector('.hotel_map_modal');
 	
 	modal_overlay.forEach(overlay => {		// 모든 오버레이에 대해서 클릭하면 해당하는 모달을 숨기는 기능 부여
 		overlay.onclick = function(event) {
 			event.target.style.zIndex = -1;
+<<<<<<< HEAD
 
+=======
+>>>>>>> shine
 			event.target.parentNode.style.display = 'none';
 			event.target.parentNode.style.zIndex = -1;
 			console.log('close');
@@ -504,7 +510,10 @@
 		}
 	}
 	rvFormList.forEach(element => element.onsubmit = rvHandler);
+<<<<<<< HEAD
 
+=======
+>>>>>>> shine
 </script>
 
 <!-- filter script -->
@@ -551,7 +560,6 @@
                 $("#to").datepicker( "option","minDate", date.toISOString().substring(0, 10));
             }                
         });
-
         //종료일
         $('#to').datepicker({
             dateFormat: "yy-mm-dd",

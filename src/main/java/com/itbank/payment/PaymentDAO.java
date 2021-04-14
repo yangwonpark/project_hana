@@ -9,4 +9,6 @@ public interface PaymentDAO {
 
 	PaymentDTO getPayment(int idx);
 
+	int insertTourPayMent(PaymentDTO pdto);
+
 }

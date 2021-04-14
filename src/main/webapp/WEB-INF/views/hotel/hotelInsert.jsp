@@ -130,7 +130,6 @@
 	      	hidden.type = 'hidden';
 	      	hidden.name = 'main_img';
 	      	hidden.value = folderName;
-
 	      	const form = document.querySelector('form[enctype="multipart/form-data"]');
 	      	form.appendChild(hidden);
 	   	}

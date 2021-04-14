@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE mapper PUBLIC 
 		"-//mybatis.org//DTD Mapper 3.0//EN" 
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-		
+
 <mapper namespace="com.itbank.reservation.ReservationDAO">
+
+	<select resultType="reservation" id="getReservationList">
+		select * from reservation 
+	</select>
+	
+	<select id="selectOne" resultType="reservation" parameterType="int">
+		select * from reservation where idx = #{idx}
+	</select>
+	
 	<insert id="insertReservation" parameterType="reservation">
 		insert into reservation values(
 			RESERVATION_SEQ.nextval	,
@@ -29,5 +37,4 @@
 	<insert id="insertPayment" parameterType="payment">
 		
 	</insert>
-	
 </mapper>

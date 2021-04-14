@@ -26,8 +26,8 @@ import com.itbank.payment.PaymentDAO;
 import com.itbank.payment.PaymentDTO;
 import com.itbank.reservation.ReservationDAO;
 import com.itbank.reservation.ReservationDTO;
-import com.itbank.room.RoomDTO;
 import com.itbank.room.RoomDAO;
+import com.itbank.room.RoomDTO;
 import com.itbank.room_kind.RoomKindDAO;
 import com.itbank.room_kind.RoomKindDTO;
 import com.itbank.searchInformation.SearchInformationDTO;
@@ -62,7 +62,6 @@ public class HotelService {
 	private ReservationDAO reservationDAO;
 	@Autowired
 	private PaymentDAO paymentDAO;
-	
 	
 
 	public List<MetroDTO> getMetroList() {

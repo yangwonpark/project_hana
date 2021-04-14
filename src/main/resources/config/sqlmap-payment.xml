@@ -37,4 +37,32 @@
 	<select id="getPayment" resultType="payment">
 		select * from payment where idx=#{idx}
 	</select>
+	
+	<insert id="insertTourPayMent" parameterType="payment">
+		insert into payment (
+			idx,
+			reservation_idx,
+			status,
+			kind,
+			account,
+			approv_serial,
+			tax_able,
+			coupon_yn,
+			tax_serial,
+			pdate						
+			) 
+			values (
+					payment_seq.nextval,
+					#{reservation_idx},
+					#{status},
+					#{kind},
+					#{account},
+					#{approv_serial},
+					#{tax_able},
+					#{coupon_yn},
+					#{tax_serial},
+					sysdate
+					)
+	</insert>
+	
 </mapper>

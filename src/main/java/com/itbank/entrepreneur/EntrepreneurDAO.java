@@ -10,5 +10,11 @@ public interface EntrepreneurDAO {
 	EntrepreneurDTO getEntrepreneur(int entrepreneur_idx);
 
 	List<EntrepreneurDTO> getEntrepreneurAll();
+	
+	EntrepreneurDTO entrepreneurSelectOne();
+	
+	EntrepreneurDTO getEntrepreneurSelectOne(int entrepreneur_idx);
+
+	EntrepreneurDTO getEntrepreneurSelectOne();
 
 }

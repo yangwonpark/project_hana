@@ -122,8 +122,7 @@
 			
 			<!-- 인원수 선택 -->
 			<div>
-				<input style="width: 100px" type="number" min="1" name="adult" placeholder="ADULT" autocomplete="off">
-				<input style="width: 100px" type="number" min="0" name="kids" placeholder="KIDS" autocomplete="off">
+				<input style="width: 100px" name="people" type="number" placeholder="인원수" autocomplete="off" min="1" required>
 			</div>
 			<!-- 인원수 선택 end -->
 
@@ -206,25 +205,25 @@
 						style=" height: 52px; line-height: 52px; width: 300px; font-family: monospace;
 						border-width: 1px 0 0 1px; border-color: #ddd; border-style: solid;background-color: #fff;
 						text-align:center;">
-					<a href="#">서울/강남</a>
+					<p style="margin: auto">추천지역1</p>
 				</li>
 				<li id="hotel_best_2"
 						style="height: 52px; line-height: 52px; width: 300px; font-family: monospace;
 						border-width: 1px 0 0 1px; border-color: #ddd; border-style: solid;background-color: #fff;
 						text-align:center;">
-					<a href="#">서울/종로</a>
+					<p style="margin: auto">추천지역2</p>
 				</li>
 				<li id="hotel_best_3"
 						style="height: 52px; line-height: 52px; width: 300px; font-family: monospace;
 						border-width: 1px 0 0 1px; border-color: #ddd; border-style: solid;background-color: #fff;
 						text-align:center;">
-					<a href="#">서울/동대문</a>
+					<p style="margin: auto">추천지역3</p>
 				</li>
 				<li id="hotel_best_4"
 						style="height: 52px; line-height: 52px; width: 300px; font-family: monospace;
 						border-width: 1px 1px 0 1px; border-color: #ddd; border-style: solid;background-color: #fff;
 						text-align:center;">
-					<a href="#">서울/마포구</a>
+					<p style="margin: auto">추천지역4</p>
 				</li>
 			</ul>
 			<div id="hotelBest_1" style="width: 1200px; height: 400px; background-color: #f2f2f2; position: absolute;">
@@ -242,11 +241,9 @@
 </div>
 
 <script>
-
 	/* 체크인 체크아웃 날짜 */
 	var now = new Date();
 	document.getElementById('from').value = now.toISOString().substring(0, 10);
-
 	var tomorrow = new Date(now.setDate(now.getDate() + 1));	// 내일
 	document.getElementById('to').value = tomorrow.toISOString().substring(0, 10);
 	
@@ -264,7 +261,6 @@
                 $("#to").datepicker( "option","minDate", date.toISOString().substring(0, 10));
             }                
         });
-
         //종료일
         $('#to').datepicker({
             dateFormat: "yy-mm-dd",
@@ -277,7 +273,6 @@
             }                
         });
     });
-
 	/* 이미지 슬라이드 */
 	// 기존 버튼형 슬라이더
 	$('.hotel_slider > .page-btns > div').click(function(){
@@ -296,7 +291,6 @@
 	    $current.removeClass('active');
 	    $post.addClass('active');
 	});
-
 	// 좌/우 버튼 추가 슬라이더
 	$('.hotel_slider > .side-btns > div').click(function(){
 	    var $this = $(this);
@@ -324,7 +318,6 @@
 	setInterval(function(){
 	    $('.hotel_slider > .side-btns > div').eq(1).click();
 	}, 3000);
-
 	/* 여행지 선택 */
     $(".hotel_location").hide();
 	
@@ -341,15 +334,12 @@
 	
 	$('.hotel_location .hotel_metro').click(function (event) {
 		event.preventDefault();
-
 		const idx = (event.target.id).split('_').reverse()[0];
 		const resultDiv = document.querySelector('.hotel_local_' + idx);
-
 		hotelLocalDiv = document.querySelectorAll('.hotel_local > div');
 		for(let i = 0; i < hotelLocalDiv.length; i++){
 			hotelLocalDiv[i].style.display='none';
 		}
-
 		if(resultDiv != null){
 			target = event.target.value;
 			resultDiv.style.display='inline';
@@ -364,11 +354,3 @@
 	
 </script>
 <%@ include file="../layout/footer.jsp" %>
-
-
-
-
-
-
-
-

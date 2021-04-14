@@ -4,6 +4,12 @@ import java.util.List;
 
 public interface Tour_PriceDAO {
 
-	List<Tour_PriceDAO> getTour_PriceList();
+	Tour_PriceDTO selectOne(int idx);
+	
+	List<Tour_PriceDTO> getTour_PriceList();
 
+	Tour_PriceDTO selectOne();
+	
+	Tour_PriceDTO getTour_PriceSelectOne();
+	
 }

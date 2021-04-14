@@ -14,4 +14,6 @@ public interface HotelDAO {
 
 	int selectLastIdx();
 
+	int deleteHotel(int hotelIdx);
+
 }

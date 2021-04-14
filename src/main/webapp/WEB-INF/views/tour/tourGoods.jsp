@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <style>
 	.span {
 		margin: 0;
@@ -286,72 +287,30 @@
 	<div class="product-top" style="height: 800px; display: flex;">
 		<div class="visual-flex" style="width: 900px; height: 800px;">
 			<div class="pic">
-				<img style="margin-right: 20px; width: 280px; height: 210px" src="${cpath }${dto.head_img}">
-				<!-- <img src="${cpath }/resources/tourimg/tour1.jpg" style="width:100%; height: 1000px;">  -->
+				<img style="margin-right: 20px; width: 900px; height: 800px" src="${cpath }/resources/head_tourImg/${tour_item.head_img}">
 			</div>
 		</div>
 		<div class="infoFlex" style="width: 650px; height: 100%; background-color: #eaeaea;">
 			<div class="productInfoWrap">
 				<div class="product-info">
 					<div class="product-title">
-						<p class="local">${local.name}</p>
-						<h1 class="name">${dto.name}</h1>
+						<h1 class="name">${tour_item.name}</h1>
 						<div class="price-wrap">
-							<span class="price">${tour_price.price }</span>
-							<div class="usable">${dto.usable}일 후 부터 사용가능</div>
+							<h3><span class="price">${tour_price.price } 원</span></h3>
+							<div class="usable">${tour_item.usable}일 후 부터 사용가능</div>
 						</div>
-					</div>
-					<div class="coupon-area">
-						<button class="btn-download">
-							<b>할인쿠폰 확인하기</b>
-						</button>
-					<!--  <div class="modal hidden"></div>
-						<div class="modal_overlay"></div>
-						<div class="model_content">
-							다운로드 가능한 쿠폰이 없습니다.<br>
-							'새로운 쿠폰' 페이지에서 더 많은 쿠폰을 다운로드 하세요<br>
-							<button id="cancel">취소</button>
-							<button id="ok">확인</button>
-						</div>	-->
 					</div>
 				</div>
 				<div class="product-info-detail">
 					<div class="inner-section">
 						<div class="hashtag">
-							${dto.hashtag }
+							${tour_item.hashtag }
 						</div>
 						<div class="rate-wrap">
 							<div class="avg"></div>
 							<div class="order">
-								<span>구매 : ${dto.sold_cnt }</span>
-								<span>조회 : ${dto.view_cnt }</span>
-							</div>
-						</div>
-						<div class="features">
-							<!-- <ul>
-								<li>
-									<span>협력사 자체 취소규정</span>
-								</li>
-								<li>
-									<span>6시간이내 가능여부 안내</span>
-								</li>
-								<li>
-									<span>즉시사용불가</span>
-								</li>
-								<li>
-									<span>지정일사용</span>
-								</li>
-								<li>
-									<span>이바우처 (모바일 바로사용)</span>
-								</li>
-							</ul>  -->
-						</div>
-					<div class="notice">
-						<div class="read">
-							<div class="title"><h2>꼭 읽어보세요!</h2></div>
-								<div class="dot-list">
-									
-								</div>
+								<span>구매 : ${tour_item.sold_cnt }</span>
+								<span>조회 : ${tour_item.view_cnt }</span>
 							</div>
 						</div>
 					</div>
@@ -361,44 +320,6 @@
 	</div>
 	<div class="product-detail-container">
 		<div class="detail-wrap">
-			<section class="floating-selected-result" style="position: sticky; top: 0px;">
-				<div class="wrap" style="height: 747px;">
-					<div class="product-info">
-						<div class="product-title">
-							<p class="local">${dto.local_idx }</p>
-							<h1 class="name">${dto.name }</h1>
-							<div class="price-wrap">
-								<span class="price">${tour_price.price }</span>
-								<div class="usable">${dto.usable}일 부터 사용가능</div>
-							</div>
-						</div>
-					</div>
-					<div class="selected-products-wrap">
-						<div class="selected-default">
-							<p>
-								상품패키지와 상품옵션을
-								<br>
-								선택해주세요
-							</p>
-							<button type="button" class="choice">
-								<span>선택하기</span>
-							</button>
-						</div>
-					</div>
-				</div>
-			<hr>
-			<div>
-				<div class="amount">
-					<strong>총 결제 금액</strong>
-					<p>${tour_price.price }원</p>
-				</div>
-				<div class="btn-order-group">
-					<div class="inner">
-						<button class="btn-cart"><h2>바로 결제하기</h2></button>
-					</div>
-				</div>
-			</div>
-			</section>		
 			<div class="product-detail-wrap" style="position: relative; width: 1000px; margin-left: 350px;">
 				<div class="product-detail-menu-wrap">
 					<div class="product-detail-menu">
@@ -409,98 +330,148 @@
 								<span>상품문의 *</span>
 								<span>리뷰</span>
 							</div>
-							<div class="menus-right">
-								<button id="btn-reservation">						
-									<h3>예약하기</h3>
-								</button>
-								<div class="modal hidden">
-									<div class="modal_overlay"></div>
-									<div class="model_content">
-										<h2>상품을 선택하세요</h2>
-										<button id="close">닫기</button>
-									</div>	
-								</div>								
-							</div>
 						</div>
 					</div>
 				</div>
-					<div class="point-background">
+					<div class="point-background" style="width: 1000px; margin-left: 50px;">
+					<form action="${cpath }/reservation/reservation_view" method="POST">
+						<input name="tour_option" type="hidden" value="${tour_option.name }">
+						<input name="tour_price" type="hidden" value="${tour_price.price }">
+						<input name="reservation" type="hidden" value="${reservation.tot_price }">
+						<input name="entrepreneur" type="hidden" value="${entrepreneur.brand_name }">
 						<div class="inner-wrap clear-margin">
 							<div class="left-content">
 								<section class="section-typeinfo">
 									<h2 class="section-title">상품타입</h2>
-									<div class="useday">
-										<input autocomplete="off" type="text" name="from" id="from" style="margin-left: 10px">
-									</div>	
-									<button type="button" class="searchBtn" style="margin: 20px;">
-										검색하기
-									</button>						
+									<div style="z-index: 99;">
+										<p><input autocomplete="off" type="date" id="start_date" style="margin-left: 10px"></p>
+									</div>								
+									<ul id="menuList">
+										<li id="search">검색하기</li>
+									</ul>
+									<article id="searchArticle" class="hidden">
+										<div>${tour_option.name }</div>
+										<div>${tour_price.price} 원</div>
+										<div>											
+											<p><input style="width: 300px; height: 30px" type="number" id="client" placeholder="수량"></p>
+										</div>		
+										상세 정보 : 취소 요청에 대한 7일 이내 관리자 승인 후 환불	<br>
+										<button style="margin: 20px;">적용하기</button>	
+									</article>
 								</section>
 							</div>
 						</div>
+						</form>
 					</div>
-					<div class="inner-wrap">
+					<div class="inner-wrap" style="width: 1000px; margin-left: 50px;">
 						<div class="left-content">
 							<section class="content">
 								<h2>기본정보</h2>
-								<div>${dto.content }</div>
-								<div></div><img style="margin-right: 20px; width: 280px; height: 210px" src="${cpath }${dto.head_img}"></div>
-								<!-- <div><img src="${cpath }/resources/tourimg/tour1.jpg" style="width:80%"></div>  -->
+								<div>${tour_item.content }</div>
+								<img style="margin-right: 20px; width: 600px; height: 1000px" src="${cpath }/resources/tourImg/${tour_item.con_img}"/>
 							</section>
 							<section class="how_to">
 								<h2>사용방법</h2>
-								<div>${dto.how_to }</div>
+								<div>${tour_item.how_to }</div>
 							</section>
 							<section class="matter">
 								<h2>유의사항</h2>
-								<div>${dto.matter }</div>
+								<div>${tour_item.matter }</div>
 							</section>
 							<section class="refund_rule">
 								<h2>취소 및 환불규정</h2>
-								<div>${dto.refund_rule }</div>
+								<div>${tour_item.refund_rule }</div>
 							</section>
 						</div>
 					</div>
+					<br>
 					<div class="point-background">
 						<div class="left-content">
-							<section>
+							<section style="margin-left: 50px">
 								<h2>판매자 정보</h2>
-								<div>${tour_entrepreneur.brand_name }</div>
+								<div>
+									<div>${entrepreneur.brand_name }</div>
+									<div>${entrepreneur.brand_info }</div>
+									<a href="${cpath }/tour/entrepreneur_detail" style="position: absolute; top: 1900px; right: 850px">자세히 보기</a>
+								</div>
 							</section>
 						</div>
 					</div>
+					<br>
 					<div class="inner-wrap">
 						<div class="left-content">
 							<div class="inquiry-list">
 								<div class="list-header">
-									<div class="inner">
+									<div class="inner" style="margin-left: 50px">
 										<h2>상품문의</h2>
-										<div>${tour_qa.notice }</div>
+										<button style="background-color: #666; overflow: hidden; margin-top: 30px; margin-left: 650px">
+											<span>문의하기</span>
+										</button>
 									</div>
+									<div>${tour_qa.notice }</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				
+							
 			</div>			
 		</div>
 	</div>
 </div>
 
 <script>
-	const openBtn = document.getElementById('btn-reservation');
-	const modal = document.querySelector('.modal');
-	const closeBtn = document.getElementById('close');
-	const overlay = document.querySelector('.modal_overlay');
+	const lis = document.querySelectorAll('#menuList > li');
+	const ars = document.querySelectorAll('section article');
 	
-	openBtn.onclick = function() {
-	    modal.classList.remove('hidden');
-	}
-	closeBtn.onclick = function() {
-	    modal.classList.add('hidden');
-	}
-	overlay.onclick = function() {
-	    modal.classList.add('hidden');
-	}
+	const handler1 = (event) => {
+	    const ar = document.getElementById(event.target.id + 'Article');
+	    ars.forEach(ar => ar.classList.add('hidden'));  
+	    ar.classList.remove('hidden');  
+	    
+	    const searchBtn = document.getElementById('btn-reservation');
+		const modal = document.querySelector('.modal');
+		const closeBtn = document.getElementById('close');
+		const overlay = document.querySelector('.modal_overlay');
+		
+		searchBtn.onclick = function() {
+		    modal.classList.add('hidden');
+		}
+		closeBtn.onclick = function() {
+		    modal.classList.add('hidden');
+		}
+		overlay.onclick = function() {
+		    modal.classList.add('hidden');
+		}
+	};
+	lis.forEach(li => li.onclick = handler1);
+	
+	
+
+	const start_date = document.querySelector('#start_date');
+	const client = document.querySelector('#client');
+	const nextBtn = document.querySelector('#next');
+// 	const output1 = document.querySelector('#output1');     
+//     const output2 = document.querySelector('#output2');     
+//     const output3 = document.querySelector('#output3');
+//     const output4 = document.querySelector('#output4');
+    
+    const handler2 = () => {
+        const emptyFlag = start_date.value === '' || client.value === '';
+        console.log(emptyFlag);
+        if(emptyFlag) {
+            alert('모든 값을 입력하세요!');
+            if(client.value === '') {
+                client.focus();
+            }
+            return;
+        }
+        
+//         output1.innerText = `${tour_option.name} `;
+//         output2.innerText = `${tour_item.usable}일 후 사용가능`;
+//         output3.innerText = `${tour_option.name} * ${reservation.client} = ${reservation.tot_price}`;   
+//         output4.innerText = `${reservation.start_date} ~ ${reservation.end_date} `;
+    };
+    
+    nextBtn.onclick = handler2;
 </script>
 <%@ include file="../layout/footer.jsp" %>

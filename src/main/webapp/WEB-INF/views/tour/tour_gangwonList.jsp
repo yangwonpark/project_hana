@@ -198,15 +198,12 @@ label {
 </style>
 
 <div class="tour_wrap">
-<br><br><br>
 	<div class="tour_wrap_pic">
 		<div class="img">
 			<img src="${cpath }/resources/img/강원1.jpg" style="width:100%">
 		</div>
-		<div class="text">
-			<p>
-				강원
-			</p>
+		<div class="text" style="height: 350px; color: black; margin-top: 200px;">
+			강원
 		</div>
 	</div>
 	<div class="tour_wrap_in">
@@ -214,9 +211,18 @@ label {
 			<div class="quick-link">
 				<ul class="link-list">
 					<li class="link-list-item"><a href="#">전체</a> * </li>
-					<li class="link-list-item"><a href="#">투어&액티비티</a> * </li>
-					<li class="link-list-item"><a href="#">입장권&교통패스</a> * </li>
-					<li class="link-list-item"><a href="#">살아보기</a></li>
+					<li class="link-list-item"><a href="#">
+					<c:forEach var="package_middle" begin="25" end="25" items="${pmdto }">
+							${package_middle.name }
+					</c:forEach></a> * </li>
+					<li class="link-list-item"><a href="#">
+					<c:forEach var="package_middle" begin="26" end="26" items="${pmdto }">
+							${package_middle.name }
+					</c:forEach></a> * </li>
+					<li class="link-list-item"><a href="#">
+					<c:forEach var="package_middle" begin="27" end="27" items="${pmdto }">
+							${package_middle.name }
+					</c:forEach></a></li>
 				</ul>
 			</div>
 		</div>
@@ -226,35 +232,54 @@ label {
 				<h3>CATEGORY</h3>
 			</div>
 			<hr>
-			<div style="width:300px; height: 800px;" id="hotel_filter" >
+			<div style="width:300px; height: 800px;" id="tour_gangwon_filter" >
 				<div style="width: 250px; margin-left: 20px;">
-					<h3><a href="#" id="tour_gangwon_filter_0">전체</a></h3>
-					<div style="width: 250px; height: 120px; background-color: #F2F2F2; display: none;"
-							id="tour_gangwon_filter_0_in">
+					<h3><a href="#">전체</a></h3>
+					<div style="width: 250px; height: 120px; background-color: #F2F2F2; display: none;">
 					</div>
 				</div>
 				<hr>	
 				<div style="width: 250px; margin-left: 20px;">
-					<h3><a href="#" id="tour_gangwon_filter_1">투어&액티비티</a></h3>
-					<div style="width: 250px; height: 120px; background-color: #F2F2F2; display: none;"
+					<h3><a href="#" id="tour_gangwon_filter_1">
+						<c:forEach var="package_middle" begin="25" end="25" items="${pmdto }">
+							${package_middle.name }
+						</c:forEach>
+					</a></h3>
+					<div style="width: 250px; height: 270px; background-color: #F2F2F2; display: none;"
 							id="tour_gangwon_filter_1_in">
+						<c:forEach var="package_detail" begin="117" end="124" items="${pddto }">
+							${package_detail.name }<hr>
+						</c:forEach>
 					</div>
-				</div>
+				</div> 	
 				<hr>
-				<div style="width: 250px; margin-left: 20px">
-					<h3><a href="#" id="tour_gangwon_filter_2" >입장권&교통패스</a></h3>
-					<div style="width: 250px; height: 120px; background-color: #F2F2F2; display: none;"
+			 	<div style="width: 250px; margin-left: 20px">
+					<h3><a href="#" id="tour_gangwon_filter_2" >
+						<c:forEach var="package_middle" begin="26" end="26" items="${pmdto }">
+							${package_middle.name }
+						</c:forEach>
+					</a></h3>
+					<div style="width: 250px; height: 180px; background-color: #F2F2F2; display: none;"
 							id="tour_gangwon_filter_2_in">
+						<c:forEach var="package_detail" begin="125" end="129" items="${pddto }">
+							${package_detail.name }<hr>
+						</c:forEach>
 					</div>
-				</div>
+ 				</div>
 				<hr>				
-				<div style="width: 250px; margin-left: 20px">
-					<h3><a href="#" id="tour_gangwon_filter_3" >살아보기</a></h3>
-					<div style="width: 250px; height: 120px; background-color: #F2F2F2; display: none;"
+  				<div style="width: 250px; margin-left: 20px">  
+					<h3><a href="#" id="tour_gangwon_filter_3" >
+						<c:forEach var="package_middle" begin="27" end="27" items="${pmdto }">
+							${package_middle.name }	
+						</c:forEach>					
+					</a></h3>
+					<div style="width: 250px; height: 30px; background-color: #F2F2F2; display: none;"
 							id="tour_gangwon_filter_3_in">
+						<c:forEach var="package_detail" begin="130" end="130" items="${pddto }">
+							${package_detail.name }<hr>
+						</c:forEach>
 					</div>
 				</div>
-				<hr>
 			</div>
 		</div>
 			<div style="width: 900px; height: 2000px; background-color: #eaeaea; overflow-y: scroll;">
@@ -284,7 +309,7 @@ label {
 						<tr class="${param.idx == tour_item.idx ? 'current' : ''} ">
 							<td class="head_img">
 								<img style="margin-right: 20px; width: 280px; height: 210px" 
-								src="${cpath }${tour_item.head_img}">
+								src="${cpath }/resources/head_tourImg/${tour_item.head_img}">
 							</td>
 							<td class="name">
 								<a href="${cpath }/tour/tourGoods/${tour_item.idx}">
@@ -300,21 +325,21 @@ label {
 					</c:forEach>
 					</tbody>
 				</table>
-				<div class="hbox paging">
+				<div class="hbox paging" style="text-align: center;">
 					<c:if test="${map.paging.prev }">
-						<a href="${cpath }/tour_gangwon/${map.paging.begin - 1}?type=${param.type}&word=${param.word}">◀</a>
+						<a href="${cpath }/tour/tour_gangwon/${map.paging.begin - 1}?type=${param.type}&word=${param.word}">◀</a>
+					</c:if>			
+					<c:forEach begin="${map.paging.begin }" end="${map.paging.end }" var="i">
+						<a href="${cpath }/tour/tour_gangwon/${i}?type=${param.type}&word=${param.word}">
+						${i == map.paging.page ? '<strong>' : '' }
+							[${i }]
+						${i == map.paging.page ? '</strong>' : '' }
+						</a>
+					</c:forEach>
+					<c:if test="${map.paging.next }">
+						<a href="${cpath }/tour/tour_gangwon/${map.paging.end + 1}?type=${param.type}&word=${param.word}">▶</a>
 					</c:if>
 				</div>
-				<c:forEach begin="${map.paging.begin }" end="${map.paging.end }" var="i">
-					<a href="${cpath }/tour_gangwon/${i}?type=${param.type}&word=${param.word}">
-					${i == map.paging.page ? '<strong>' : '' }
-						[${i }]
-					${i == map.paging.page ? '</strong>' : '' }
-					</a>
-				</c:forEach>
-				<c:if test="${map.paging.next }">
-					<a href="${cpath }/tour_gangwon/${map.paging.end + 1}?type=${param.type}&word=${param.word}">▶</a>
-				</c:if>
 				<c:choose>
 					<c:when test="${login.userkind == '3' }">
 						<a href="${cpath }/tour/tourInput"><button class="btn">입력하기</button></a>
@@ -326,3 +351,20 @@ label {
 			</div>
 		</div>		
 </main>
+
+<script>
+	/* 필터 보이기 */
+	$("#tour_gangwon_filter > div").click(function(){
+		event.preventDefault();
+		const idx = (event.target.id).split('_').reverse()[0];
+		resultDiv = document.getElementById('tour_gangwon_filter_' + idx + '_in');
+		
+		if(resultDiv.style.display=="block"){
+			resultDiv.style.display = "none"; 
+		}
+	    else{ 
+	    	resultDiv.style.display = "block"; 
+	    }
+	});
+
+</script>

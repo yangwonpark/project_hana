@@ -80,36 +80,32 @@
 		<div style="width: 1000px; display: flex; margin: auto;">
 			<div style="width: 300px;">호텔 공지사항</div>
 			<div style="width: 700px; text-align: left;">
-				<textarea cols="80" rows="15" name="notice" autocomplete="off" required>
-				</textarea>
+				<textarea cols="80" rows="15" name="notice" autocomplete="off" required></textarea>
 			</div>
 		</div>
 		<div style="width: 1000px; display: flex; margin: auto;">
 			<div style="width: 300px;">객실 설명</div>
 			<div style="width: 700px; text-align: left;">
-				<textarea cols="80" rows="15" name="room" autocomplete="off" required>
-				</textarea>
+				<textarea cols="80" rows="15" name="room" autocomplete="off" required></textarea>
 			</div>
 		</div>
 		<div style="width: 1000px; display: flex; margin: auto;">
 			<div style="width: 300px;">편의 시설 설명</div>
 			<div style="width: 700px; text-align: left;">
-				<textarea cols="80" rows="15"  name="con_facility" autocomplete="off" required>
-				</textarea>
+				<textarea cols="80" rows="15"  name="con_facility" autocomplete="off" required></textarea>
 			</div>
 		</div>
 		<div style="width: 1000px; display: flex; margin: auto;">
 			<div style="width: 300px;">다이닝 설명</div>
 			<div style="width: 700px; text-align: left;">
-				<textarea cols="80" rows="15"  name="dining" autocomplete="off" required>
-				</textarea>
+				<textarea cols="80" rows="15"  name="dining" autocomplete="off" required></textarea>
 			</div>
 		</div>
 		<div style="width: 1000px; display: flex; margin: auto;">
 			<div style="width: 300px; height: 100px;">숙소 부대 시설</div>
 			<div style="width: 700px; text-align: left;">
 				<c:forEach var="add_category" items="${addCategoryList }">
-					<label><input type="checkbox" name="${add_category.name }">${add_category.name }</label>
+					<label><input type="checkbox" name="add_facility" value="${add_category.name }">${add_category.name }</label>
 				</c:forEach>
 			</div>
 		</div>
@@ -124,24 +120,21 @@
 </div>
 
 <script>
-const input = document.querySelector('input[webkitdirectory]');
-
-const changeHandler = function(event) {
-   if(input.files.length != 0) {
-      const folderName = input.files[0].webkitRelativePath.split('/')[0];
-      const hidden = document.createElement('input');
-      hidden.type = 'hidden';
-      hidden.name = 'main_img';
-      hidden.value = folderName;
-      
-      const form = document.querySelector('form[enctype="multipart/form-data"]');
-      form.appendChild(hidden);
-      
-      console.log(folderName);
-   }
-   
-}
-input.onchange = changeHandler;
+	const input = document.querySelector('input[webkitdirectory]');
+	
+	const changeHandler = function(event) {
+		if(input.files.length != 0) {
+			const folderName = input.files[0].webkitRelativePath.split('/')[0];
+	      
+	      	const hidden = document.createElement('input');
+	      	hidden.type = 'hidden';
+	      	hidden.name = 'main_img';
+	      	hidden.value = folderName;
+	      	const form = document.querySelector('form[enctype="multipart/form-data"]');
+	      	form.appendChild(hidden);
+	   	}
+	}
+	input.onchange = changeHandler;
 </script>
 
 

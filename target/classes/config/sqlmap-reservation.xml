@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+		"-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itbank.reservation.ReservationDAO">
+
+	<select resultType="reservation" id="getReservationList">
+		select * from reservation 
+	</select>
+	
+	<select id="selectOne" resultType="reservation" parameterType="int">
+		select * from reservation where idx = #{idx}
+	</select>
+	
+	<insert id="insertReservation" parameterType="reservation">
+		insert into reservation values(
+			RESERVATION_SEQ.nextval	,
+			#{	major_category_idx	}	,
+			#{	member_idx	}	,
+			#{	info_idx	}	,
+			#{	start_date	}	,
+			#{	end_date	}	,
+			#{	client	}	,
+			#{	tot_price	}	,
+			#{	status	}	,
+			#{	reserv_serial	}	
+		)
+	</insert>
+	<select id="getReservationSelectOne" parameterType="int" resultType="reservation">
+		select * from reservation where idx=#{idx}
+	</select>
+	
+	<select id="getReservationIdx" resultType="int">
+		select max(idx) from reservation
+	</select>
+	<insert id="insertPayment" parameterType="payment">
+		
+	</insert>
+</mapper>

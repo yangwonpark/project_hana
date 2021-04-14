@@ -9,4 +9,13 @@
 		select * from tour_price 
 	</select>
 	
+	<select id="selectOne" resultType="tour_price" parameterType="int">
+		select * from tour_price 
+	</select>
+	
+	<insert id="insertTour_Price" parameterType="tour_price">
+		insert into tour_price(idx, tour_item_idx, age_idx, weekend, days, price, de_price)
+			values (tour_price_seq.nextval, #{tour_item_idx}, #{age_idx}, #{weekend}, #{days}, #{price}, #{de_price})
+	</insert>
+	
 </mapper>

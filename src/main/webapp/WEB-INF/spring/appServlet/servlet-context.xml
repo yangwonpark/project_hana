@@ -43,12 +43,12 @@
 	<context:component-scan base-package="com.itbank.controller" />
 	<context:component-scan base-package="com.itbank.chat" />
 	
-  	<interceptors>
-		<interceptor>
-			<mapping path="/myMenu/myMenu_main" />
-			<mapping path="/reservation/reserve_main" />
-			<mapping path="/myMenu/myMenu_main" />
-			<mapping path="/cart/cart_form2" />
+<!--   	<interceptors> -->
+<!-- 		<interceptor> -->
+<!-- 			<mapping path="/myMenu/myMenu_main" /> -->
+<!-- 			<mapping path="/reservation/reserve_main" /> -->
+<!-- 			<mapping path="/myMenu/myMenu_main" /> -->
+<!-- 			<mapping path="/cart/cart_form2" /> -->
 		<!--<exclude-mapping path="/" />
 			<exclude-mapping path="/login/login_form" />
 			<exclude-mapping path="/join/join_form" />
@@ -59,10 +59,10 @@
 			<exclude-mapping path="/checkId" />
 			<exclude-mapping path="/checkPnum" />
 			<exclude-mapping path="/auth/kakao/callback" /> -->	
-			<beans:bean id="loginInterceptor" 
-						class="com.itbank.interceptor.LoginInterceptor" />
-		</interceptor>
-	</interceptors>
+<!-- 			<beans:bean id="loginInterceptor"  -->
+<!-- 						class="com.itbank.interceptor.LoginInterceptor" /> -->
+<!-- 		</interceptor> -->
+<!-- 	</interceptors> -->
 	
 	
 </beans:beans>

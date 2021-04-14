@@ -283,6 +283,9 @@
 		chatArea.innerHTML += "<span class='chat--left'>" +
 		"<span class='chat-user'>관리자<br>" +
 		"<span class='chat-content'>" + m.data + "</span>"
+		
+		let div = document.querySelector('.chat-area');
+		 div.scrollTop = div.scrollHeight - div.clientHeight;
 	}
 	
 	function onClose() {};
@@ -299,6 +302,9 @@
 		sock_user.send(liveName + ":" + textMsg.value);
 		
 		textMsg.value = "";
+
+		let div = document.querySelector('.chat-area');
+		div.scrollTop = div.scrollHeight - div.clientHeight;
 	}
 	
 	function enter() {

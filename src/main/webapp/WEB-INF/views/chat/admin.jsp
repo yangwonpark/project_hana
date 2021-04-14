@@ -59,7 +59,10 @@
 						"<span class='chat-content'>" + content + "</span><br>" +
 						"<span class='chat-time'>" + realDate + "</span>"));
 				
-				
+				// jQuery 자동 스크롤(하단)
+				$div.find(".chat-area")
+		        .stop()
+		        .animate({ scrollTop: $div.find(".chat-area")[0].scrollHeight }, 1000);
 			}
 			
 		} else if(node.status === "bye") {
@@ -89,7 +92,13 @@
 				"<span class='chat-time' style='margin-top: 0px'>" + realDate + "</span>"));
 		$div.find(".text-msg").val("");
 		
+		
 		sock.send(key + ":" + msg);
+		
+		// jQuery 자동 스크롤(하단)
+		$div.find(".chat-area")
+        .stop()
+        .animate({ scrollTop: $div.find(".chat-area")[0].scrollHeight }, 1000);
 	});
 	
 	

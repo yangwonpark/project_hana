@@ -35,8 +35,8 @@
 			<bean class="com.zaxxer.hikari.HikariConfig">
 				<constructor-arg>
 					<props>
-<!-- 						<prop key="jdbcUrl">jdbc:oracle:thin:@192.168.0.99:1521:xe</prop> -->
-						<prop key="jdbcUrl">jdbc:oracle:thin:@localhost:1521:xe</prop>
+<!-- 						<prop key="jdbcUrl">jdbc:oracle:thin:@192.168.0.93:1521:xe</prop> -->
+						<prop key="jdbcUrl">jdbc:oracle:thin:@192.168.0.99:1521:xe</prop>
 						<prop key="username">c##hana</prop>
 						<prop key="password">itbank</prop>
 					</props>

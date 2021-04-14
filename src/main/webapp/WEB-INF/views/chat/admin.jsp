@@ -23,8 +23,8 @@
 </body>
 <script>
 // 	let sock = new SockJS('http://192.168.0.83:8080/day08/adminEcho');
-// 	let sock = new SockJS('http://192.168.0.83:8080/hana/adminEcho');
-	let sock = new SockJS('http://localhost:8080/hana/adminEcho');
+	let sock = new SockJS('http://192.168.0.83:8080/hana/adminEcho');
+// 	let sock = new SockJS('http://localhost:8080/hana/adminEcho');
 	
 	sock.onopen = function(msg) {};
 	sock.onclose = function(msg) {};
@@ -53,17 +53,13 @@
 			let log = $div.find(".chat-area").text();
 			if(content === "" || content === "undefined" || content === null) {
 				$div.find(".chat-area").append($("<span class='chat--left'>" + userName + "</span>"));
-
 			} else {
 				$div.find(".chat-area").append($("<span class='chat--left'>" + 
 						"<span class='chat-user'>" + userName + "</span><br>" +
 						"<span class='chat-content'>" + content + "</span><br>" +
 						"<span class='chat-time'>" + realDate + "</span>"));
 				
-// 				$('.chat-area')
-// 				.stop()
-// 				.animate({ scrollTop: ($('.chat-area').offset().top) }, 1000);
-
+				
 			}
 			
 		} else if(node.status === "bye") {
@@ -93,10 +89,6 @@
 				"<span class='chat-time' style='margin-top: 0px'>" + realDate + "</span>"));
 		$div.find(".text-msg").val("");
 		
-// 		$('.chat-area')
-// 		.stop()
-// 		.animate({ scrollTop: ($('.chat-area').offset().top) }, 1000);
-		
 		sock.send(key + ":" + msg);
 	});
 	
@@ -110,27 +102,7 @@
 		return true;
 	});
 		
-// 	 $(document).ready(function() {
-// 	      $('.chat-container').on( 'keyup', '.chat-area', function (e){
-// 	        $(this).css('height', 'auto' );
-// 	        $(this).height( this.scrollHeight );
-// 	      });
-// 	      $('.chat-container').find( '.chat-area' ).keyup();
-// 	    });
 	
-// 	 $(document).ready(function() {
-// 		 $('.chat-area')
-// 			.stop()
-// 			.animate({ scrollTop: $('.chat-area')[0].scrollHeight }, 1000);
-// 	    });
-	
-	
-	
-	
-	
-	
-	
-
 
 	// 채팅 내역 MongoDB에 ajax로 저장하는 함수
 	const chatInsert = function(msg) {

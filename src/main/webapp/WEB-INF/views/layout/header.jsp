@@ -254,8 +254,8 @@
 	let sock_user;
 	
 	function connect(name) {
-// 		sock_user = new SockJS('http://192.168.0.83:8080/day08/clientEcho');
-		sock_user = new SockJS('http://192.168.0.83:8080/hana/clientEcho');
+// 		sock_user = new SockJS('http://192.168.0.83:8080/hana/clientEcho');
+		sock_user = new SockJS('http://192.168.0.93:8080/hana/clientEcho');
 // 		sock_user = new SockJS('http://localhost:8080/hana/clientEcho');
 		// 웹 소켓 자체에 내장 메소드 4개 
 		sock_user.onopen = onOpen;

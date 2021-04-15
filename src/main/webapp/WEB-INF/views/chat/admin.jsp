@@ -22,8 +22,8 @@
 	</div>
 </body>
 <script>
-// 	let sock = new SockJS('http://192.168.0.83:8080/day08/adminEcho');
-	let sock = new SockJS('http://192.168.0.83:8080/hana/adminEcho');
+// 	let sock = new SockJS('http://192.168.0.83:8080/hana/adminEcho');
+	let sock = new SockJS('http://192.168.0.93:8080/hana/adminEcho');
 // 	let sock = new SockJS('http://localhost:8080/hana/adminEcho');
 	
 	sock.onopen = function(msg) {};

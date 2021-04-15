@@ -38,7 +38,8 @@ public class KakaoController {
 			MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 			params.add("grant_type", "authorization_code");
 			params.add("client_id", "4e98c061f75136520e7139aead6e1df2");
-			params.add("redirect_uri", "http://192.168.0.83:8080/hana/auth/kakao/callback");
+//			params.add("redirect_uri", "http://192.168.0.83:8080/hana/auth/kakao/callback");
+			params.add("redirect_uri", "http://192.168.0.93:8080/hana/auth/kakao/callback");
 			params.add("code", code);
 			HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest = 
 					new HttpEntity<>(params,headers);
